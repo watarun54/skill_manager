@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  get '/cards', to: 'cards#index'
+  resources :cards, only: [:index, :new, :create]
   get '/cards/list', to: 'cards#list'
 end
