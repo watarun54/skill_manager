@@ -2,7 +2,9 @@
 	<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Skill Manager</a>
 	<ul class="navbar-nav px-3">
 		<li class="nav-item text-nowrap">
-			<a class="nav-link" href="#">Sign out</a>
+			<% if controller.action_name == "list" %>
+				<%= link_to 'Add', new_card_path, remote: true, class: "nav-link" %>
+			<% end %>
 		</li>
 	</ul>
 </nav>

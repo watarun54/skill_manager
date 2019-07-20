@@ -3,65 +3,26 @@
 		<%= render "shared/sidebar" %>
 
 		<main role="main" class="col-md-9 col-lg-10 pt-3 px-4">
+      <div id="alert-message"></div>
 
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap pb-2 mb-3 flex-row-reverse">
-        <button type="button" class="btn btn-primary rounded-circle p-0" style="width:3rem;height:3rem;" data-toggle="modal" data-target="#modal1">＋</button>
-        <div class="modal fade" id="modal1" tabindex="-1"
-              role="dialog" aria-labelledby="label1" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="label1">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                Modal body
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">OK</button>
+      <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"></div>
+
+      <div class="container">
+        <div id="card-list" class="row">
+          <% @cards.each do |card| %>
+            <div id="card-<%= card.id %>" class="col-md-4 mb-4">
+              <div class="card card-body bg-light">
+                <p class="card-text"><strong>Skill：</strong> <%= card.skill.name %></p>
+                <p class="card-text"><strong>Score：</strong> <%= card.score %></p>
+                <p class="card-text"><%= card.fact %></p>
+                <%= link_to 'Delete', card, method: :delete, remote: true, data: { confirm: 'Are you sure?'} %>
+                <small class="text-muted text-right"><%= card.updated_at.strftime("%Y年%m月%d日") %> 更新</small>
               </div>
             </div>
-          </div>
+          <% end %>
         </div>
-      </div>
+       </div>
 
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-
-        <div class="card-deck">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-text">KPI: AWS</p>
-              <p class="card-text">POINT: 70</p>
-              <p class="card-text">経験: AWSにて、PFMのステージング環境をECSで構築した。</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">最終更新3分前</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">カード2のタイトル</h5>
-              <p class="card-text">このカードには、追加のコンテンツへの自然な導入として以下のサポートテキストがあります。</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">最終更新3分前</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">カード3のタイトル</h5>
-              <p class="card-text">これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカードです。 このカードは、同じ高さのアクションを示す最初のものよりも長いコンテンツを持っています。</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">最終更新3分前</small>
-            </div>
-          </div>
-        </div>
-      
-      </div>
 		</main>
 	</div>
 </div>
