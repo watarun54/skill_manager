@@ -15,6 +15,7 @@
                 <p class="card-text"><strong>Skill：</strong> <%= card.skill.name %></p>
                 <p class="card-text"><strong>Score：</strong> <%= card.score %></p>
                 <p class="card-text"><%= card.fact %></p>
+                <%= link_to 'Edit', edit_card_path(card), remote: true %>
                 <%= link_to 'Delete', card, method: :delete, remote: true, data: { confirm: 'Are you sure?'} %>
                 <small class="text-muted text-right"><%= card.updated_at.strftime("%Y年%m月%d日") %> 更新</small>
               </div>

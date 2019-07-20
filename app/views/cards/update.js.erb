@@ -2,13 +2,13 @@ $('#alert-message').empty();
 <% if @status == 'success' %>
 $('#alert-message').html('\
     <div class="alert alert-success alert-dismissible fade show" role="alert" role="alert">\
-      <strong>create <%= @status %></strong>\
+      <strong>update <%= @status %></strong>\
       <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">\
         <span aria-hidden="true">&times;</span>\
       </button>\
     </div>\
   ');
-$("#card-list").prepend("<%= j(render("card", card: @card)) %>");
+$("#card-<%= @card.id %>").replaceWith("<%= j(render("card", card: @card)) %>");
 $("#card-modal").modal("hide");
 <% elsif @status == 'fail' %>
 $('#error-message-area').html('<%= j render("shared/error_messages", card: @card) %>');

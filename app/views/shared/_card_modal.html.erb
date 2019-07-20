@@ -2,31 +2,33 @@
   <div class="modal-content">
 
     <div class="modal-header">
-      <h5 class="modal-title" id="label1">New Card</h5>
+      <h5 class="modal-title" id="label1">
+      <%= controller.action_name == "new" ? "Create" : "Edit" %> Card
+      </h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
 
-    <%= form_for(@card, remote: true) do |form| %>
+    <%= form_for(@card, remote: true) do |f| %>
       <div class="modal-body">
         <div id="error-message-area"></div>
 
         <div class="form-group">
-          <%= form.select :skill_id, @skill_set, {}, { class: "form-control" }%>
+          <%= f.select :skill_id, @skill_set, {}, { class: "form-control" }%>
         </div>
 
         <div class="form-group">
-          <%= form.text_field :score, class: "form-control", placeholder: "Score e.g. 80" %>
+          <%= f.text_field :score, class: "form-control", placeholder: "Score (e.g. 80)" %>
         </div>
 
         <div class="form-group">
-          <%= form.text_area :fact, class: "form-control", placeholder: "実績・経験" %>
+          <%= f.text_area :fact, class: "form-control", placeholder: "Fact (e.g. 経験・実績)" %>
         </div>
       </div>
 
       <div class="modal-footer">
-        <%= form.submit "Create", class: "btn btn-primary"%>
+        <%= f.submit "Save", class: "btn btn-primary"%>
       </div>
     <% end %>
 

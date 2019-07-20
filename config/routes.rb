@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  resources :cards, only: [:index, :new, :create, :destroy]
+  resources :cards, except: [:show]
   get '/cards/list', to: 'cards#list'
 end
