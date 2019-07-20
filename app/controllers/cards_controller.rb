@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
   before_action :set_card_info, only: [:edit, :update, :destroy]
+  before_action :set_options, only: [:new, :edit]
 
 	def index
 	end
@@ -10,7 +11,6 @@ class CardsController < ApplicationController
 
 	def new
     @card = Card.new()
-    @skill_set = Skill.all.pluck(:name, :id)
 	end
 
 	def create
@@ -30,7 +30,6 @@ class CardsController < ApplicationController
   end
 
   def edit
-    @skill_set = Skill.all.pluck(:name, :id)
   end
 
   def update
@@ -67,5 +66,10 @@ class CardsController < ApplicationController
 
   def set_card_info
     @card = Card.find(params[:id])
+  end
+
+  def set_options
+    @skill_options = Skill.all.pluck(:name, :id)
+    @score_options = CardConstants::SCORE_OPTIONS
   end
 end
