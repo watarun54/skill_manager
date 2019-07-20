@@ -1,65 +1,33 @@
-<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-	<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Skill Manager</a>
-	<ul class="navbar-nav px-3">
-		<li class="nav-item text-nowrap">
-			<a class="nav-link" href="#">Sign out</a>
-		</li>
-	</ul>
-</nav>
-
 <div class="container-fluid">
 	<div class="row">
-		<nav class="col-md-2 d-none d-md-block bg-light sidebar">
-			<div class="sidebar-sticky">
-				<nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column mt-2">
-              <li class="nav-item">
-                <%= link_to "Dashboard", "/cards", class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Card List", "/cards/list", class: "nav-link" %>
-              </li>
-            </ul>
-          </div>
-        </nav>
-			</div>
-		</nav>
+		<%= render "shared/sidebar" %>
 
-		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+		<main role="main" class="col-md-9 col-lg-10 pt-3 px-4">
+      <div id="alert-message"></div>
 
-        <div class="card-deck">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">カード1のタイトル</h5>
-              <p class="card-text">これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカードです。このコンテンツはもう少し長くなります。</p>
+      <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"></div>
+
+      <div class="container">
+        <div id="card-list" class="row">
+          <% @cards.each do |card| %>
+            <div id="card-<%= card.id %>" class="col-lg-4 col-md-6 mb-4">
+              <div class="card card-body bg-light">
+                <p class="card-text"><strong>Skill：</strong> <%= card.skill.name %></p>
+                <p class="card-text"><strong>Score：</strong> <%= card.score %></p>
+                <p class="card-text"><%= card.fact %></p>
+              </div>
+              <div class="card-footer text-right">
+                <small class="text-muted">Created at <%= card.created_at.strftime("%Y/%m/%d") %></small>
+                <div class="btn-group ml-3">
+                  <%= link_to 'Edit', edit_card_path(card), remote: true, class: "btn btn-sm btn-outline-secondary" %>
+                  <%= link_to 'Delete', card, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, class: "btn btn-sm btn-outline-secondary" %>
+                </div>
+              </div>
             </div>
-            <div class="card-footer">
-              <small class="text-muted">最終更新3分前</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">カード2のタイトル</h5>
-              <p class="card-text">このカードには、追加のコンテンツへの自然な導入として以下のサポートテキストがあります。</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">最終更新3分前</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">カード3のタイトル</h5>
-              <p class="card-text">これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカードです。 このカードは、同じ高さのアクションを示す最初のものよりも長いコンテンツを持っています。</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">最終更新3分前</small>
-            </div>
-          </div>
+          <% end %>
         </div>
-      
-      </div>
+       </div>
+
 		</main>
 	</div>
 </div>

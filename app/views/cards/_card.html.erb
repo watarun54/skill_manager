@@ -1,0 +1,14 @@
+<div id="card-<%= card.id %>" class="col-md-4 mb-4">
+  <div class="card card-body bg-light">
+    <p class="card-text"><strong>Skill：</strong> <%= card.skill.name %></p>
+    <p class="card-text"><strong>Score：</strong> <%= card.score %></p>
+    <p class="card-text"><%= card.fact %></p>
+  </div>
+  <div class="card-footer text-right">
+    <small class="text-muted">Created at <%= card.created_at.strftime("%Y/%m/%d") %></small>
+    <div class="btn-group ml-3">
+      <%= link_to 'Edit', edit_card_path(card), remote: true, class: "btn btn-sm btn-outline-secondary" %>
+      <%= link_to 'Delete', card, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, class: "btn btn-sm btn-outline-secondary" %>
+    </div>
+  </div>
+</div>

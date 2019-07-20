@@ -1,0 +1,36 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <h5 class="modal-title" id="label1">
+      <%= controller.action_name == "new" ? "Create" : "Edit" %> Card
+      </h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <%= form_for(@card, remote: true) do |f| %>
+      <div class="modal-body">
+        <div id="error-message-area"></div>
+
+        <div class="form-group">
+          <%= f.select :skill_id, @skill_options, {}, { class: "form-control" }%>
+        </div>
+
+        <div class="form-group">
+          <%= f.select :score, @score_options, {}, { class: "form-control" } %>
+        </div>
+
+        <div class="form-group">
+          <%= f.text_area :fact, class: "form-control", placeholder: "Fact (e.g. 経験・実績)" %>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <%= f.submit "Save", class: "btn btn-secondary"%>
+      </div>
+    <% end %>
+
+  </div>
+</div>
