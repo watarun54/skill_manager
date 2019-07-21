@@ -1,0 +1,33 @@
+<div class="container-fluid">
+	<div class="row">
+		<%= render "shared/sidebar" %>
+
+		<main role="main" class="col-md-10 pt-3 px-4">
+      <div id="alert-message"></div>
+
+      <div class="container table-responsive">
+        <table class="table text-nowrap">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">スキル</th>
+              <th scope="col">Card枚数</th>
+              <th scope="col">総スコア</th>
+              <th scope="col">作成日</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @skills.each do |skill| %>
+            <tr>
+              <th scope="row"><%= skill.name %></th>
+              <td><%= skill.cards.count %></td>
+              <td><%= total_scores_of(skill) %></td>
+              <td><%= skill.created_at.strftime("%Y/%m/%d") %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+
+		</main>
+	</div>
+</div>
