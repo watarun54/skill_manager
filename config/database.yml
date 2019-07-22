@@ -23,9 +23,9 @@ development:
   reconnect: false
   database: skill_manager_development
   pool: 5
-  username: root
-  password: wataru0224
-  host: localhost
+  username: <%=ENV["RAILS_DATABASE_USERNAME"] %>
+  password: <%= ENV["RAILS_DATABASE_PASSWORD"] %>
+  host: <%= ENV["RAILS_DATABASE_HOST"] %>
 
 test:
   adapter: mysql2
@@ -33,9 +33,9 @@ test:
   reconnect: false
   database: skill_manager_test
   pool: 5
-  username: root
-  password: wataru0224
-  host: localhost
+  username: <%= ENV["RAILS_DATABASE_USERNAME"] %>
+  password: <%= ENV["RAILS_DATABASE_PASSWORD"] %>
+  host: <%= ENV["RAILS_DATABASE_HOST"] %>
 
 production:
   adapter: mysql2
@@ -43,6 +43,6 @@ production:
   reconnect: false
   database: skill_manager_production
   pool: 5
-  username: root
-  password: <%= ENV['SKILL_MANAGER_DATABASE_PASSWORD'] %>
-  host: localhost
+  username: <%= ENV["RAILS_DATABASE_USERNAME"] %>
+  password: <%= ENV["RAILS_DATABASE_PASSWORD"] %>
+  host: <%= ENV["RAILS_DATABASE_HOST"] %>
