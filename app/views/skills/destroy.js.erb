@@ -3,14 +3,20 @@ $('.error-message-area').empty();
 <% if @status == 'success' %>
 $('#alert-message').html('\
     <div class="alert alert-success alert-dismissible fade show" role="alert" role="alert">\
-      <strong>create <%= @status %></strong>\
+      <strong>delete <%= @status %></strong>\
       <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">\
         <span aria-hidden="true">&times;</span>\
       </button>\
     </div>\
   ');
-$("#skill-list").prepend("<%= j(render("skill", skill: @skill)) %>");
-$("#skill_name").val("");
+$("#skill-<%= @skill.id %>").remove();
 <% elsif @status == 'fail' %>
-$('.error-message-area').html('<%= j render("shared/error_messages", model: @skill) %>');
+$('#alert-message').html('\
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" role="alert">\
+      <strong>delete <%= @status %></strong>\
+      <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">\
+        <span aria-hidden="true">&times;</span>\
+      </button>\
+    </div>\
+  ');
 <% end %>
