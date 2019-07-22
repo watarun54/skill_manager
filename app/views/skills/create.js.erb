@@ -1,4 +1,5 @@
 $('#alert-message').empty();
+$('.error-message-area').empty();
 <% if @status == 'success' %>
 $('#alert-message').html('\
     <div class="alert alert-success alert-dismissible fade show" role="alert" role="alert">\
@@ -8,8 +9,8 @@ $('#alert-message').html('\
       </button>\
     </div>\
   ');
-$("#card-list").prepend("<%= j(render("card", card: @card)) %>");
-$("#card-modal").modal("hide");
+$("#skill-list").prepend("<%= j(render("skill", skill: @skill)) %>");
+$("#skill_name").val("");
 <% elsif @status == 'fail' %>
-$('#error-message-area').html('<%= j render("shared/error_messages", model: @card) %>');
+$('.error-message-area').html('<%= j render("shared/error_messages", model: @skill) %>');
 <% end %>

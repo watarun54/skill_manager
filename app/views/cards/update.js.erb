@@ -11,5 +11,5 @@ $('#alert-message').html('\
 $("#card-<%= @card.id %>").replaceWith("<%= j(render("card", card: @card)) %>");
 $("#card-modal").modal("hide");
 <% elsif @status == 'fail' %>
-$('#error-message-area').html('<%= j render("shared/error_messages", card: @card) %>');
+$('#error-message-area').html('<%= j render("shared/error_messages", model: @card) %>');
 <% end %>
