@@ -25,4 +25,6 @@ set .env file
 ```
 rails db:create
 rails db:migrate
+sudo mysql.server restart
+rails s
 ```
