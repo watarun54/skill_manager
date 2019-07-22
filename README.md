@@ -5,7 +5,7 @@
 ```
 ruby 2.5.0
 Rails 5.2.3
-Boostrap 4
+Boostrap4
 mysql 
 ```
 
@@ -13,6 +13,7 @@ mysql
 
 ```
 dotenv-rails: .envにある環境変数を使用するため
+chartkick, chartable: グラフを簡単に描画するため
 ```
 
 * How to start
