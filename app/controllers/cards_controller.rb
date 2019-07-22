@@ -2,9 +2,6 @@ class CardsController < ApplicationController
   before_action :set_card_info, only: [:edit, :update, :destroy]
   before_action :set_options, only: [:new, :edit]
 
-	def index
-	end
-
 	def list
 		@cards = Card.all.order(id: "DESC")
 	end
