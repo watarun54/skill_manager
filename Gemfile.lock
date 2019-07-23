@@ -66,11 +66,16 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    chartable (0.0.0.3)
+      activesupport (>= 3.0.0)
+      chronic (~> 0.10)
+    chartkick (3.2.1)
     childprocess (1.0.1)
       rake (< 13.0)
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    chronic (0.10.2)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -81,6 +86,10 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    dotenv (2.7.4)
+    dotenv-rails (2.7.4)
+      dotenv (= 2.7.4)
+      railties (>= 3.2, < 6.1)
     erubi (1.8.0)
     execjs (2.7.0)
     ffi (1.11.1)
@@ -228,8 +237,11 @@ DEPENDENCIES
   bootstrap (~> 4.3.1)
   byebug
   capybara (>= 2.15)
+  chartable
+  chartkick
   chromedriver-helper
   coffee-rails (~> 4.2)
+  dotenv-rails
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

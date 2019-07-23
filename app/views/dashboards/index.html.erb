@@ -2,24 +2,69 @@
 	<div class="row">
 		<%= render "shared/sidebar" %>
 
-		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-				<h1 class="h2">Dashboard</h1>
+		<main role="main" class="col-md-10 pt-3 px-4">
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 mr-md-5 border-bottom">
+				<h2 class="h2">スキル別</h2>
 				<div class="btn-toolbar mb-2 mb-md-0">
-					<div class="btn-group mr-2">
-						<button class="btn btn-sm btn-outline-secondary">Share</button>
-						<button class="btn btn-sm btn-outline-secondary">Export</button>
+					<div id="period-button-group" class="btn-group">
+						<button type="button" id="period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Week</button>
+						<div class="dropdown-menu">
+							<ul class="nav flex-column">
+								<li class="nav-item">
+									<a href="#tab1" class="nav-link text-muted" data-toggle="tab">Week</a>
+								</li>
+								<li class="nav-item">
+									<a href="#tab2" class="nav-link text-muted" data-toggle="tab">Month</a>
+								</li>
+								<li class="nav-item">
+									<a href="#tab3" class="nav-link text-muted" data-toggle="tab">Year</a>
+								</li>
+							</ul>
+						</div>
 					</div>
-					<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-						<span data-feather="calendar"></span>
-						This week
-					</button>
 				</div>
 			</div>
 
-			<canvas class="my-4" id="myChart" width="" height="380"></canvas>
+			<div class="mr-md-5">
+			<div class="tab-content">
+				<div id="tab1" class="tab-pane active">
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_score_chart_per_week, xtitle: "Total Score", ytitle: ""%>
+					</div>
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_card_chart_per_week, xtitle: "Total Number of Cards", ytitle: "" %>
+					</div>
+				</div>
+				<div id="tab2" class="tab-pane">
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_score_chart_per_month, xtitle: "Total Score", ytitle: ""%>
+					</div>
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_card_chart_per_month, xtitle: "Total Number of Cards", ytitle: "" %>
+					</div>
+				</div>
+				<div id="tab3" class="tab-pane">
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_score_chart_per_year, xtitle: "Total Score", ytitle: ""%>
+					</div>
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_card_chart_per_year, xtitle: "Total Number of Cards", ytitle: "" %>
+					</div>
+				</div>
+			</div>
+			</div>
 
-			<h2>Section title</h2>
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 mr-md-5 border-bottom">
+				<h2 class="h2">Section title</h2>
+				<div class="btn-toolbar mb-2 mb-md-0">
+					<div class="btn-group">
+						<button class="btn btn-sm btn-outline-secondary">Share</button>
+						<button class="btn btn-sm btn-outline-secondary">Export</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="mr-md-5">
 			<div class="table-responsive">
 				<table class="table table-striped table-sm">
 					<thead>
@@ -147,54 +192,8 @@
 					</tbody>
 				</table>
 			</div>
+			</div>
+
 		</main>
 	</div>
 </div>
-
-<%#
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script src="../../assets/js/vendor/popper.min.js"></script>
-<script src="../../dist/js/bootstrap.min.js"></script>
-
-<!-- Icons -->
-<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-<script>
-	feather.replace()
-</script>
-
-<!-- Graphs -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<script>
-	var ctx = document.getElementById("myChart");
-	var myChart = new Chart(ctx, {
-		type: 'line',
-		data: {
-			labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-			datasets: [{
-				data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-				lineTension: 0,
-				backgroundColor: 'transparent',
-				borderColor: '#007bff',
-				borderWidth: 4,
-				pointBackgroundColor: '#007bff'
-			}]
-		},
-		options: {
-			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero: false
-					}
-				}]
-			},
-			legend: {
-				display: false,
-			}
-		}
-	});
-</script>
-%>
