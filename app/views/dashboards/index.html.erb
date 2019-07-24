@@ -3,21 +3,22 @@
 		<%= render "shared/sidebar" %>
 
 		<main role="main" class="col-md-10 pt-3 px-4">
-			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 mr-md-5 border-bottom">
-				<h2 class="h2">スキル別</h2>
+
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
+				<h2 class="h2">累計総スコア数 / 期間毎スコア数</h2>
 				<div class="btn-toolbar mb-2 mb-md-0">
-					<div id="period-button-group" class="btn-group">
-						<button type="button" id="period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Week</button>
+					<div id="score-period-button-group" class="btn-group">
+						<button type="button" id="score-period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Week</button>
 						<div class="dropdown-menu">
 							<ul class="nav flex-column">
 								<li class="nav-item">
-									<a href="#tab1" class="nav-link text-muted" data-toggle="tab">Week</a>
+									<a href="#score-tab1" class="nav-link text-muted" data-toggle="tab">Week</a>
 								</li>
 								<li class="nav-item">
-									<a href="#tab2" class="nav-link text-muted" data-toggle="tab">Month</a>
+									<a href="#score-tab2" class="nav-link text-muted" data-toggle="tab">Month</a>
 								</li>
 								<li class="nav-item">
-									<a href="#tab3" class="nav-link text-muted" data-toggle="tab">Year</a>
+									<a href="#score-tab3" class="nav-link text-muted" data-toggle="tab">Year</a>
 								</li>
 							</ul>
 						</div>
@@ -27,7 +28,61 @@
 
 			<div class="mr-md-5">
 			<div class="tab-content">
-				<div id="tab1" class="tab-pane active">
+				<div id="score-tab1" class="tab-pane active">
+					<div class="chart-body mb-5">
+						<%= column_chart @all_score_per_week, xtitle: "", ytitle: "Total Score" %>
+					</div>
+					<div class="chart-body mb-5">
+						<%= line_chart @growth_rate_per_day, discrete: true, xtitle: "", ytitle: "Scores per Day" %>
+					</div>
+				</div>
+				<div id="score-tab2" class="tab-pane">
+					<div class="chart-body mb-5">
+						<%= column_chart @all_score_per_month, xtitle: "", ytitle: "Total Score" %>
+					</div>
+					<div class="chart-body mb-5">
+						<%= line_chart @growth_rate_per_month, discrete: true, xtitle: "", ytitle: "Scores per Month" %>
+					</div>
+				</div>
+				<div id="score-tab3" class="tab-pane">
+					<div class="chart-body mb-5">
+						<%= column_chart @all_score_per_year, xtitle: "", ytitle: "Total Score" %>
+					</div>
+					<div class="chart-body mb-5">
+						<%= line_chart @growth_rate_per_year, discrete: true, xtitle: "", ytitle: "Scores per Year" %>
+					</div>
+				</div>
+			</div>
+			</div>
+
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
+				<h2 class="h2">スキル別</h2>
+				<div class="btn-toolbar mb-2 mb-md-0">
+					<div id="skill-period-button-group" class="btn-group">
+						<button type="button" id="skill-period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">In Week</button>
+						<div class="dropdown-menu">
+							<ul class="nav flex-column">
+								<li class="nav-item">
+									<a href="#skill-tab1" class="nav-link text-muted" data-toggle="tab">In Week</a>
+								</li>
+								<li class="nav-item">
+									<a href="#skill-tab2" class="nav-link text-muted" data-toggle="tab">In Month</a>
+								</li>
+								<li class="nav-item">
+									<a href="#skill-tab3" class="nav-link text-muted" data-toggle="tab">In Year</a>
+								</li>
+								<li class="nav-item">
+									<a href="#skill-tab4" class="nav-link text-muted" data-toggle="tab">All</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="mr-md-5">
+			<div class="tab-content">
+				<div id="skill-tab1" class="tab-pane active">
 					<div class="chart-body mb-5">
 						<%= bar_chart @skill_score_chart_per_week, xtitle: "Total Score", ytitle: ""%>
 					</div>
@@ -35,7 +90,7 @@
 						<%= bar_chart @skill_card_chart_per_week, xtitle: "Total Number of Cards", ytitle: "" %>
 					</div>
 				</div>
-				<div id="tab2" class="tab-pane">
+				<div id="skill-tab2" class="tab-pane">
 					<div class="chart-body mb-5">
 						<%= bar_chart @skill_score_chart_per_month, xtitle: "Total Score", ytitle: ""%>
 					</div>
@@ -43,7 +98,7 @@
 						<%= bar_chart @skill_card_chart_per_month, xtitle: "Total Number of Cards", ytitle: "" %>
 					</div>
 				</div>
-				<div id="tab3" class="tab-pane">
+				<div id="skill-tab3" class="tab-pane">
 					<div class="chart-body mb-5">
 						<%= bar_chart @skill_score_chart_per_year, xtitle: "Total Score", ytitle: ""%>
 					</div>
@@ -51,149 +106,18 @@
 						<%= bar_chart @skill_card_chart_per_year, xtitle: "Total Number of Cards", ytitle: "" %>
 					</div>
 				</div>
-			</div>
-			</div>
-
-			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 mr-md-5 border-bottom">
-				<h2 class="h2">Section title</h2>
-				<div class="btn-toolbar mb-2 mb-md-0">
-					<div class="btn-group">
-						<button class="btn btn-sm btn-outline-secondary">Share</button>
-						<button class="btn btn-sm btn-outline-secondary">Export</button>
+				<div id="skill-tab4" class="tab-pane">
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_score_chart, xtitle: "Total Score", ytitle: ""%>
+					</div>
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_card_chart, xtitle: "Total Number of Cards", ytitle: "" %>
 					</div>
 				</div>
-			</div>
-
-			<div class="mr-md-5">
-			<div class="table-responsive">
-				<table class="table table-striped table-sm">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Header</th>
-							<th>Header</th>
-							<th>Header</th>
-							<th>Header</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1,001</td>
-							<td>Lorem</td>
-							<td>ipsum</td>
-							<td>dolor</td>
-							<td>sit</td>
-						</tr>
-						<tr>
-							<td>1,002</td>
-							<td>amet</td>
-							<td>consectetur</td>
-							<td>adipiscing</td>
-							<td>elit</td>
-						</tr>
-						<tr>
-							<td>1,003</td>
-							<td>Integer</td>
-							<td>nec</td>
-							<td>odio</td>
-							<td>Praesent</td>
-						</tr>
-						<tr>
-							<td>1,003</td>
-							<td>libero</td>
-							<td>Sed</td>
-							<td>cursus</td>
-							<td>ante</td>
-						</tr>
-						<tr>
-							<td>1,004</td>
-							<td>dapibus</td>
-							<td>diam</td>
-							<td>Sed</td>
-							<td>nisi</td>
-						</tr>
-						<tr>
-							<td>1,005</td>
-							<td>Nulla</td>
-							<td>quis</td>
-							<td>sem</td>
-							<td>at</td>
-						</tr>
-						<tr>
-							<td>1,006</td>
-							<td>nibh</td>
-							<td>elementum</td>
-							<td>imperdiet</td>
-							<td>Duis</td>
-						</tr>
-						<tr>
-							<td>1,007</td>
-							<td>sagittis</td>
-							<td>ipsum</td>
-							<td>Praesent</td>
-							<td>mauris</td>
-						</tr>
-						<tr>
-							<td>1,008</td>
-							<td>Fusce</td>
-							<td>nec</td>
-							<td>tellus</td>
-							<td>sed</td>
-						</tr>
-						<tr>
-							<td>1,009</td>
-							<td>augue</td>
-							<td>semper</td>
-							<td>porta</td>
-							<td>Mauris</td>
-						</tr>
-						<tr>
-							<td>1,010</td>
-							<td>massa</td>
-							<td>Vestibulum</td>
-							<td>lacinia</td>
-							<td>arcu</td>
-						</tr>
-						<tr>
-							<td>1,011</td>
-							<td>eget</td>
-							<td>nulla</td>
-							<td>Class</td>
-							<td>aptent</td>
-						</tr>
-						<tr>
-							<td>1,012</td>
-							<td>taciti</td>
-							<td>sociosqu</td>
-							<td>ad</td>
-							<td>litora</td>
-						</tr>
-						<tr>
-							<td>1,013</td>
-							<td>torquent</td>
-							<td>per</td>
-							<td>conubia</td>
-							<td>nostra</td>
-						</tr>
-						<tr>
-							<td>1,014</td>
-							<td>per</td>
-							<td>inceptos</td>
-							<td>himenaeos</td>
-							<td>Curabitur</td>
-						</tr>
-						<tr>
-							<td>1,015</td>
-							<td>sodales</td>
-							<td>ligula</td>
-							<td>in</td>
-							<td>libero</td>
-						</tr>
-					</tbody>
-				</table>
 			</div>
 			</div>
 
 		</main>
+
 	</div>
 </div>

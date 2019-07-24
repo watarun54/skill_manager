@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#period-button-group .dropdown-menu.show {
+#score-period-button-group .dropdown-menu.show {
+  transform: translate3d(-93px, 31px, 0px) !important;
+}
+
+#skill-period-button-group .dropdown-menu.show {
   transform: translate3d(-93px, 31px, 0px) !important;
 }
