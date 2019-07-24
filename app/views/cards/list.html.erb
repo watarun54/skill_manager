@@ -2,14 +2,14 @@
 	<div class="row">
 		<%= render "shared/sidebar" %>
 
-		<main role="main" class="col-md-9 col-lg-10 p-5">
+		<main role="main" class="col-md-9 col-lg-10 p-3 p-lg-5">
       <div id="alert-message"></div>
 
       <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"></div>
 
       <div class="container">
 
-        <div class="text-right sticky-top add-card-button">
+        <div class="text-right sticky-top add-card-button pt-4">
           <span>＋</span>
           <%= link_to '', new_card_path, remote: true, class: "btn btn-outline-secondary rounded-circle p-0" %>
         </div>
