@@ -3,21 +3,22 @@
 		<%= render "shared/sidebar" %>
 
 		<main role="main" class="col-md-10 pt-3 px-4">
-			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 mr-md-5 border-bottom">
-				<h2 class="h2">スキル別</h2>
+
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
+				<h2 class="h2">累計総スコア数 / 前月比成長率</h2>
 				<div class="btn-toolbar mb-2 mb-md-0">
-					<div id="period-button-group" class="btn-group">
-						<button type="button" id="period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Week</button>
+					<div id="score-period-button-group" class="btn-group">
+						<button type="button" id="score-period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Week</button>
 						<div class="dropdown-menu">
 							<ul class="nav flex-column">
 								<li class="nav-item">
-									<a href="#tab1" class="nav-link text-muted" data-toggle="tab">Week</a>
+									<a href="#score-tab1" class="nav-link text-muted" data-toggle="tab">Week</a>
 								</li>
 								<li class="nav-item">
-									<a href="#tab2" class="nav-link text-muted" data-toggle="tab">Month</a>
+									<a href="#score-tab2" class="nav-link text-muted" data-toggle="tab">Month</a>
 								</li>
 								<li class="nav-item">
-									<a href="#tab3" class="nav-link text-muted" data-toggle="tab">Year</a>
+									<a href="#score-tab3" class="nav-link text-muted" data-toggle="tab">Year</a>
 								</li>
 							</ul>
 						</div>
@@ -27,7 +28,49 @@
 
 			<div class="mr-md-5">
 			<div class="tab-content">
-				<div id="tab1" class="tab-pane active">
+				<div id="score-tab1" class="tab-pane active">
+					<div class="chart-body mb-5">
+						<%= column_chart @all_score_per_week, xtitle: "", ytitle: "Total Score" %>
+					</div>
+				</div>
+				<div id="score-tab2" class="tab-pane">
+					<div class="chart-body mb-5">
+						<%= column_chart @all_score_per_month, xtitle: "", ytitle: "Total Score" %>
+					</div>
+				</div>
+				<div id="score-tab3" class="tab-pane">
+					<div class="chart-body mb-5">
+						<%= column_chart @all_score_per_year, xtitle: "", ytitle: "Total Score" %>
+					</div>
+				</div>
+			</div>
+			</div>
+
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
+				<h2 class="h2">スキル別</h2>
+				<div class="btn-toolbar mb-2 mb-md-0">
+					<div id="skill-period-button-group" class="btn-group">
+						<button type="button" id="skill-period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Week</button>
+						<div class="dropdown-menu">
+							<ul class="nav flex-column">
+								<li class="nav-item">
+									<a href="#skill-tab1" class="nav-link text-muted" data-toggle="tab">Week</a>
+								</li>
+								<li class="nav-item">
+									<a href="#skill-tab2" class="nav-link text-muted" data-toggle="tab">Month</a>
+								</li>
+								<li class="nav-item">
+									<a href="#skill-tab3" class="nav-link text-muted" data-toggle="tab">Year</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="mr-md-5">
+			<div class="tab-content">
+				<div id="skill-tab1" class="tab-pane active">
 					<div class="chart-body mb-5">
 						<%= bar_chart @skill_score_chart_per_week, xtitle: "Total Score", ytitle: ""%>
 					</div>
@@ -35,7 +78,7 @@
 						<%= bar_chart @skill_card_chart_per_week, xtitle: "Total Number of Cards", ytitle: "" %>
 					</div>
 				</div>
-				<div id="tab2" class="tab-pane">
+				<div id="skill-tab2" class="tab-pane">
 					<div class="chart-body mb-5">
 						<%= bar_chart @skill_score_chart_per_month, xtitle: "Total Score", ytitle: ""%>
 					</div>
@@ -43,7 +86,7 @@
 						<%= bar_chart @skill_card_chart_per_month, xtitle: "Total Number of Cards", ytitle: "" %>
 					</div>
 				</div>
-				<div id="tab3" class="tab-pane">
+				<div id="skill-tab3" class="tab-pane">
 					<div class="chart-body mb-5">
 						<%= bar_chart @skill_score_chart_per_year, xtitle: "Total Score", ytitle: ""%>
 					</div>
@@ -54,7 +97,7 @@
 			</div>
 			</div>
 
-			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 mr-md-5 border-bottom">
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
 				<h2 class="h2">Section title</h2>
 				<div class="btn-toolbar mb-2 mb-md-0">
 					<div class="btn-group">
@@ -195,5 +238,6 @@
 			</div>
 
 		</main>
+
 	</div>
 </div>
