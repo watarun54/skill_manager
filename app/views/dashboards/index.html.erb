@@ -59,17 +59,20 @@
 				<h2 class="h2">スキル別</h2>
 				<div class="btn-toolbar mb-2 mb-md-0">
 					<div id="skill-period-button-group" class="btn-group">
-						<button type="button" id="skill-period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Week</button>
+						<button type="button" id="skill-period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">In Week</button>
 						<div class="dropdown-menu">
 							<ul class="nav flex-column">
 								<li class="nav-item">
-									<a href="#skill-tab1" class="nav-link text-muted" data-toggle="tab">Week</a>
+									<a href="#skill-tab1" class="nav-link text-muted" data-toggle="tab">In Week</a>
 								</li>
 								<li class="nav-item">
-									<a href="#skill-tab2" class="nav-link text-muted" data-toggle="tab">Month</a>
+									<a href="#skill-tab2" class="nav-link text-muted" data-toggle="tab">In Month</a>
 								</li>
 								<li class="nav-item">
-									<a href="#skill-tab3" class="nav-link text-muted" data-toggle="tab">Year</a>
+									<a href="#skill-tab3" class="nav-link text-muted" data-toggle="tab">In Year</a>
+								</li>
+								<li class="nav-item">
+									<a href="#skill-tab4" class="nav-link text-muted" data-toggle="tab">All</a>
 								</li>
 							</ul>
 						</div>
@@ -101,6 +104,14 @@
 					</div>
 					<div class="chart-body mb-5">
 						<%= bar_chart @skill_card_chart_per_year, xtitle: "Total Number of Cards", ytitle: "" %>
+					</div>
+				</div>
+				<div id="skill-tab4" class="tab-pane">
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_score_chart, xtitle: "Total Score", ytitle: ""%>
+					</div>
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_card_chart, xtitle: "Total Number of Cards", ytitle: "" %>
 					</div>
 				</div>
 			</div>
