@@ -1,3 +1,21 @@
 // Place all the styles related to the cards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.add-card-button {
+  height: 1px;
+
+  span {
+    position: absolute;
+    top: 16px;
+    right: 19px;
+    z-index: 10;
+  }
+  a {
+    width: 3.5rem;
+    height: 3.5rem;
+    position: absolute;
+    right: -1px;
+    z-index: 20;
+  }
+}
