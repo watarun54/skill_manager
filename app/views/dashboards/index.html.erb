@@ -5,7 +5,7 @@
 		<main role="main" class="col-md-10 pt-3 px-4">
 
 			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
-				<h2 class="h2">累計総スコア数 / 前月比成長率</h2>
+				<h2 class="h2">累計総スコア数 / 期間毎スコア数</h2>
 				<div class="btn-toolbar mb-2 mb-md-0">
 					<div id="score-period-button-group" class="btn-group">
 						<button type="button" id="score-period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Week</button>
@@ -32,15 +32,24 @@
 					<div class="chart-body mb-5">
 						<%= column_chart @all_score_per_week, xtitle: "", ytitle: "Total Score" %>
 					</div>
+					<div class="chart-body mb-5">
+						<%= line_chart @growth_rate_per_day, discrete: true, xtitle: "", ytitle: "Scores per Day" %>
+					</div>
 				</div>
 				<div id="score-tab2" class="tab-pane">
 					<div class="chart-body mb-5">
 						<%= column_chart @all_score_per_month, xtitle: "", ytitle: "Total Score" %>
 					</div>
+					<div class="chart-body mb-5">
+						<%= line_chart @growth_rate_per_month, discrete: true, xtitle: "", ytitle: "Scores per Month" %>
+					</div>
 				</div>
 				<div id="score-tab3" class="tab-pane">
 					<div class="chart-body mb-5">
 						<%= column_chart @all_score_per_year, xtitle: "", ytitle: "Total Score" %>
+					</div>
+					<div class="chart-body mb-5">
+						<%= line_chart @growth_rate_per_year, discrete: true, xtitle: "", ytitle: "Scores per Year" %>
 					</div>
 				</div>
 			</div>
