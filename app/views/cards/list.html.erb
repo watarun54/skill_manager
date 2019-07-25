@@ -2,37 +2,34 @@
 	<div class="row">
 		<%= render "shared/sidebar" %>
 
-		<main role="main" class="col-md-9 col-lg-10 p-3 p-lg-5">
+		<main role="main" class="col-md-9 col-lg-10 px-md-5">
       <div id="alert-message"></div>
 
       <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"></div>
 
-      <div class="container">
+      <div class="text-right sticky-top add-card-button pt-4">
+        <span>＋</span>
+        <%= link_to '', new_card_path, remote: true, class: "btn btn-outline-secondary rounded-circle p-0" %>
+      </div>
 
-        <div class="text-right sticky-top add-card-button pt-4">
-          <span>＋</span>
-          <%= link_to '', new_card_path, remote: true, class: "btn btn-outline-secondary rounded-circle p-0" %>
-        </div>
-
-        <div id="card-list" class="row">
-          <% @cards.each do |card| %>
-            <div id="card-<%= card.id %>" class="col-lg-4 col-md-6 mb-4">
-              <div class="card card-body bg-light">
-                <p class="card-text"><strong>Skill：</strong> <%= card.skill.name %></p>
-                <p class="card-text"><strong>Score：</strong> <%= card.score %></p>
-                <p class="card-text"><%= card.fact %></p>
-              </div>
-              <div class="card-footer text-right">
-                <small class="text-muted">Created at <%= card.created_at.strftime("%Y/%m/%d") %></small>
-                <div class="btn-group ml-3">
-                  <%= link_to 'Edit', edit_card_path(card), remote: true, class: "btn btn-sm btn-outline-secondary" %>
-                  <%= link_to 'Delete', card, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, class: "btn btn-sm btn-outline-secondary" %>
-                </div>
+      <div id="card-list" class="row">
+        <% @cards.each do |card| %>
+          <div id="card-<%= card.id %>" class="col-lg-4 col-md-6 mb-4">
+            <div class="card card-body bg-light">
+              <p class="card-text"><strong>Skill：</strong> <%= card.skill.name %></p>
+              <p class="card-text"><strong>Score：</strong> <%= card.score %></p>
+              <p class="card-text"><%= card.fact %></p>
+            </div>
+            <div class="card-footer text-right">
+              <small class="text-muted">Created at <%= card.created_at.strftime("%Y/%m/%d") %></small>
+              <div class="btn-group ml-3">
+                <%= link_to 'Edit', edit_card_path(card), remote: true, class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to 'Delete', card, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, class: "btn btn-sm btn-outline-secondary" %>
               </div>
             </div>
-          <% end %>
-        </div>
-       </div>
+          </div>
+        <% end %>
+      </div>
 
 		</main>
 	</div>
