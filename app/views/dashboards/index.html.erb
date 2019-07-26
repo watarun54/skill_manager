@@ -30,7 +30,7 @@
 			<div class="tab-content">
 				<div id="score-tab1" class="tab-pane active">
 					<div class="chart-body mb-5">
-						<%= column_chart @all_score_per_week, xtitle: "", ytitle: "Total Score" %>
+						<%= column_chart @all_score_per_week, xtitle: "", ytitle: "Total Score", min: nil %>
 					</div>
 					<div class="chart-body mb-5">
 						<%= line_chart @growth_rate_per_day, discrete: true, xtitle: "", ytitle: "Scores per Day" %>
@@ -38,7 +38,7 @@
 				</div>
 				<div id="score-tab2" class="tab-pane">
 					<div class="chart-body mb-5">
-						<%= column_chart @all_score_per_month, xtitle: "", ytitle: "Total Score" %>
+						<%= column_chart @all_score_per_month, xtitle: "", ytitle: "Total Score", min: nil %>
 					</div>
 					<div class="chart-body mb-5">
 						<%= line_chart @growth_rate_per_month, discrete: true, xtitle: "", ytitle: "Scores per Month" %>
@@ -84,7 +84,7 @@
 			<div class="tab-content">
 				<div id="skill-tab1" class="tab-pane active">
 					<div class="chart-body mb-5">
-						<%= bar_chart @skill_score_chart_per_week, xtitle: "Total Score", ytitle: ""%>
+						<%= bar_chart @skill_score_chart_per_week, xtitle: "Total Score", ytitle: "" %>
 					</div>
 					<div class="chart-body mb-5">
 						<%= bar_chart @skill_card_chart_per_week, xtitle: "Total Number of Cards", ytitle: "" %>
@@ -92,7 +92,7 @@
 				</div>
 				<div id="skill-tab2" class="tab-pane">
 					<div class="chart-body mb-5">
-						<%= bar_chart @skill_score_chart_per_month, xtitle: "Total Score", ytitle: ""%>
+						<%= bar_chart @skill_score_chart_per_month, xtitle: "Total Score", ytitle: "" %>
 					</div>
 					<div class="chart-body mb-5">
 						<%= bar_chart @skill_card_chart_per_month, xtitle: "Total Number of Cards", ytitle: "" %>
@@ -100,7 +100,7 @@
 				</div>
 				<div id="skill-tab3" class="tab-pane">
 					<div class="chart-body mb-5">
-						<%= bar_chart @skill_score_chart_per_year, xtitle: "Total Score", ytitle: ""%>
+						<%= bar_chart @skill_score_chart_per_year, xtitle: "Total Score", ytitle: "", min: nil %>
 					</div>
 					<div class="chart-body mb-5">
 						<%= bar_chart @skill_card_chart_per_year, xtitle: "Total Number of Cards", ytitle: "" %>
@@ -108,7 +108,7 @@
 				</div>
 				<div id="skill-tab4" class="tab-pane">
 					<div class="chart-body mb-5">
-						<%= bar_chart @skill_score_chart, xtitle: "Total Score", ytitle: ""%>
+						<%= bar_chart @skill_score_chart, xtitle: "Total Score", ytitle: "", min: nil %>
 					</div>
 					<div class="chart-body mb-5">
 						<%= bar_chart @skill_card_chart, xtitle: "Total Number of Cards", ytitle: "" %>
