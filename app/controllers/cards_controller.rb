@@ -2,8 +2,10 @@ class CardsController < ApplicationController
   before_action :set_card_info, only: [:edit, :update, :destroy]
   before_action :set_options, only: [:new, :edit]
 
+  PER = 18
+
 	def list
-		@cards = Card.all.order(id: "DESC")
+		@cards = Card.all.order(id: "DESC").page(params[:page]).per(PER)
 	end
 
 	def new
