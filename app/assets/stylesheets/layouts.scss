@@ -1,7 +1,19 @@
+// title is "Skill Manager"
 .site_title {
   font-size: 21px;
   padding-top: 16px;
   padding-bottom: 16px;
+}
+
+// link color for kaminari
+.page-link {
+  color: #343a40 !important;
+}
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff !important;
+  background-color: #343a40;
+  border-color: #343a40;
 }
 
 // _sidebar.html.erb
