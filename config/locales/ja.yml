@@ -18,12 +18,13 @@ ja:
           attributes:
             name:
               blank: を入力してください
-              too_long: は20文字以下です
+              too_long: は50文字以下です
             email:
               blank: を入力してください
               invalid: の形式が正しくありません
               taken: はすでに登録されています
             password:
               blank: を入力してください
+              too_long: は72文字以内です
             password_confirmation:
               confirmation: が一致しません
