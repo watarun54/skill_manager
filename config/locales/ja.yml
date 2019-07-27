@@ -6,3 +6,35 @@ ja:
       next: "&rsaquo;"
       previous: "&lsaquo;"
       truncate: "&hellip;"
+  sessions:
+    create:
+      flash:
+        invalid_email: Email が間違っています
+        invalid_password: Password が間違っています
+  activerecord:
+    errors:
+      models:
+        skill:
+          attributes:
+            name:
+              blank: を入力してください
+              too_long: は500文字以内です
+        card:
+          attributes:
+            fact:
+              blank: を入力してください
+              too_long: は500文字以内です
+        user:
+          attributes:
+            name:
+              blank: を入力してください
+              too_long: は50文字以下です
+            email:
+              blank: を入力してください
+              invalid: の形式が正しくありません
+              taken: はすでに登録されています
+            password:
+              blank: を入力してください
+              too_long: は72文字以内です
+            password_confirmation:
+              confirmation: が一致しません

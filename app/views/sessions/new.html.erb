@@ -1,0 +1,31 @@
+<div class="container-fluid">
+	<div class="row">
+		<%= render "shared/sidebar" %>
+
+		<main role="main" class="col-md-9 col-lg-10 pt-5">
+
+      <div class="col-md-6 offset-md-3 mt-md-5">
+        <h1 class="h2 mb-4 text-center">ログイン</h1>
+
+        <%= render "shared/notice" %>
+
+        <%= form_for(:session, url: login_path) do |f| %>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, class: "form-control", maxlength: 191 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password %>
+            <%= f.password_field :password, class: "form-control", maxlength: 72 %>
+          </div>
+          <%= f.submit 'ログイン', class: "btn btn-secondary" %>
+        <% end %>
+
+        <%= link_to ">> 新規登録", users_new_path, class: "nav-link text-muted mt-2" %>
+
+      </div>
+
+    </main>
+
+  </div>
+</div>
