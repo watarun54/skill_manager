@@ -5,15 +5,10 @@
 
     <h1 class="h2 mb-4 text-center">新規登録</h1>
 
-    <% if @user.errors.present? %>
-      <div>
-        <strong>入力内容にエラーがあります</strong>
-        <ul>
-          <% @user.errors.each do |attr, error| %>
-            <li><%= error %></li>
-          <% end %>
-        </ul>
-      </div>
+    <% if @user.errors.any? %>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
     <% end %>
 
     <%= form_for(@user, url: users_path) do |f| %>
@@ -35,6 +30,8 @@
       </div>
       <%= f.submit '登録', class: "btn btn-secondary" %>
     <% end %>
+
+    <%= link_to "ログイン", login_path, class: "nav-link text-muted" %>
 
     </div>
   </div>
