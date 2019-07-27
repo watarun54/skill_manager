@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
     raise LoginRequired unless @current_user.present?
   end
 
+  def redirect_login_user
+    redirect_to root_path if @current_user.present?
+  end
+
   def rescue_bad_request(exception)
     render "errors/bad_request", status: 400, formats: [:html]
   end

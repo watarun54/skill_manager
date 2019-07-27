@@ -17,7 +17,7 @@
 				<%= link_to "Skill List", skills_path, class: "nav-link text-muted" %>
 			</li>
 			<li class="nav-item">
-				<%= link_to 'ログアウト', logout_path, method: :delete, class: "nav-link text-muted" %>
+				<%= link_to 'ログアウト', logout_path, method: :delete, class: "nav-link text-muted", data: { confirm: 'Are you sure?'} %>
 			</li>
 		<% else %>
 			<li class="nav-item">
