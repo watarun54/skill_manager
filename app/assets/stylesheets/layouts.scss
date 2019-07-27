@@ -17,6 +17,9 @@
 }
 
 // _sidebar.html.erb
+.sidebar {
+  min-height: 1160px;
+}
 .sidebar-content {
   position: fixed;
 }

@@ -14,7 +14,6 @@ class UsersController < ApplicationController
       flash[:notice] = "Account created successfully!"
       redirect_to login_path
     else
-      flash.now.alert = "Got error"
       render "new"
     end
   end

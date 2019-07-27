@@ -1,25 +1,31 @@
-<div class="container my-5">
-<div id="alert-message"></div>
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
+<div class="container-fluid">
+	<div class="row">
+		<%= render "shared/sidebar" %>
 
-    <h1 class="h2 mb-4 text-center">ログイン</h1>
+		<main role="main" class="col-md-9 col-lg-10 pt-5">
 
-    <%= form_for(:session, url: login_path) do |f| %>
-      <%= alert if alert %>
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.text_field :email, class: "form-control" %>
+      <div class="col-lg-6 offset-lg-3 mt-md-5">
+        <h1 class="h2 mb-4 text-center">ログイン</h1>
+
+        <%= render "shared/notice" %>
+
+        <%= form_for(:session, url: login_path) do |f| %>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.text_field :email, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password %>
+            <%= f.text_field :password, class: "form-control" %>
+          </div>
+          <%= f.submit 'ログイン', class: "btn btn-secondary" %>
+        <% end %>
+
+        <%= link_to ">> 新規登録", users_new_path, class: "nav-link text-muted mt-2" %>
+
       </div>
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.text_field :password, class: "form-control" %>
-      </div>
-      <%= f.submit 'ログイン', class: "btn btn-secondary" %>
-    <% end %>
 
-    <%= link_to "新規登録", users_new_path, class: "nav-link text-muted" %>
+    </main>
 
-    </div>
   </div>
 </div>

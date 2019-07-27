@@ -2,6 +2,7 @@
 	<div class="sidebar-sticky sidebar-content">
 	<%= link_to "Skill Manager", root_path, class: "nav-link text-white site_title" %>
 		<ul class="nav flex-column">
+		<% if @current_user.present? %>
 			<li class="nav-item">
 				<%= link_to "Dashboard", dashboards_path, class: "nav-link text-muted" %>
 			</li>
@@ -12,8 +13,16 @@
 				<%= link_to "Skill List", skills_path, class: "nav-link text-muted" %>
 			</li>
 			<li class="nav-item">
-				<%= link_to 'Log Out', logout_path, method: :delete, class: "nav-link text-muted" %>
+				<%= link_to 'ログアウト', logout_path, method: :delete, class: "nav-link text-muted" %>
 			</li>
+		<% else %>
+			<li class="nav-item">
+				<%= link_to "ログイン", login_path, class: "nav-link text-muted" %>
+			</li>
+			<li class="nav-item">
+				<%= link_to "新規登録", users_new_path, class: "nav-link text-muted" %>
+			</li>
+		<% end %>
 		</ul>
 	</div>
 </nav>

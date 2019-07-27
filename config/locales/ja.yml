@@ -9,8 +9,8 @@ ja:
   sessions:
     create:
       flash:
-        invalid_email: emailが間違っています
-        invalid_password: passwordが間違っています
+        invalid_email: Email が間違っています
+        invalid_password: Password が間違っています
   activerecord:
     errors:
       models:
@@ -26,4 +26,4 @@ ja:
             password:
               blank: を入力してください
             password_confirmation:
-              confirmation: が一致しません。
+              confirmation: が一致しません

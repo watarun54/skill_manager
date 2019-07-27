@@ -8,8 +8,9 @@ Rails.application.routes.draw do
 
   resources :dashboards
 
-	get 'users/new' => 'users#new'
-	post 'users' => 'users#create'
+  get 'users', to: 'users#new'
+	post 'users', to: 'users#create'
+	get 'users/new', to: 'users#new'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
