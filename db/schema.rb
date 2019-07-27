@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_26_152052) do
+ActiveRecord::Schema.define(version: 2019_07_27_150604) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "skill_id"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2019_07_26_152052) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_skills_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -34,6 +36,10 @@ ActiveRecord::Schema.define(version: 2019_07_26_152052) do
     t.string "remember_token", limit: 191
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "skill_id"
+    t.index ["skill_id"], name: "index_users_on_skill_id"
   end
 
+  add_foreign_key "skills", "users"
+  add_foreign_key "users", "skills"
 end
