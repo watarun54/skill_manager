@@ -14,6 +14,16 @@ ja:
   activerecord:
     errors:
       models:
+        skill:
+          attributes:
+            name:
+              blank: を入力してください
+              too_long: は500文字以内です
+        card:
+          attributes:
+            fact:
+              blank: を入力してください
+              too_long: は500文字以内です
         user:
           attributes:
             name:

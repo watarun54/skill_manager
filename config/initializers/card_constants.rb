@@ -1,3 +1,3 @@
 module CardConstants
-  SCORE_OPTIONS = [20, 40, 60, 80, 100]
+  SCORE_OPTIONS = [50, 100, 150]
 end
