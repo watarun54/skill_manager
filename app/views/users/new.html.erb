@@ -5,6 +5,17 @@
 
     <h1 class="h2 mb-4 text-center">新規登録</h1>
 
+    <% if @user.errors.present? %>
+      <div>
+        <strong>入力内容にエラーがあります</strong>
+        <ul>
+          <% @user.errors.each do |attr, error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= form_for(@user, url: users_path) do |f| %>
       <div class="form-group">
         <%= f.label :name %>
