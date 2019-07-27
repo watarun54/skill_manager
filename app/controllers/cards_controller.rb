@@ -5,8 +5,7 @@ class CardsController < ApplicationController
   PER = 18
 
 	def list
-    @cards = Card.eager_load(:skill).where(skills: { user_id: @current_user.id }).
-                  order(id: "DESC").page(params[:page]).per(PER)
+    @cards = Card.of_current_user(@current_user).order(id: "DESC").page(params[:page]).per(PER)
 	end
 
 	def new

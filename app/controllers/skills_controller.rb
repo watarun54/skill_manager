@@ -3,7 +3,7 @@ class SkillsController < ApplicationController
 
   def index
     @skill = Skill.new
-    @skills = @current_user.skills.order(id: "DESC")
+    @skills = Skill.of_current_user(@current_user).order(id: "DESC")
   end
 
   def show
