@@ -5,7 +5,7 @@ class CardsController < ApplicationController
   PER = 18
 
 	def list
-		@cards = Card.all.order(id: "DESC").page(params[:page]).per(PER)
+    @cards = Card.of_current_user(@current_user).order(id: "DESC").page(params[:page]).per(PER)
 	end
 
 	def new
@@ -68,7 +68,7 @@ class CardsController < ApplicationController
   end
 
   def set_options
-    @skill_options = Skill.all.pluck(:name, :id)
+    @skill_options = @current_user.skills.pluck(:name, :id)
     @score_options = CardConstants::SCORE_OPTIONS
   end
 end

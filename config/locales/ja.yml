@@ -19,8 +19,11 @@ ja:
             name:
               blank: を入力してください
               too_long: は500文字以内です
+              taken: はすでに登録されています
         card:
           attributes:
+            skill:
+              required: を選択してください
             fact:
               blank: を入力してください
               too_long: は500文字以内です
