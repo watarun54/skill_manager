@@ -28,3 +28,11 @@ rails db:migrate
 sudo mysql.server restart
 rails s
 ```
+* Update production env in ubuntu(16)
+
+```
+git pull origin [branch]
+sudo /etc/init.d/puma restart
+* if there is any change in migration files
+* rails db:migrate
+```
