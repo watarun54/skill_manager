@@ -1,0 +1,43 @@
+<div class="container-fluid">
+	<div class="row">
+		<%= render "shared/sidebar" %>
+
+		<main role="main" class="col-md-9 col-lg-10 pt-5">
+
+      <div id="alert-message"></div>
+
+      <div class="col-md-6 offset-md-3 mt-md-4">
+        <h1 class="h2 mb-4 text-center">ユーザー編集</h1>
+
+        <%= render "shared/notice" %>
+
+        <%= render("shared/error_messages", model: @user) %>
+
+        <%= form_for(@user) do |f| %>
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control", maxlength: 50 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, class: "form-control", disabled: true, maxlength: 191 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password %>
+            <%= f.password_field :password, class: "form-control", maxlength: 72 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, class: "form-control", maxlength: 72 %>
+          </div>
+          <%= f.submit '登録', class: "btn btn-secondary" %>
+        <% end %>
+
+        <%= link_to '>> ユーザー削除', user_path(@current_user.id), method: :delete, class: "nav-link text-muted mt-2", data: { confirm: 'Are you sure?'} %>
+
+      </div>
+
+    </main>
+
+  </div>
+</div>

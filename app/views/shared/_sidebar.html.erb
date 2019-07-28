@@ -13,6 +13,9 @@
 				<%= link_to "Skill List", skills_path, class: "nav-link text-muted" %>
 			</li>
 			<li class="nav-item">
+				<%= link_to 'ユーザー編集', edit_user_path(@current_user.id), class: "nav-link text-muted" %>
+			</li>
+			<li class="nav-item">
 				<%= link_to 'ログアウト', logout_path, method: :delete, class: "nav-link text-muted", data: { confirm: 'Are you sure?'} %>
 			</li>
 		<% else %>
@@ -20,7 +23,7 @@
 				<%= link_to "ログイン", login_path, class: "nav-link text-muted" %>
 			</li>
 			<li class="nav-item">
-				<%= link_to "新規登録", users_new_path, class: "nav-link text-muted" %>
+				<%= link_to "新規登録", new_user_path, class: "nav-link text-muted" %>
 			</li>
 		<% end %>
 		</ul>
