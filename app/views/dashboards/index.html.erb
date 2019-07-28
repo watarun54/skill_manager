@@ -5,7 +5,7 @@
 		<main role="main" class="col-md-9 col-lg-10 pt-4 px-3 p-lg-5">
 
 			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
-				<h2 class="h2">累計総スコア数 / 期間毎スコア数</h2>
+				<h2 class="h2">All Cards</h2>
 				<div class="btn-toolbar mb-2 mb-md-0">
 					<div id="score-period-button-group" class="btn-group">
 						<button type="button" id="score-period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Week</button>
@@ -26,7 +26,7 @@
 				</div>
 			</div>
 
-			<div class="mr-md-5">
+			<div class="mr-md-5 pb-3 pb-md-5">
 			<div class="tab-content">
 				<div id="score-tab1" class="tab-pane active">
 					<div class="chart-body mb-5">
@@ -80,41 +80,45 @@
 				</div>
 			</div>
 
-			<div class="mr-md-5">
+			<div class="mr-md-5 pb-3 pb-md-5">
 			<div class="tab-content">
 				<div id="skill-tab1" class="tab-pane active">
 					<div class="chart-body mb-5">
-						<%= bar_chart @skill_score_chart_per_week, xtitle: "Total Score", ytitle: "" %>
+						<%= bar_chart @skill_score_chart_per_week, xtitle: "Total Score", ytitle: "", colors: ["#842444", "transparent"] %>
 					</div>
 					<div class="chart-body mb-5">
-						<%= bar_chart @skill_card_chart_per_week, xtitle: "Total Number of Cards", ytitle: "" %>
+						<%= bar_chart @skill_card_chart_per_week, xtitle: "Total Number of Cards", ytitle: "", colors: ["#842444", "transparent"] %>
 					</div>
 				</div>
 				<div id="skill-tab2" class="tab-pane">
 					<div class="chart-body mb-5">
-						<%= bar_chart @skill_score_chart_per_month, xtitle: "Total Score", ytitle: "" %>
+						<%= bar_chart @skill_score_chart_per_month, xtitle: "Total Score", ytitle: "", colors: ["#842444", "transparent"] %>
 					</div>
 					<div class="chart-body mb-5">
-						<%= bar_chart @skill_card_chart_per_month, xtitle: "Total Number of Cards", ytitle: "" %>
+						<%= bar_chart @skill_card_chart_per_month, xtitle: "Total Number of Cards", ytitle: "", colors: ["#842444", "transparent"] %>
 					</div>
 				</div>
 				<div id="skill-tab3" class="tab-pane">
 					<div class="chart-body mb-5">
-						<%= bar_chart @skill_score_chart_per_year, xtitle: "Total Score", ytitle: "", min: nil %>
+						<%= bar_chart @skill_score_chart_per_year, xtitle: "Total Score", ytitle: "", min: nil, colors: ["#842444", "transparent"] %>
 					</div>
 					<div class="chart-body mb-5">
-						<%= bar_chart @skill_card_chart_per_year, xtitle: "Total Number of Cards", ytitle: "" %>
+						<%= bar_chart @skill_card_chart_per_year, xtitle: "Total Number of Cards", ytitle: "", colors: ["#842444", "transparent"] %>
 					</div>
 				</div>
 				<div id="skill-tab4" class="tab-pane">
 					<div class="chart-body mb-5">
-						<%= bar_chart @skill_score_chart, xtitle: "Total Score", ytitle: "", min: nil %>
+						<%= bar_chart @skill_score_chart, xtitle: "Total Score", ytitle: "", min: nil, colors: ["#842444", "transparent"] %>
 					</div>
 					<div class="chart-body mb-5">
-						<%= bar_chart @skill_card_chart, xtitle: "Total Number of Cards", ytitle: "" %>
+						<%= bar_chart @skill_card_chart, xtitle: "Total Number of Cards", ytitle: "", colors: ["#842444", "transparent"] %>
 					</div>
 				</div>
 			</div>
+			</div>
+
+			<div id="charts_by_skill">
+				<%= render "charts_by_skill", data: @charts_by_skill_data, skill: @selected_skill %>
 			</div>
 
 		</main>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :skills
 
   resources :dashboards
+  get "dashboards/show_skill_charts/:skill_id", to: "dashboards#show_skill_charts", as: :show_skill_charts
 
   resources :users, except: [:index, :show]
   get 'users', to: 'users#new'
