@@ -8,9 +8,9 @@ Rails.application.routes.draw do
 
   resources :dashboards
 
+  resources :users, except: [:index, :show]
   get 'users', to: 'users#new'
-	post 'users', to: 'users#create'
-	get 'users/new', to: 'users#new'
+  get 'users/:id', to: 'users#edit'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

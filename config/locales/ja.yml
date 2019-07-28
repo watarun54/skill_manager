@@ -40,4 +40,5 @@ ja:
               blank: を入力してください
               too_long: は72文字以内です
             password_confirmation:
+              blank: を入力してください
               confirmation: が一致しません
