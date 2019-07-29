@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
-  <h2 class="h2"><%= @selected_skill.name %></h2>
+  <h2 class="h2"><%= @selected_skill.nil? ? "None" : @selected_skill.name %></h2>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div id="charts-by-skill-period-button-group" class="btn-group">
       <button type="button" id="charts-by-skill-period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
