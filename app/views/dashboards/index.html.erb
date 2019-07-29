@@ -56,7 +56,7 @@
 			</div>
 
 			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
-				<h2 class="h2">スキル別</h2>
+				<h2 class="h2">All Skills</h2>
 				<div class="btn-toolbar mb-2 mb-md-0">
 					<div id="skill-period-button-group" class="btn-group">
 						<button type="button" id="skill-period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">In Week</button>
@@ -115,6 +115,10 @@
 					</div>
 				</div>
 			</div>
+			</div>
+
+			<div id="all_skills_chart">
+				<%= render "all_skills_chart", data: @all_skills_chart %>
 			</div>
 
 			<div id="charts_by_skill">

@@ -31,6 +31,8 @@ class DashboardsController < ApplicationController
     @charts_by_skill_data["skill_card_chart_per_week"] = growth_rate_per_day(@selected_skill)
     @charts_by_skill_data["skill_card_chart_per_month"] = growth_rate_per_month(@selected_skill)
     @charts_by_skill_data["skill_card_chart_per_year"] = growth_rate_per_year(@selected_skill)
+
+    all_skills_chart
   end
 
   def show_skill_charts
@@ -68,7 +70,7 @@ class DashboardsController < ApplicationController
       if skill.nil?
         data.unshift([time.strftime("%Y/%m"), Card.of_current_user(@current_user).where("cards.created_at < ?", time).sum(:score)])
       else
-        data.unshift([time.strftime("%Y/%m/%d"), skill.cards.of_current_user(@current_user).where("cards.created_at < ?", time).sum(:score)])
+        data.unshift([time.strftime("%Y/%m"), skill.cards.of_current_user(@current_user).where("cards.created_at < ?", time).sum(:score)])
       end
       time -= (time - i.months.ago)
     end
@@ -82,7 +84,7 @@ class DashboardsController < ApplicationController
       if skill.nil?
         data.unshift([time.strftime("%Y"), Card.of_current_user(@current_user).where("cards.created_at < ?", time).sum(:score)])
       else
-        data.unshift([time.strftime("%Y/%m/%d"), skill.cards.of_current_user(@current_user).where("cards.created_at < ?", time).sum(:score)])
+        data.unshift([time.strftime("%Y"), skill.cards.of_current_user(@current_user).where("cards.created_at < ?", time).sum(:score)])
       end
       time -= (time - i.years.ago)
     end
@@ -147,5 +149,60 @@ class DashboardsController < ApplicationController
       end
     end
     data
+  end
+
+  def all_skills_chart
+    @all_skills_chart = {}
+    @all_skills_chart["all_skills_chart_per_week"] = growth_rate_per_day_in_all_skills
+    @all_skills_chart["all_skills_chart_per_month"] = growth_rate_per_month_in_all_skills
+    @all_skills_chart["all_skills_chart_per_year"] = growth_rate_per_year_in_all_skills
+  end
+
+  def growth_rate_per_day_in_all_skills
+    result = []
+    @current_user.skills.each do |skill|
+      present_period = 1.day.ago..Time.zone.now
+      present_score = skill.cards.of_current_user(@current_user).where(created_at: present_period).sum(:score)
+      data = []
+      (1..7).each do |i|
+        data.unshift([(i-1).days.ago.strftime("%Y/%m/%d"), present_score])
+        present_period = (i+1).days.ago..i.days.ago
+        present_score = skill.cards.of_current_user(@current_user).where(created_at: present_period).sum(:score)
+      end
+      result << { "name": skill.name, "data": data }
+    end
+    result
+  end
+
+  def growth_rate_per_month_in_all_skills
+    result = []
+    @current_user.skills.each do |skill|
+      present_period = 1.month.ago..Time.zone.now
+      present_score = skill.cards.of_current_user(@current_user).where(created_at: present_period).sum(:score)
+      data = []
+      (1..5).each do |i|
+        data.unshift([(i-1).months.ago.strftime("%Y/%m"), present_score])
+        present_period = (i+1).months.ago..i.months.ago
+        present_score = skill.cards.of_current_user(@current_user).where(created_at: present_period).sum(:score)
+      end
+      result << { "name": skill.name, "data": data }
+    end
+    result
+  end
+
+  def growth_rate_per_year_in_all_skills
+    result = []
+    @current_user.skills.each do |skill|
+      present_period = 1.year.ago..Time.zone.now
+      present_score = skill.cards.of_current_user(@current_user).where(created_at: present_period).sum(:score)
+      data = []
+      (1..5).each do |i|
+        data.unshift([(i-1).years.ago.strftime("%Y"), present_score])
+        present_period = (i+1).years.ago..i.years.ago
+        present_score = skill.cards.of_current_user(@current_user).where(created_at: present_period).sum(:score)
+      end
+      result << { "name": skill.name, "data": data }
+    end
+    result
   end
 end
