@@ -11,8 +11,8 @@ $(document).on('turbolinks:load', function() {
     var skillPeriodButton = $('#charts-by-skill-period-button');
     skillPeriodButton.text($(this).text());
   });
-  $('#all_skills_chart-period-button-group .nav-link').click(function(){
-    var skillPeriodButton = $('#all_skills_chart-period-button');
+  $('#all-skills-chart-period-button-group .nav-link').click(function(){
+    var skillPeriodButton = $('#all-skills-chart-period-button');
     skillPeriodButton.text($(this).text());
   });
 });
