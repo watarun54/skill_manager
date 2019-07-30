@@ -52,7 +52,6 @@ class SkillsController < ApplicationController
   def destroy
 		respond_to do |format|
 			if @skill.destroy
-				@msg = "success"
         format.html { render :index }
         format.js { @status = "success"}
       else

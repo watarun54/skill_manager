@@ -48,7 +48,6 @@ class CardsController < ApplicationController
 	def destroy		
 		respond_to do |format|
 			if @card.destroy
-				@msg = "success"	
         format.html { render :list }
         format.js { @status = "success"}
       else
