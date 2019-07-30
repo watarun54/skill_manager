@@ -11,10 +11,38 @@
   margin-bottom: 0px;
 }
 
-#score-period-button-group .dropdown-menu.show {
-  transform: translate3d(-93px, 31px, 0px) !important;
+#score-period-button-group {
+  width: 72px;
+
+  .dropdown-menu.show {
+    transform: translate3d(-88px, 31px, 0px) !important;
+  }
 }
 
-#skill-period-button-group .dropdown-menu.show {
-  transform: translate3d(-93px, 31px, 0px) !important;
+#skill-period-button-group {
+  width: 87px;
+
+  .dropdown-menu.show {
+    transform: translate3d(-73px, 31px, 0px) !important;
+  }
+}
+
+#charts-by-skill-period-button-group {
+  width: 72px;
+
+  .dropdown-menu.show {
+    transform: translate3d(-88px, 31px, 0px) !important;
+  }
+}
+
+#charts-by-skill-kind-button-group .dropdown-menu.show {
+  transform: translate3d(-100px, 31px, 0px) !important;
+}
+
+#all-skills-chart-period-button-group {
+  width: 72px;
+
+  .dropdown-menu.show {
+    transform: translate3d(-88px, 31px, 0px) !important;
+  }
 }
