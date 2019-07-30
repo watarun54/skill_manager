@@ -1,6 +1,8 @@
 class LinebotController < ApplicationController
   require 'line/bot'  # gem 'line-bot-api'
 
+  skip_before_action :login_required, only: [:client, :callback]
+
   # callbackアクションのCSRFトークン認証を無効
   protect_from_forgery :except => [:callback]
 
