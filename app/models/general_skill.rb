@@ -1,0 +1,2 @@
+class GeneralSkill < ApplicationRecord
+end
