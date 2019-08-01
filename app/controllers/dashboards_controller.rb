@@ -1,7 +1,7 @@
 class DashboardsController < ApplicationController
   def index
     @selected_skill = nil
-    # 累計総スコア数 / 期間毎スコア数
+    # All Cards
     @all_score_per_week = all_score_per_week(@selected_skill)
     @all_score_per_month = all_score_per_month(@selected_skill)
     @all_score_per_year = all_score_per_year(@selected_skill)
@@ -10,7 +10,7 @@ class DashboardsController < ApplicationController
     @growth_rate_per_month = growth_rate_per_month(@selected_skill)
     @growth_rate_per_year = growth_rate_per_year(@selected_skill)
 
-    # スキル別
+    # All Skills
     @skill_score_chart_per_week = Skill.of_current_user(@current_user).map { |skill| [skill.name, skill.cards.in_a_week.sum(:score)] }
     @skill_score_chart_per_month = Skill.of_current_user(@current_user).map { |skill| [skill.name, skill.cards.in_a_month.sum(:score)] }
     @skill_score_chart_per_year = Skill.of_current_user(@current_user).map { |skill| [skill.name, skill.cards.in_a_year.sum(:score)] }
@@ -32,6 +32,7 @@ class DashboardsController < ApplicationController
     @charts_by_skill_data["skill_card_chart_per_month"] = growth_rate_per_month(@selected_skill)
     @charts_by_skill_data["skill_card_chart_per_year"] = growth_rate_per_year(@selected_skill)
 
+    # Growth of Skills
     all_skills_chart
   end
 

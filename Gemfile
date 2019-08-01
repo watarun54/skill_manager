@@ -50,7 +50,11 @@ gem 'chartable'
 gem 'kaminari', '~> 0.17.0'
 gem 'bootstrap4-kaminari-views'
 
+# manage password safely
 gem 'bcrypt', '~> 3.1.7'
+
+# use LINE API
+gem 'line-bot-api'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
