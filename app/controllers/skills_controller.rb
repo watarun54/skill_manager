@@ -1,5 +1,6 @@
 class SkillsController < ApplicationController
   before_action :set_skill, only: [:edit, :update, :destroy]
+  before_action :set_options, only: [:index, :edit]
 
   def index
     @skill = Skill.new
@@ -63,10 +64,14 @@ class SkillsController < ApplicationController
 
   private
   def skill_params
-    params.require(:skill).permit(:name)
+    params.require(:skill).permit(:name, :general_skill_id)
   end
 
   def set_skill
     @skill = Skill.find(params[:id])
+  end
+
+  def set_options
+    @general_skill_options = @current_user.general_skills.pluck(:name, :id)
   end
 end

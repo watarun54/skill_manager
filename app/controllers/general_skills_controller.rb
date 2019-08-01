@@ -63,7 +63,7 @@ class GeneralSkillsController < ApplicationController
 
   private
   def general_skill_params
-    params.require(:skill).permit(:name)
+    params.require(:general_skill).permit(:name)
   end
 
   def set_general_skill
