@@ -1,6 +1,7 @@
 class Skill < ApplicationRecord
   has_many :cards, dependent: :delete_all
   belongs_to :user
+  belongs_to :general_skill
 
   validates :name, presence: true, uniqueness: { scope: :user_id }, length: { maximum: 50 }
 
