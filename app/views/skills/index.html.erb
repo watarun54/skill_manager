@@ -10,7 +10,8 @@
       <%= form_for(@skill, remote: true) do |f| %>
       <div class="form-row">
         <div class="col-md-5 input-group mb-4">
-          <%= f.text_field :name, class: "form-control", placeholder: "New Skill" %>
+          <%= f.text_field :name, class: "form-control", placeholder: "New Skill", maxlength: 50 %>
+          <%= f.select :general_skill_id, @general_skill_options, {}, { class: "form-control" } %>
           <div class="input-group-append">
             <%= f.submit "Add", class: "btn btn-secondary" %>
           </div>
@@ -24,8 +25,9 @@
       <table class="table text-nowrap">
         <thead class="thead-light">
           <tr>
-            <th scope="col">スキル</th>
-            <th scope="col">Card枚数</th>
+            <th scope="col">Skill</th>
+            <th scope="col">General Skill</th>
+            <th scope="col">Card数</th>
             <th scope="col">総スコア</th>
             <th scope="col">作成日</th>
             <th></th>
@@ -35,6 +37,7 @@
         <% @skills.each do |skill| %>
           <tr id="skill-<%= skill.id %>">
             <th scope="row"><%= skill.name %></th>
+            <td><%= skill.general_skill.name %></td>
             <td><%= skill.cards.count %></td>
             <td><%= total_scores_of(skill) %></td>
             <td><%= skill.created_at.strftime("%Y/%m/%d") %></td>

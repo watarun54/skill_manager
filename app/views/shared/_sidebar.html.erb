@@ -7,10 +7,13 @@
 				<%= link_to "Dashboard", dashboards_path, class: "nav-link text-muted" %>
 			</li>
 			<li class="nav-item">
-				<%= link_to "Card List", cards_list_path, class: "nav-link text-muted" %>
+				<%= link_to "General Skill", general_skills_path, class: "nav-link text-muted" %>
 			</li>
 			<li class="nav-item">
-				<%= link_to "Skill List", skills_path, class: "nav-link text-muted" %>
+				<%= link_to "Skill", skills_path, class: "nav-link text-muted" %>
+			</li>
+			<li class="nav-item">
+				<%= link_to "Card", cards_list_path, class: "nav-link text-muted" %>
 			</li>
 			<li class="nav-item">
 				<%= link_to 'ユーザー編集', edit_user_path(@current_user.id), class: "nav-link text-muted" %>

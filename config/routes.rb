@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :cards, except: [:index, :show]
   get '/cards/list', to: 'cards#list'
 
-  resources :skills
+  resources :general_skills, except: :show
+
+  resources :skills, except: :show
 
   resources :dashboards
   get "dashboards/show_skill_charts/:skill_id", to: "dashboards#show_skill_charts", as: :show_skill_charts
