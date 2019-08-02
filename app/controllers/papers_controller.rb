@@ -1,5 +1,6 @@
 class PapersController < ApplicationController
   before_action :set_paper, only: [:edit, :update, :destroy]
+  before_action :set_options, only: [:index, :edit]
 
   def index
     @paper = Paper.new
@@ -17,6 +18,8 @@ class PapersController < ApplicationController
   def create
 		@paper = Paper.new(paper_params)
     @paper.user = @current_user
+    @paper.status ||= PAPER_STATUS_PENDING
+    @paper.general_skill_id ||= @current_user.general_skills.first.id
 
 		respond_to do |format|
 			if @paper.save
@@ -68,5 +71,14 @@ class PapersController < ApplicationController
 
   def set_paper
     @paper = Paper.find(params[:id])
+  end
+
+  def set_options
+    @general_skill_options = @current_user.general_skills.pluck(:name, :id)
+    @paper_status_options = [
+        ["pending", PAPER_STATUS_PENDING],
+        ["confirmed", PAPER_STATUS_CONFIRMED],
+        ["done", PAPER_STATUS_DONE]
+      ]
   end
 end
