@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :skills, except: :show
 
+  resources :papers, except: :show
+
   resources :dashboards
   get "dashboards/show_skill_charts/:skill_id", to: "dashboards#show_skill_charts", as: :show_skill_charts
 
