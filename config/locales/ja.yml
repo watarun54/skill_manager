@@ -33,6 +33,10 @@ ja:
             fact:
               blank: を入力してください
               too_long: は500文字以内です
+        paper:
+          attributes:
+            url:
+              blank: を入力してください
         user:
           attributes:
             name:

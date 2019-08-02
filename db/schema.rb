@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_01_123019) do
+ActiveRecord::Schema.define(version: 2019_08_02_121354) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "skill_id"
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(version: 2019_08_01_123019) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_general_skills_on_user_id"
+  end
+
+  create_table "papers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "status"
+    t.text "url"
+    t.bigint "user_id"
+    t.bigint "general_skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["general_skill_id"], name: "index_papers_on_general_skill_id"
+    t.index ["user_id"], name: "index_papers_on_user_id"
   end
 
   create_table "skills", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -51,6 +64,7 @@ ActiveRecord::Schema.define(version: 2019_08_01_123019) do
   end
 
   add_foreign_key "general_skills", "users"
+  add_foreign_key "papers", "users"
   add_foreign_key "skills", "general_skills"
   add_foreign_key "skills", "users"
   add_foreign_key "users", "skills"
