@@ -1,6 +1,6 @@
 class GeneralSkill < ApplicationRecord
   has_many :skills, dependent: :delete_all
-  has_many :papers, dependent: :delete_all
+  has_many :papers
   belongs_to :user
 
   validates :name, presence: true, uniqueness: { scope: :user_id }, length: { maximum: 50 }
