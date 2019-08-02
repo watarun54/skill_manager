@@ -1,5 +1,6 @@
 class LinebotController < ApplicationController
   require 'line/bot'  # gem 'line-bot-api'
+  require 'uri'
 
   skip_before_action :login_required, only: [:client, :callback]
 
@@ -28,15 +29,34 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
+          if register_paper(event)
+            status_message = "登録に成功しました"
+          else
+            status_message = "登録に失敗しました"
+          end
           message = {
             type: 'text',
-            text: event.message['text']
+            text: status_message
           }
           client.reply_message(event['replyToken'], message)
         end
       end
     }
-
     head :ok
+  end
+
+  private
+
+  def register_paper(event)
+    user = User.last
+    text = event.message['text']
+    uri = URI.extract(text)[0]
+    URI.extract(text).uniq.each {|url| text.gsub!(url, '')}
+    if uri.nil?
+      false
+    else
+      user.papers.create!(title: text.strip, url: uri)
+      true
+    end
   end
 end

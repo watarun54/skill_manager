@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_08_02_121354) do
   create_table "papers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.integer "status"
+    t.integer "status", default: 0
     t.text "url"
     t.bigint "user_id"
     t.bigint "general_skill_id"

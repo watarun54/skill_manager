@@ -19,7 +19,6 @@ class PapersController < ApplicationController
 		@paper = Paper.new(paper_params)
     @paper.user = @current_user
     @paper.status ||= PAPER_STATUS_PENDING
-    @paper.general_skill_id ||= @current_user.general_skills.first.id
 
 		respond_to do |format|
 			if @paper.save
