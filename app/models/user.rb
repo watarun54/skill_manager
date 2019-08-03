@@ -9,6 +9,9 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false },
                     length: { maximum: 191 }
+  validates :line_user_id, uniqueness: true, allow_nil: true, length: { maximum: 100 }
+
+  before_validation :set_line_user_id, only: :update
 
   def self.new_remember_token
     SecureRandom.urlsafe_base64
@@ -16,5 +19,11 @@ class User < ApplicationRecord
 
   def self.encrypt(token)
     Digest::SHA256.hexdigest(token.to_s)
+  end
+
+  private
+
+  def set_line_user_id
+    self.line_user_id = nil if line_user_id.blank?
   end
 end

@@ -20,6 +20,8 @@ ja:
               blank: を入力してください
               too_long: は50文字以内です
               taken: はすでに登録されています
+            general_skill:
+              required: を登録してください
         general_skill:
           attributes:
             name:
@@ -29,7 +31,7 @@ ja:
         card:
           attributes:
             skill:
-              required: を選択してください
+              required: を登録してください
             fact:
               blank: を入力してください
               too_long: は500文字以内です
@@ -52,3 +54,6 @@ ja:
             password_confirmation:
               blank: を入力してください
               confirmation: が一致しません
+            line_user_id:
+              taken: はすでに登録されています
+              too_long: は100文字以内です

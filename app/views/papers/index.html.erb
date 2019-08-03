@@ -36,8 +36,8 @@
         <tbody id="paper-list">
         <% @papers.each do |paper| %>
           <tr id="paper-<%= paper.id %>">
-            <th scope="row"><%= paper.title %></th>
-            <td><%= paper.url %></td>
+            <th scope="row"><%= paper.title.try(:truncate, 25) %></th>
+            <td><%= link_to("link", paper.url, target: "_blank") %></td>
             <td><%= paper.status_text %></td>
             <td><%= paper.general_skill.try(:name) %></td>
             <td><%= paper.content %></td>
