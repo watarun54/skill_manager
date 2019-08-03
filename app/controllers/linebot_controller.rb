@@ -22,7 +22,9 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          if user_exist?(event)
+          @user = User.find_by(line_user_id: event['source']['userId'])
+
+          if @user.present?
             if register_paper(event)
               status_message = "記事の登録に成功しました"
             else
@@ -65,20 +67,14 @@ class LinebotController < ApplicationController
     client.reply_message(event['replyToken'], message)
   end
 
-  def user_exist?(event)
-    line_user_id = event['source']['userId']
-    User.find_by(line_user_id: line_user_id).nil? ? false : true
-  end
-
   def register_paper(event)
-    user = User.last
     text = event.message['text']
     uri = URI.extract(text)[0]
     URI.extract(text).uniq.each {|url| text.gsub!(url, '')}
     if uri.nil?
       false
     else
-      user.papers.create!(title: text.strip, url: uri)
+      @user.papers.create!(title: text.strip, url: uri)
       true
     end
   end
