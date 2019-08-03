@@ -7,13 +7,6 @@ class LinebotController < ApplicationController
   # callbackアクションのCSRFトークン認証を無効
   protect_from_forgery :except => [:callback]
 
-  def client
-    @client ||= Line::Bot::Client.new { |config|
-      config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
-      config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
-    }
-  end
-
   def callback
     body = request.body.read
 
@@ -29,16 +22,26 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          if register_paper(event)
-            status_message = "登録に成功しました"
+          if user_exist?(event)
+            if register_paper(event)
+              status_message = "記事の登録に成功しました"
+            else
+              status_message = "記事の登録に失敗しました"
+            end
+            send_message(event, status_message)
           else
-            status_message = "登録に失敗しました"
+            messages = [
+              {
+                type: 'text',
+                text: event['source']['userId']
+              },
+              {
+                type: 'text',
+                text: "こちらのIDを「ユーザー編集」->「Line User Id」に登録してください\nhttp://#{HOST}/"
+              }
+            ]
+            client.reply_message(event['replyToken'], messages)
           end
-          message = {
-            type: 'text',
-            text: status_message
-          }
-          client.reply_message(event['replyToken'], message)
         end
       end
     }
@@ -46,6 +49,26 @@ class LinebotController < ApplicationController
   end
 
   private
+
+  def client
+    @client ||= Line::Bot::Client.new { |config|
+      config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
+      config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
+    }
+  end
+
+  def send_message(event, status_message)
+    message = {
+      type: 'text',
+      text: status_message
+    }
+    client.reply_message(event['replyToken'], message)
+  end
+
+  def user_exist?(event)
+    line_user_id = event['source']['userId']
+    User.find_by(line_user_id: line_user_id).nil? ? false : true
+  end
 
   def register_paper(event)
     user = User.last
