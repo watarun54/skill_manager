@@ -52,3 +52,6 @@ ja:
             password_confirmation:
               blank: を入力してください
               confirmation: が一致しません
+            line_user_id:
+              taken: はすでに登録されています
+              too_long: は100文字以内です

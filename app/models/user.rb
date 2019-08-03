@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false },
                     length: { maximum: 191 }
-  validates :line_user_id, length: { maximum: 100 }
+  validates :line_user_id, uniqueness: true, length: { maximum: 100 }
 
   def self.new_remember_token
     SecureRandom.urlsafe_base64
