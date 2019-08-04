@@ -75,7 +75,7 @@ class LinebotController < ApplicationController
     text.strip!
     if text.empty?
       result = request_analyze_paper_api(uri)
-      text = result["title"].nil? ? "#Error#タイトルを取得できませんでした。" : result["title"]
+      text = result["title"].blank? ? "#Error#タイトルを取得できませんでした。" : result["title"]
     end
     @user.papers.create!(title: text, url: uri)
     true
