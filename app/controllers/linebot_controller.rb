@@ -82,28 +82,26 @@ class LinebotController < ApplicationController
   end
 
   def request_analyze_paper_api(url)
-    begin
-      uri = URI.parse(ANALYZE_PAPER_API_URL)
-      params = { "url" => url }
-      headers = { "Content-Type" => "application/json" }
+    uri = URI.parse(ANALYZE_PAPER_API_URL)
+    params = { "url" => url }
+    headers = { "Content-Type" => "application/json" }
 
-      response = Net::HTTP.start(uri.host, uri.port) do |http|
-        http.open_timeout = 5
-        http.read_timeout = 10
-        http.post(uri.path, params.to_json, headers)
-      end
-
-      case response
-      when Net::HTTPSuccess
-        result = JSON.parse(response.body)
-      when Net::HTTPRedirection
-        result = { "error" => "Redirection: code=#{response.code} message=#{response.message}" }
-      else
-        result = { "error" => "HTTP ERROR: code=#{response.code} message=#{response.message}" }
-      end
-      result
-    rescue => e
-      { "error" => e.message }
+    response = Net::HTTP.start(uri.host, uri.port) do |http|
+      http.open_timeout = 5
+      http.read_timeout = 10
+      http.post(uri.path, params.to_json, headers)
     end
+
+    case response
+    when Net::HTTPSuccess
+      result = JSON.parse(response.body)
+    when Net::HTTPRedirection
+      result = { "error" => "Redirection: code=#{response.code} message=#{response.message}" }
+    else
+      result = { "error" => "HTTP ERROR: code=#{response.code} message=#{response.message}" }
+    end
+    result
+  rescue => e
+    { "error" => e.message }
   end
 end
