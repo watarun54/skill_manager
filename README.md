@@ -51,3 +51,8 @@ Check whether they are working
 ps ax | grep redis
 ps ax | grep sidekiq
 ```
+[[Ruby on Rails]Active Job – Sidekiqを使ってのJobの実行](https://dev.classmethod.jp/server-side/ruby-on-rails/ruby-on-rails_active-job-sidekiq/)
+
+[[Rails] RedisとSidekiqとActiveJobで苦しむ](https://t-kojima.github.io/2018/05/10/0001-redis-sidekiq-activejob/)
+
+[非同期実行 Sidekiqの導入 Mac Ubuntu](https://qiita.com/ayies128/items/add88acef58280ef4b13)
