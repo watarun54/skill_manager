@@ -13,6 +13,11 @@ module SkillManager
 
     config.i18n.default_locale = :ja
 
+    # ActiveJobがSidekiqを使うことを宣言
+    config.active_job.queue_adapter = :sidekiq
+
+    config.update_papers_logger = Logger.new(Rails.root.join('log/update_papers_job.log'))
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
