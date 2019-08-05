@@ -1,5 +1,7 @@
 HOST = "localhost:3000"
 
+ANALYZE_PAPER_API_URL = "http://www.watarun54.com/scrape_paper"
+
 PAPER_STATUS_PENDING = 0
 PAPER_STATUS_CONFIRMED = 1
 PAPER_STATUS_DONE = 2

@@ -71,11 +71,37 @@ class LinebotController < ApplicationController
     text = event.message['text']
     uri = URI.extract(text)[0]
     URI.extract(text).uniq.each {|url| text.gsub!(url, '')}
-    if uri.nil?
-      false
-    else
-      @user.papers.create!(title: text.strip, url: uri)
-      true
+    return false if uri.nil?
+    text.strip!
+    if text.empty?
+      result = request_analyze_paper_api(uri)
+      text = result["title"].blank? ? "#Error#タイトルを取得できませんでした。" : result["title"]
     end
+    @user.papers.create!(title: text, url: uri)
+    true
+  end
+
+  def request_analyze_paper_api(url)
+    uri = URI.parse(ANALYZE_PAPER_API_URL)
+    params = { "url" => url }
+    headers = { "Content-Type" => "application/json" }
+
+    response = Net::HTTP.start(uri.host, uri.port) do |http|
+      http.open_timeout = 5
+      http.read_timeout = 10
+      http.post(uri.path, params.to_json, headers)
+    end
+
+    case response
+    when Net::HTTPSuccess
+      result = JSON.parse(response.body)
+    when Net::HTTPRedirection
+      result = { "error" => "Redirection: code=#{response.code} message=#{response.message}" }
+    else
+      result = { "error" => "HTTP ERROR: code=#{response.code} message=#{response.message}" }
+    end
+    result
+  rescue => e
+    { "error" => e.message }
   end
 end
