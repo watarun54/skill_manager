@@ -1,11 +1,5 @@
 class UpdatePapersJob < ApplicationJob
   queue_as :default
-  retry_limit 0
-
-  rescue_from(StandardError) do |exception|
-    raise exception if retry_limit_exceeded?
-    retry_job(wait: attempt_number**2)
-  end
 
   def perform(user_id, text, uri)
     logger = Rails.application.config.update_papers_logger
