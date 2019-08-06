@@ -2,7 +2,7 @@
   <th scope="row"><%= truncate_paper_title(paper.title, 25) %></th>
   <td><%= link_to("link", paper.url, target: "_blank") %></td>
   <td><%= paper.status_text %></td>
-  <td><%= paper.general_skill.try(:name) %></td>
+  <td><%= paper.general_skill.try(:name).try(:truncate, 8) %></td>
   <td><%= paper.content %></td>
   <td><%= paper.created_at.strftime("%Y/%m/%d") %></td>
   <td>

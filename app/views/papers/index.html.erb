@@ -21,7 +21,7 @@
       <div class="error-message-area"></div>
 
       <div class="table-responsive">
-      <table class="table text-nowrap table-sm">
+      <table class="table text-nowrap table-bordered table-sm">
         <thead class="thead-light">
           <tr>
             <th scope="col">Title</th>
@@ -39,7 +39,7 @@
             <th scope="row"><%= truncate_paper_title(paper.title, 25) %></th>
             <td><%= link_to("link", paper.url, target: "_blank") %></td>
             <td><%= paper.status_text %></td>
-            <td><%= paper.general_skill.try(:name) %></td>
+            <td><%= paper.general_skill.try(:name).try(:truncate, 8) %></td>
             <td><%= paper.content %></td>
             <td><%= paper.created_at.strftime("%Y/%m/%d") %></td>
             <td>
