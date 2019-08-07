@@ -18,6 +18,7 @@ class PapersController < ApplicationController
   def create
 		@paper = Paper.new(paper_params)
     @paper.user = @current_user
+    @paper.title = "... タイトル取得中 ..."
     @paper.status ||= PAPER_STATUS_PENDING
     @paper.url.gsub!(" ", "")
 

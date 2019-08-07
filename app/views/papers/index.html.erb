@@ -24,26 +24,26 @@
       <table class="table text-nowrap table-bordered table-sm">
         <thead class="thead-light">
           <tr>
-            <th scope="col">Title</th>
-            <th scope="col">URL</th>
-            <th scope="col">Status</th>
-            <th scope="col">G.S.</th>
-            <th scope="col">Memo</th>
-            <th scope="col">作成日</th>
+            <th scope="col" class="text-center">Title</th>
+            <th scope="col" class="text-center">URL</th>
+            <th scope="col" class="text-center">Status</th>
+            <th scope="col" class="text-center">G.S.</th>
+            <th scope="col" class="text-center">Memo</th>
+            <th scope="col" class="text-center">作成日</th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody id="paper-list">
         <% @papers.each do |paper| %>
           <tr id="paper-<%= paper.id %>">
-            <th scope="row"><%= truncate_paper_title(paper.title, 25) %></th>
-            <td><%= link_to("link", paper.url, target: "_blank") %></td>
-            <td><%= paper.status_text %></td>
-            <td><%= paper.general_skill.try(:name).try(:truncate, 8) %></td>
-            <td><%= paper.content %></td>
-            <td><%= paper.created_at.strftime("%Y/%m/%d") %></td>
-            <td>
-              <div class="btn-group ml-3">
+            <th scope="row" class="text-center align-middle"><%= truncate_paper_title(paper.title, 25) %></th>
+            <td class="text-center align-middle"><%= link_to("link", paper.url, target: "_blank") %></td>
+            <td class="text-center align-middle"><%= paper.status_text %></td>
+            <td class="text-center align-middle"><%= paper.general_skill.try(:name).try(:truncate, 8) %></td>
+            <td class="text-center align-middle"><%= paper.content %></td>
+            <td class="text-center align-middle"><%= paper.created_at.strftime("%Y/%m/%d") %></td>
+            <td class="text-center align-middle">
+              <div class="btn-group">
                 <%= link_to 'Edit', edit_paper_path(paper), remote: true, class: "btn btn-sm btn-outline-secondary" %>
                 <%= link_to 'Delete', paper, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, class: "btn btn-sm btn-outline-secondary" %>
               </div>
