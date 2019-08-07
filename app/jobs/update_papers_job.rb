@@ -8,9 +8,15 @@ class UpdatePapersJob < ApplicationJob
 
     if text.empty?
       result = request_analyze_paper_api(uri)
-      text = result["title"].blank? ? "#Error#タイトルを取得できませんでした。" : result["title"]
+      text = result["title"].blank? ? "#ERROR# タイトルを取得できませんでした" : result["title"]
     end
-    user.papers.create!(title: text, url: uri)
+
+    paper = Paper.where(user_id: user_id, url: uri).last
+    if paper.nil?
+      user.papers.create!(title: text, url: uri)
+    else
+      paper.update!(title: text)
+    end
 
     logger.info("[Paper updated] user_id: #{user.id}, title: #{text}, url: #{uri}, error: #{result["error"]}, time: #{Time.now}")
   end

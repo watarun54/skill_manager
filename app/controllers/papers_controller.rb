@@ -18,10 +18,13 @@ class PapersController < ApplicationController
   def create
 		@paper = Paper.new(paper_params)
     @paper.user = @current_user
+    @paper.title = "... タイトル取得中 ..."
     @paper.status ||= PAPER_STATUS_PENDING
+    @paper.url.gsub!(" ", "")
 
 		respond_to do |format|
 			if @paper.save
+        UpdatePapersJob.perform_later(@current_user.id, "", @paper.url)
         format.html { render :index }
         format.json { render :index, status: :created, location: @paper }
         format.js { @status = "success"}

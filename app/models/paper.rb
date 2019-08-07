@@ -2,7 +2,7 @@ class Paper < ApplicationRecord
   belongs_to :user
   belongs_to :general_skill, optional: true
 
-  validates :title, length: { maximum: 100 }
+  validates :title, length: { maximum: 300 }
   validates :content, length: { maximum: 500 }
   validates :url, presence: true, length: { maximum: 300 }
   validates :user_id, presence: true

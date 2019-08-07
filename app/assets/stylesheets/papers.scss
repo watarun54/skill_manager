@@ -1,3 +1,16 @@
 // Place all the styles related to the papers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#paper-table {
+  @media screen and (min-width: 1500px) {
+    padding-right: 155px;
+  }
+}
+
+#paper-list {
+  th p {
+    margin: 0px;
+    font-size: 14px;
+  }
+}
