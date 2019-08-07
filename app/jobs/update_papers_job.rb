@@ -11,7 +11,7 @@ class UpdatePapersJob < ApplicationJob
       text = result["title"].blank? ? "#ERROR# タイトルを取得できませんでした" : result["title"]
     end
 
-    paper = Paper.where(user_id: user_id, url: uri).last
+    paper = Paper.where(user_id: user_id, url: uri, title: nil).last
     if paper.nil?
       user.papers.create!(title: text, url: uri)
     else
