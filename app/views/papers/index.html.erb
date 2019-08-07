@@ -36,7 +36,7 @@
         <tbody id="paper-list">
         <% @papers.each do |paper| %>
           <tr id="paper-<%= paper.id %>">
-            <th scope="row" class="text-center align-middle"><%= truncate_paper_title(paper.title, 25) %></th>
+            <th scope="row" class="text-center align-middle"><%= paper.title.nil? ? "... タイトル取得中 ..." : truncate_paper_title(paper.title, 25) %></th>
             <td class="text-center align-middle"><%= link_to("link", paper.url, target: "_blank") %></td>
             <td class="text-center align-middle"><%= paper.status_text %></td>
             <td class="text-center align-middle"><%= paper.general_skill.try(:name).try(:truncate, 8) %></td>
