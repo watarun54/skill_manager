@@ -5,6 +5,19 @@
 		<main role="main" class="col-md-9 col-lg-10 pt-4 px-3 p-lg-5">
 
 			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
+				<h2 class="h2">General Skills</h2>
+			</div>
+
+			<div class="chart-body mb-5 row">
+				<div class="col-md-6">
+					<%= chartjs_radar_chart @data_scores, @options_scores %>
+				</div>
+				<div class="col-md-6">
+					<%= chartjs_radar_chart @data_count, @options_count %>
+				</div>
+			</div>
+
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
 				<h2 class="h2">All Cards</h2>
 				<div class="btn-toolbar mb-2 mb-md-0">
 					<div id="score-period-button-group" class="btn-group">

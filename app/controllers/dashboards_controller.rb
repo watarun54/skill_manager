@@ -1,5 +1,51 @@
 class DashboardsController < ApplicationController
   def index
+    @data_scores = {
+      labels: @current_user.general_skills.pluck(:name),
+      datasets: [
+        {
+          label: "All card scores of General Skill",
+          background_color: "rgba(220,220,220,0.2)",
+          border_color: "rgba(220,220,220,1)",
+          data: @current_user.general_skills.map { |gs| gs.skills.map{ |skill| skill.cards.sum(:score) }.sum }
+        },
+      ]
+    }
+    @options_scores = {
+      id: "radar_scores",
+      responsive: true,
+      maintainAspectRatio: false,
+      scale: {
+        ticks: {
+            beginAtZero: true,
+            min: 0
+        }
+      }
+    }
+
+    @data_count = {
+      labels: @current_user.general_skills.pluck(:name),
+      datasets: [
+        {
+          label: "All card count of General Skill",
+          backgroundColor: "rgba(151,187,205,0.2)",
+          borderColor: "rgba(151,187,205,1)",
+          data: @current_user.general_skills.map { |gs| gs.skills.map{ |skill| skill.cards.count }.sum }
+        },
+      ]
+    }
+    @options_count = {
+      id: "radar_count",
+      responsive: true,
+      maintainAspectRatio: false,
+      scale: {
+        ticks: {
+            beginAtZero: true,
+            min: 0
+        }
+      }
+    }
+
     @selected_skill = nil
     # All Cards
     @all_score_per_week = all_score_per_week(@selected_skill)
