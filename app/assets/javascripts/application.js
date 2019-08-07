@@ -19,6 +19,9 @@
 //= require Chart.bundle
 //= require chartkick
 
+// For chartjs-ror
+//= require Chart.min
+
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
