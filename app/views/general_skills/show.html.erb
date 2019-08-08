@@ -1,0 +1,144 @@
+<div class="container-fluid">
+	<div class="row">
+		<%= render "shared/sidebar" %>
+
+		<main role="main" class="col-md-9 col-lg-10 pt-4 px-3 p-lg-5">
+
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
+				<h2 class="h2">General Skills</h2>
+			</div>
+
+			<div class="chart-body row">
+				<div class="col-md-6 mb-5">
+					<%= chartjs_radar_chart @data_scores, @options_scores %>
+				</div>
+				<div class="col-md-6 mb-5">
+					<%= chartjs_radar_chart @data_count, @options_count %>
+				</div>
+			</div>
+
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
+				<h2 class="h2"><%= @general_skill.name %> / All Cards</h2>
+				<div class="btn-toolbar mb-2 mb-md-0">
+					<div id="score-period-button-group" class="btn-group">
+						<button type="button" id="score-period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Week</button>
+						<div class="dropdown-menu">
+							<ul class="nav flex-column">
+								<li class="nav-item">
+									<a href="#score-tab1" class="nav-link text-muted" data-toggle="tab">Week</a>
+								</li>
+								<li class="nav-item">
+									<a href="#score-tab2" class="nav-link text-muted" data-toggle="tab">Month</a>
+								</li>
+								<li class="nav-item">
+									<a href="#score-tab3" class="nav-link text-muted" data-toggle="tab">Year</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="mr-md-5 pb-3 pb-md-5">
+			<div class="tab-content">
+				<div id="score-tab1" class="tab-pane active">
+					<div class="chart-body mb-5">
+						<%= column_chart @all_score_per_week, xtitle: "", ytitle: "Total Score", min: nil %>
+					</div>
+					<div class="chart-body mb-5">
+						<%= line_chart @growth_rate_per_day, discrete: true, xtitle: "", ytitle: "Scores per Day" %>
+					</div>
+				</div>
+				<div id="score-tab2" class="tab-pane">
+					<div class="chart-body mb-5">
+						<%= column_chart @all_score_per_month, xtitle: "", ytitle: "Total Score", min: nil %>
+					</div>
+					<div class="chart-body mb-5">
+						<%= line_chart @growth_rate_per_month, discrete: true, xtitle: "", ytitle: "Scores per Month" %>
+					</div>
+				</div>
+				<div id="score-tab3" class="tab-pane">
+					<div class="chart-body mb-5">
+						<%= column_chart @all_score_per_year, xtitle: "", ytitle: "Total Score" %>
+					</div>
+					<div class="chart-body mb-5">
+						<%= line_chart @growth_rate_per_year, discrete: true, xtitle: "", ytitle: "Scores per Year" %>
+					</div>
+				</div>
+			</div>
+			</div>
+
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
+				<h2 class="h2"><%= @general_skill.name %> / All Skills</h2>
+				<div class="btn-toolbar mb-2 mb-md-0">
+					<div id="skill-period-button-group" class="btn-group">
+						<button type="button" id="skill-period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">In Week</button>
+						<div class="dropdown-menu">
+							<ul class="nav flex-column">
+								<li class="nav-item">
+									<a href="#skill-tab1" class="nav-link text-muted" data-toggle="tab">In Week</a>
+								</li>
+								<li class="nav-item">
+									<a href="#skill-tab2" class="nav-link text-muted" data-toggle="tab">In Month</a>
+								</li>
+								<li class="nav-item">
+									<a href="#skill-tab3" class="nav-link text-muted" data-toggle="tab">In Year</a>
+								</li>
+								<li class="nav-item">
+									<a href="#skill-tab4" class="nav-link text-muted" data-toggle="tab">All</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="mr-md-5 pb-3 pb-md-5">
+			<div class="tab-content">
+				<div id="skill-tab1" class="tab-pane active">
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_score_chart_per_week, xtitle: "Total Score", ytitle: "", colors: ["#842444", "transparent"] %>
+					</div>
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_card_chart_per_week, xtitle: "Total Number of Cards", ytitle: "", colors: ["#842444", "transparent"] %>
+					</div>
+				</div>
+				<div id="skill-tab2" class="tab-pane">
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_score_chart_per_month, xtitle: "Total Score", ytitle: "", colors: ["#842444", "transparent"] %>
+					</div>
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_card_chart_per_month, xtitle: "Total Number of Cards", ytitle: "", colors: ["#842444", "transparent"] %>
+					</div>
+				</div>
+				<div id="skill-tab3" class="tab-pane">
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_score_chart_per_year, xtitle: "Total Score", ytitle: "", min: nil, colors: ["#842444", "transparent"] %>
+					</div>
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_card_chart_per_year, xtitle: "Total Number of Cards", ytitle: "", colors: ["#842444", "transparent"] %>
+					</div>
+				</div>
+				<div id="skill-tab4" class="tab-pane">
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_score_chart, xtitle: "Total Score", ytitle: "", min: nil, colors: ["#842444", "transparent"] %>
+					</div>
+					<div class="chart-body mb-5">
+						<%= bar_chart @skill_card_chart, xtitle: "Total Number of Cards", ytitle: "", colors: ["#842444", "transparent"] %>
+					</div>
+				</div>
+			</div>
+			</div>
+
+			<div id="all-skills-chart">
+				<%= render "all_skills_chart", data: @all_skills_chart %>
+			</div>
+
+			<div id="charts-by-skill">
+				<%= render "charts_by_skill", data: @charts_by_skill_data, skill: @selected_skill %>
+			</div>
+
+		</main>
+
+	</div>
+</div>
