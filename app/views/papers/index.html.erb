@@ -21,10 +21,10 @@
       <div class="error-message-area"></div>
 
       <div id="paper-table" class="table-responsive">
-      <table class="table text-nowrap table-bordered table-sm">
+      <table class="table table-bordered table-sm">
         <thead class="thead-light">
           <tr>
-            <th scope="col" class="text-center">Title</th>
+            <th scope="col" class="pl-3">Title</th>
             <th scope="col" class="text-center">URL</th>
             <th scope="col" class="text-center">Status</th>
             <th scope="col" class="text-center">G.S.</th>
@@ -36,7 +36,7 @@
         <tbody id="paper-list">
         <% @papers.each do |paper| %>
           <tr id="paper-<%= paper.id %>">
-            <th scope="row" class="text-center align-middle"><%= paper.title.nil? ? "... タイトル取得中 ..." : truncate_paper_title(paper.title, 25) %></th>
+            <th scope="row" class="align-middle"><%= paper.title.nil? ? ".... タイトル取得中 ...." : paper.title %></th>
             <td class="text-center align-middle"><%= link_to("link", paper.url, target: "_blank") %></td>
             <td class="text-center align-middle"><%= paper.status_text %></td>
             <td class="text-center align-middle"><%= paper.general_skill.try(:name).try(:truncate, 8) %></td>

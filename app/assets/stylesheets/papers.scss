@@ -9,8 +9,12 @@
 }
 
 #paper-list {
-  th p {
+  th {
     margin: 0px;
-    font-size: 14px;
+    font-size: 12px;
+    min-width: 329px;
+  }
+  td {
+    font-size: 12px;
   }
 }

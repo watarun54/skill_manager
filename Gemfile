@@ -46,6 +46,9 @@ gem 'dotenv-rails'
 gem 'chartkick'
 gem 'chartable'
 
+# create radar chart
+gem 'chartjs-ror'
+
 # pagination
 gem 'kaminari', '~> 0.17.0'
 gem 'bootstrap4-kaminari-views'

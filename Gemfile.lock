@@ -73,6 +73,8 @@ GEM
     chartable (0.0.0.3)
       activesupport (>= 3.0.0)
       chronic (~> 0.10)
+    chartjs-ror (3.6.4)
+      rails (>= 3.1)
     chartkick (3.2.1)
     childprocess (1.0.1)
       rake (< 13.0)
@@ -257,6 +259,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   chartable
+  chartjs-ror
   chartkick
   chromedriver-helper
   coffee-rails (~> 4.2)
