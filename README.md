@@ -12,8 +12,9 @@ mysql
 * gem
 
 ```
-dotenv-rails: .envにある環境変数を使用するため
-chartkick, chartable: グラフを簡単に描画するため
+dotenv-rails # .envにある環境変数を使用するため
+chartkick, chartable # グラフを簡単に描画するため
+chartjs-ror # レーダーチャートを描画するため（chartkickはレーダーチャートをサポートしていない）
 ```
 
 * Start in local env
