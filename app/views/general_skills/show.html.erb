@@ -8,13 +8,15 @@
 				<h2 class="h2"><%= @general_skill.name %> / General Skills</h2>
 			</div>
 
+			<div class="mr-md-5">
 			<div class="chart-body row">
-				<div class="col-md-6 mb-5">
+				<div class="col-md-6 mb-3 mb-lg-5">
 					<%= chartjs_radar_chart @data_scores, @options_scores %>
 				</div>
-				<div class="col-md-6 mb-5">
+				<div class="col-md-6 mb-3 mb-lg-5">
 					<%= chartjs_radar_chart @data_count, @options_count %>
 				</div>
+			</div>
 			</div>
 
 			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
@@ -39,7 +41,7 @@
 				</div>
 			</div>
 
-			<div class="mr-md-5 pb-3 pb-md-5">
+			<div class="mr-md-5 mb-3">
 			<div class="tab-content">
 				<div id="score-tab1" class="tab-pane active">
 					<div class="chart-body row">
@@ -99,7 +101,7 @@
 				</div>
 			</div>
 
-			<div class="mr-md-5 pb-3 pb-md-5">
+			<div class="mr-md-5 mb-3">
 			<div class="tab-content">
 				<div id="skill-tab1" class="tab-pane active">
 					<div class="chart-body row">
