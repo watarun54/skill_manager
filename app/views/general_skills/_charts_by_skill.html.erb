@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 mr-md-5 border-bottom">
+  <h2 class="h2"><%= @selected_skill.nil? ? "None" : @selected_skill.name %></h2>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div id="charts-by-skill-period-button-group" class="btn-group">
+      <button type="button" id="charts-by-skill-period-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Week
+      </button>
+      <div class="dropdown-menu">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a href="#charts-by-skill-tab1" class="nav-link text-muted" data-toggle="tab">Week</a>
+          </li>
+          <li class="nav-item">
+            <a href="#charts-by-skill-tab2" class="nav-link text-muted" data-toggle="tab">Month</a>
+          </li>
+          <li class="nav-item">
+            <a href="#charts-by-skill-tab3" class="nav-link text-muted" data-toggle="tab">Year</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="charts-by-skill-kind-button-group" class="btn-group">
+      <a class="btn btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Skill
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <% @general_skill.skills.each do |skill| %>
+        <%= link_to skill.name, show_skill_charts_path(id: @general_skill.id, skill_id: skill.id), remote: true, class: "dropdown-item text-muted" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mr-md-5 pb-3">
+<div class="tab-content">
+  <div id="charts-by-skill-tab1" class="tab-pane active">
+    <div class="chart-body row">
+      <div class="col-md-6 mb-5">
+        <%= column_chart data["skill_score_chart_per_week"], id: random_charkick_id, xtitle: "", ytitle: "Total Score", min: nil, colors: ["#488484", "transparent"] %>
+      </div>
+      <div class="col-md-6 mb-5">
+			  <%= line_chart data["skill_card_chart_per_week"], id: random_charkick_id, discrete: true, xtitle: "", ytitle: "Scores per Day", colors: ["#488484", "transparent"] %>
+      </div>
+    </div>
+  </div>
+  <div id="charts-by-skill-tab2" class="tab-pane">
+    <div class="chart-body row">
+      <div class="col-md-6 mb-5">
+        <%= column_chart data["skill_score_chart_per_month"], id: random_charkick_id, id: random_charkick_id, xtitle: "", ytitle: "Total Score", min: nil, colors: ["#488484", "transparent"] %>
+      </div>
+      <div class="col-md-6 mb-5">
+		    <%= line_chart data["skill_card_chart_per_month"], id: random_charkick_id, discrete: true, xtitle: "", ytitle: "Scores per Day", colors: ["#488484", "transparent"] %>
+      </div>
+    </div>
+  </div>
+  <div id="charts-by-skill-tab3" class="tab-pane">
+    <div class="chart-body row">
+      <div class="col-md-6 mb-5">
+        <%= column_chart data["skill_score_chart_per_year"], id: random_charkick_id, xtitle: "", ytitle: "Total Score", min: nil, colors: ["#488484", "transparent"] %>
+      </div>
+      <div class="col-md-6 mb-5">
+			  <%= line_chart data["skill_card_chart_per_year"], id: random_charkick_id, discrete: true, xtitle: "", ytitle: "Scores per Day", colors: ["#488484", "transparent"] %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

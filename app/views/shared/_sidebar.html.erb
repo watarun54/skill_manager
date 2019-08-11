@@ -4,7 +4,14 @@
 		<ul class="nav flex-column">
 		<% if @current_user.present? %>
 			<li class="nav-item">
-				<%= link_to "Dashboard", dashboards_path, class: "nav-link text-muted" %>
+				<a class="nav-link text-muted" data-toggle="collapse" href="#collapseDashboard" role="button" aria-expanded="false" aria-controls="collapseDashboard">
+					Dashboard
+				</a>
+				<div class="collapse" id="collapseDashboard">
+				<% @current_user.general_skills.each do |gs| %>
+					<%= link_to "> #{gs.name}", general_skill_path(gs), class: "nav-link text-muted" %>
+				<% end %>
+				</div>
 			</li>
 			<li class="nav-item">
 				<%= link_to "General Skill", general_skills_path, class: "nav-link text-muted" %>

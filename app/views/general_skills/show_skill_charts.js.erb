@@ -1,0 +1,5 @@
+$("#charts-by-skill").html("<%= j(render "charts_by_skill", data: @charts_by_skill_data) %>");
+$('#charts-by-skill-period-button-group .nav-link').click(function(){
+  var skillPeriodButton = $('#charts-by-skill-period-button');
+  skillPeriodButton.text($(this).text());
+});
