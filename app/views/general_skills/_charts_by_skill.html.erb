@@ -35,27 +35,33 @@
 <div class="mr-md-5">
 <div class="tab-content">
   <div id="charts-by-skill-tab1" class="tab-pane active">
-    <div class="chart-body mb-5">
-      <%= column_chart data["skill_score_chart_per_week"], id: random_charkick_id, xtitle: "", ytitle: "Total Score", min: nil, colors: ["#488484", "transparent"] %>
-    </div>
-    <div class="chart-body mb-5">
-			<%= line_chart data["skill_card_chart_per_week"], id: random_charkick_id, discrete: true, xtitle: "", ytitle: "Scores per Day", colors: ["#488484", "transparent"] %>
+    <div class="chart-body row">
+      <div class="col-md-6 mb-5">
+        <%= column_chart data["skill_score_chart_per_week"], id: random_charkick_id, xtitle: "", ytitle: "Total Score", min: nil, colors: ["#488484", "transparent"] %>
+      </div>
+      <div class="col-md-6 mb-5">
+			  <%= line_chart data["skill_card_chart_per_week"], id: random_charkick_id, discrete: true, xtitle: "", ytitle: "Scores per Day", colors: ["#488484", "transparent"] %>
+      </div>
     </div>
   </div>
   <div id="charts-by-skill-tab2" class="tab-pane">
-    <div class="chart-body mb-5">
-      <%= column_chart data["skill_score_chart_per_month"], id: random_charkick_id, id: random_charkick_id, xtitle: "", ytitle: "Total Score", min: nil, colors: ["#488484", "transparent"] %>
-    </div>
-    <div class="chart-body mb-5">
-			<%= line_chart data["skill_card_chart_per_month"], id: random_charkick_id, discrete: true, xtitle: "", ytitle: "Scores per Day", colors: ["#488484", "transparent"] %>
+    <div class="chart-body row">
+      <div class="col-md-6 mb-5">
+        <%= column_chart data["skill_score_chart_per_month"], id: random_charkick_id, id: random_charkick_id, xtitle: "", ytitle: "Total Score", min: nil, colors: ["#488484", "transparent"] %>
+      </div>
+      <div class="col-md-6 mb-5">
+		    <%= line_chart data["skill_card_chart_per_month"], id: random_charkick_id, discrete: true, xtitle: "", ytitle: "Scores per Day", colors: ["#488484", "transparent"] %>
+      </div>
     </div>
   </div>
   <div id="charts-by-skill-tab3" class="tab-pane">
-    <div class="chart-body mb-5">
-      <%= column_chart data["skill_score_chart_per_year"], id: random_charkick_id, xtitle: "", ytitle: "Total Score", min: nil, colors: ["#488484", "transparent"] %>
-    </div>
-    <div class="chart-body mb-5">
-			<%= line_chart data["skill_card_chart_per_year"], id: random_charkick_id, discrete: true, xtitle: "", ytitle: "Scores per Day", colors: ["#488484", "transparent"] %>
+    <div class="chart-body row">
+      <div class="col-md-6 mb-5">
+        <%= column_chart data["skill_score_chart_per_year"], id: random_charkick_id, xtitle: "", ytitle: "Total Score", min: nil, colors: ["#488484", "transparent"] %>
+      </div>
+      <div class="col-md-6 mb-5">
+			  <%= line_chart data["skill_card_chart_per_year"], id: random_charkick_id, discrete: true, xtitle: "", ytitle: "Scores per Day", colors: ["#488484", "transparent"] %>
+      </div>
     </div>
   </div>
 </div>
