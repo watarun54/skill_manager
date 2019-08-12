@@ -7,9 +7,10 @@
 
       <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"></div>
 
-      <div class="text-right sticky-top add-card-button pt-4">
-        <span>＋</span>
-        <%= link_to '', new_card_path, remote: true, class: "btn btn-outline-secondary rounded-circle p-0" %>
+      <div class="add-card-button">
+        <%= link_to new_card_path, remote: true, class: "btn btn-outline-secondary rounded-circle" do %>
+          <span>＋</span>
+        <% end %>
       </div>
 
       <div id="card-list" class="row">
