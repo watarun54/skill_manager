@@ -51,6 +51,10 @@
         <% end %>
         </tbody>
       </table>
+      <%= paginate @skills, theme: 'twitter-bootstrap-4',
+                            pagination_class: "pagination-sm justify-content-center",
+                            nav_class: "d-inline-b",
+                            window: 1 %>
       </div>
 
 		</main>

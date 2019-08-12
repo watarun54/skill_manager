@@ -2,9 +2,11 @@ class GeneralSkillsController < ApplicationController
   before_action :set_general_skill, only: [:show, :edit, :update, :destroy, :show_skill_charts]
   before_action :redirect_if_not_having_gs, only: [:show]
 
+  PER = 20
+
   def index
     @general_skill = GeneralSkill.new
-    @general_skills = GeneralSkill.of_current_user(@current_user).order(id: "DESC")
+    @general_skills = GeneralSkill.of_current_user(@current_user).order(id: "DESC").page(params[:page]).per(PER)
   end
 
   def show

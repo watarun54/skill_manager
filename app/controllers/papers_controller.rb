@@ -2,9 +2,11 @@ class PapersController < ApplicationController
   before_action :set_paper, only: [:edit, :update, :destroy]
   before_action :set_options, only: [:index, :edit]
 
+  PER = 40
+
   def index
     @paper = Paper.new
-    @papers = Paper.of_current_user(@current_user).order(id: "DESC")
+    @papers = Paper.of_current_user(@current_user).order(id: "DESC").page(params[:page]).per(PER)
   end
 
   def show
