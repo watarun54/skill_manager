@@ -19,6 +19,8 @@ class UpdatePapersJob < ApplicationJob
     end
 
     logger.info("[Paper updated] user_id: #{user.id}, title: #{text}, url: #{uri}, error: #{result["error"]}, time: #{Time.now}")
+  rescue => e
+    logger.info("[Paper updated] user_id: #{user.id}, title: #{text}, url: #{uri}, error: #{e.message}, time: #{Time.now}")
   end
 
   private
