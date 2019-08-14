@@ -37,7 +37,7 @@
         <% @skills.each do |skill| %>
           <tr id="skill-<%= skill.id %>">
             <th scope="row"><%= skill.name %></th>
-            <td><%= skill.general_skill.name %></td>
+            <td><%= link_to(skill.general_skill.name, general_skill_path(skill.general_skill), style: "color:#343a40;") %></td>
             <td><%= skill.cards.count %></td>
             <td><%= total_scores_of(skill) %></td>
             <td><%= skill.created_at.strftime("%Y/%m/%d") %></td>
@@ -52,6 +52,10 @@
         </tbody>
       </table>
       </div>
+      <%= paginate @skills, theme: 'twitter-bootstrap-4',
+                            pagination_class: "pagination-sm justify-content-center",
+                            nav_class: "d-inline-b",
+                            window: 1 %>
 
 		</main>
 	</div>

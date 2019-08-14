@@ -10,7 +10,7 @@
       <%= form_for(@paper, remote: true) do |f| %>
       <div class="form-row">
         <div class="col-md-5 input-group mb-4">
-          <%= f.text_field :url, class: "form-control", placeholder: "URL", maxlength: 300 %>
+          <%= f.text_field :url, class: "form-control", placeholder: "URL", maxlength: 500 %>
           <div class="input-group-append">
             <%= f.submit "Add", class: "btn btn-secondary" %>
           </div>
@@ -21,11 +21,10 @@
       <div class="error-message-area"></div>
 
       <div id="paper-table" class="table-responsive">
-      <table class="table table-bordered table-hover table-sm">
+      <table class="table table-bordered table-striped table-sm">
         <thead class="thead-dark">
           <tr>
             <th scope="col" class="pl-3 font-weight-normal">Title</th>
-            <th scope="col" class="text-center font-weight-normal">URL</th>
             <th scope="col" class="text-center font-weight-normal">Status</th>
             <th scope="col" class="text-center font-weight-normal">G.S.</th>
             <th scope="col" class="text-center font-weight-normal">Memo</th>
@@ -36,8 +35,7 @@
         <tbody id="paper-list">
         <% @papers.each do |paper| %>
           <tr id="paper-<%= paper.id %>">
-            <th scope="row" class="align-middle"><%= paper.title.nil? ? ".... タイトル取得中 ...." : paper.title %></th>
-            <td class="text-center align-middle"><%= link_to("link", paper.url, target: "_blank") %></td>
+            <th scope="row" class="align-middle"><%= paper.title.nil? ? ".... タイトル取得中 ...." : link_to(paper.title, paper.url, style: "color:#343a40;", target: "_blank") %></th>
             <td class="text-center align-middle"><%= paper.status_text %></td>
             <td class="text-center align-middle"><%= paper.general_skill.try(:name).try(:truncate, 8) %></td>
             <td class="text-center align-middle"><%= paper.content %></td>
@@ -53,6 +51,10 @@
         </tbody>
       </table>
       </div>
+      <%= paginate @papers, theme: 'twitter-bootstrap-4',
+                            pagination_class: "pagination-sm justify-content-center",
+                            nav_class: "d-inline-b",
+                            window: 1 %>
 
 		</main>
 	</div>

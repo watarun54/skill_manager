@@ -4,7 +4,7 @@ class Paper < ApplicationRecord
 
   validates :title, length: { maximum: 300 }
   validates :content, length: { maximum: 500 }
-  validates :url, presence: true, length: { maximum: 300 }
+  validates :url, presence: true, length: { maximum: 500 }
   validates :user_id, presence: true
 
   scope :of_current_user, ->(current_user) { current_user.papers }

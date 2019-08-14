@@ -3,11 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .add-card-button {
-  height: 1px;
+  @media (max-width: 575px) {
+    bottom: 82px;
+    right: 23px;
+  }
+  bottom: 100px;
+  right: 55px;
+  position: fixed;
+  z-index: 100;
 
   span {
     position: absolute;
-    top: 39px;
+    bottom: 15px;
     right: 19px;
     z-index: 10;
   }
@@ -17,5 +24,6 @@
     position: absolute;
     right: -1px;
     z-index: 20;
+    opacity: 0.9;
   }
 }

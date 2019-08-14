@@ -2,9 +2,11 @@ class SkillsController < ApplicationController
   before_action :set_skill, only: [:edit, :update, :destroy]
   before_action :set_options, only: [:index, :edit]
 
+  PER = 20
+
   def index
     @skill = Skill.new
-    @skills = Skill.of_current_user(@current_user).order(id: "DESC")
+    @skills = Skill.of_current_user(@current_user).order(id: "DESC").page(params[:page]).per(PER)
   end
 
   def show
