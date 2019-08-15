@@ -7,17 +7,32 @@
 
       <div class="modal fade" id="skill-modal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"></div>
 
-      <%= form_for(@skill, remote: true) do |f| %>
-      <div class="form-row">
-        <div class="col-md-5 input-group mb-4">
-          <%= f.text_field :name, class: "form-control", placeholder: "New Skill", maxlength: 50 %>
-          <%= f.select :general_skill_id, @general_skill_options, {}, { class: "form-control" } %>
-          <div class="input-group-append">
-            <%= f.submit "Add", class: "btn btn-secondary" %>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <%= form_with model: @skill do |f| %>
+          <div class="form-inline">
+            <div class="input-group">
+              <%= f.text_field :name, class: "form-control", placeholder: "New Skill", maxlength: 50 %>
+              <%= f.select :general_skill_id, @general_skill_options, {}, { class: "form-control" } %>
+              <div class="input-group-append">
+                <%= f.submit "Add", class: "btn btn-secondary" %>
+              </div>
+            </div>
           </div>
+          <% end %>
+        </div>
+        <div class="col-md-6 mb-4">
+          <%= form_with url: skills_search_path, method: :get do |f| %>
+          <div class="form-inline">
+            <div class="input-group ml-auto">
+              <%= f.select :general_skill, @general_skill_options.unshift(["All", nil]), {}, { class: "form-control mr-1", onChange: "javascript: this.form.skills_search_submit.click();" } %>
+              <%= f.select :order, @order_options, {}, { class: "form-control", onChange: "javascript: this.form.skills_search_submit.click();" } %>
+              <%= f.submit name: "skills_search_submit", class: "d-none" %>
+            </div>
+          </div>
+          <% end %>
         </div>
       </div>
-      <% end %>
 
       <div class="error-message-area"></div>
 

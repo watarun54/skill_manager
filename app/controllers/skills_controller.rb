@@ -64,6 +64,11 @@ class SkillsController < ApplicationController
     end
   end
 
+  def search
+    @skills = order_by_total_score_of_cards(params[:general_skill], params[:order]) if params[:order].include?("score")
+    @skills = order_by_total_num_of_cards(params[:general_skill], params[:order]) if params[:order].include?("num")
+  end
+
   private
   def skill_params
     params.require(:skill).permit(:name, :general_skill_id)
@@ -75,5 +80,22 @@ class SkillsController < ApplicationController
 
   def set_options
     @general_skill_options = @current_user.general_skills.pluck(:name, :id)
+    @order_options = [["↑総スコア", "score_asc"], ["↓総スコア", "score_desc"], ["↑Card数", "num_asc"], ["↓Card数", "num_desc"]]
+  end
+
+  def order_by_total_score_of_cards(gs, sort)
+    if sort.include?("desc")
+      Skill.of_current_user(@current_user).of_general_skill(gs).order_desc_by_total_score_of_cards.page(params[:page]).per(PER)
+    else
+      Skill.of_current_user(@current_user).of_general_skill(gs).order_asc_by_total_score_of_cards.page(params[:page]).per(PER)
+    end
+  end
+
+  def order_by_total_num_of_cards(gs, sort)
+    if sort.include?("desc")
+      Skill.of_current_user(@current_user).of_general_skill(gs).order_desc_by_total_num_of_cards.page(params[:page]).per(PER)
+    else
+      Skill.of_current_user(@current_user).of_general_skill(gs).order_asc_by_total_num_of_cards.page(params[:page]).per(PER)
+    end
   end
 end

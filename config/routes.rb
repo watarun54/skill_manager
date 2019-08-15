@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "general_skills/show_skill_charts/:id/:skill_id", to: "general_skills#show_skill_charts", as: :show_skill_charts
 
   resources :skills, except: :show
+  get '/skills/search', to: 'skills#search'
 
   resources :papers, except: :show
 
