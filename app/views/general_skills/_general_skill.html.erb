@@ -1,6 +1,8 @@
 <tr id="general-skill-<%= general_skill.id %>">
-  <th scope="row"><%= general_skill.name %></th>
+  <th scope="row"><%= link_to(general_skill.name, general_skill_path(general_skill), style: "color:#343a40;") %></th>
   <td><%= general_skill.skills.count %></td>
+  <td><%= total_num_of_all_cards_in(general_skill) %></td>
+  <td><%= total_score_of_all_cards_in(general_skill) %></td>
   <td><%= general_skill.created_at.strftime("%Y/%m/%d") %></td>
   <td>
     <div class="btn-group ml-3">
