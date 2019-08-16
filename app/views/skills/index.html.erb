@@ -25,8 +25,8 @@
           <%= form_with url: skills_search_path, method: :get do |f| %>
           <div class="form-inline">
             <div class="input-group ml-auto">
-              <%= f.select :general_skill, @general_skill_options.unshift(["All", nil]), {}, { class: "form-control mr-1", onChange: "javascript: this.form.skills_search_submit.click();" } %>
-              <%= f.select :order, @order_options, {}, { class: "form-control", onChange: "javascript: this.form.skills_search_submit.click();", style: "min-width:108px;" } %>
+              <%= f.select :general_skill, options_for_select(@general_skill_options.unshift(["All", nil]), params[:general_skill]), {}, { class: "form-control mr-1", onChange: "javascript: this.form.skills_search_submit.click();" } %>
+              <%= f.select :order, options_for_select(@order_options, params[:order]), {}, { class: "form-control", onChange: "javascript: this.form.skills_search_submit.click();", style: "min-width:108px;" } %>
               <%= f.submit name: "skills_search_submit", class: "d-none" %>
             </div>
           </div>
@@ -48,29 +48,13 @@
             <th></th>
           </tr>
         </thead>
-        <tbody id="skill-list">
-        <% @skills.each do |skill| %>
-          <tr id="skill-<%= skill.id %>">
-            <th scope="row"><%= skill.name %></th>
-            <td><%= link_to(skill.general_skill.name, general_skill_path(skill.general_skill), style: "color:#343a40;") %></td>
-            <td><%= skill.cards.count %></td>
-            <td><%= total_scores_of(skill) %></td>
-            <td><%= skill.created_at.strftime("%Y/%m/%d") %></td>
-            <td>
-              <div class="btn-group ml-3">
-                <%= link_to 'Edit', edit_skill_path(skill), remote: true, class: "btn btn-sm btn-outline-secondary" %>
-                <%= link_to 'Delete', skill, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, class: "btn btn-sm btn-outline-secondary" %>
-              </div>
-            </td>
-          </tr>
-        <% end %>
-        </tbody>
+
+        <%= render("skill_list", skills: @skills) %>
+
       </table>
       </div>
-      <%= paginate @skills, theme: 'twitter-bootstrap-4',
-                            pagination_class: "pagination-sm justify-content-center",
-                            nav_class: "d-inline-b",
-                            window: 1 %>
+
+      <%= render("pagination_skills", skills: @skills, general_skill_param: @general_skill_param, order_param: @order_param) %>
 
 		</main>
 	</div>

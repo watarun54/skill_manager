@@ -6,7 +6,9 @@ class SkillsController < ApplicationController
 
   def index
     @skill = Skill.new
-    @skills = Skill.of_current_user(@current_user).order(id: "DESC").page(params[:page]).per(PER)
+    @general_skill_param = params[:general_skill]
+    @order_param = params[:order] || "score_asc"
+    order_skills
   end
 
   def show
@@ -65,8 +67,9 @@ class SkillsController < ApplicationController
   end
 
   def search
-    @skills = order_by_total_score_of_cards(params[:general_skill], params[:order]) if params[:order].include?("score")
-    @skills = order_by_total_num_of_cards(params[:general_skill], params[:order]) if params[:order].include?("num")
+    @general_skill_param = params[:general_skill]
+    @order_param = params[:order]
+    order_skills
   end
 
   private
@@ -81,6 +84,11 @@ class SkillsController < ApplicationController
   def set_options
     @general_skill_options = @current_user.general_skills.pluck(:name, :id)
     @order_options = [["↑総スコア", "score_asc"], ["↓総スコア", "score_desc"], ["↑Card数", "num_asc"], ["↓Card数", "num_desc"]]
+  end
+
+  def order_skills
+    @skills = order_by_total_score_of_cards(@general_skill_param, @order_param) if @order_param.include?("score")
+    @skills = order_by_total_num_of_cards(@general_skill_param, @order_param) if @order_param.include?("num")
   end
 
   def order_by_total_score_of_cards(gs, sort)

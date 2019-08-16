@@ -50,7 +50,7 @@ gem 'chartable'
 gem 'chartjs-ror'
 
 # pagination
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 
 # manage password safely
