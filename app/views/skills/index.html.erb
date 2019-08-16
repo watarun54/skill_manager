@@ -25,8 +25,8 @@
           <%= form_with url: skills_search_path, method: :get do |f| %>
           <div class="form-inline">
             <div class="input-group ml-auto">
-              <%= f.select :general_skill, options_for_select(@general_skill_options.unshift(["All", nil]), params[:general_skill]), {}, { class: "form-control mr-1", onChange: "javascript: this.form.skills_search_submit.click();" } %>
-              <%= f.select :order, options_for_select(@order_options, params[:order]), {}, { class: "form-control", onChange: "javascript: this.form.skills_search_submit.click();", style: "min-width:108px;" } %>
+              <%= f.select :general_skill, options_for_select(@general_skill_options, @general_skill_param), {}, { class: "form-control mr-1", onChange: "javascript: this.form.skills_search_submit.click();" } %>
+              <%= f.select :order, options_for_select(@order_options, @order_param), {}, { class: "form-control", onChange: "javascript: this.form.skills_search_submit.click();", style: "min-width:108px;" } %>
               <%= f.submit name: "skills_search_submit", class: "d-none" %>
             </div>
           </div>

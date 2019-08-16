@@ -82,7 +82,7 @@ class SkillsController < ApplicationController
   end
 
   def set_options
-    @general_skill_options = @current_user.general_skills.pluck(:name, :id)
+    @general_skill_options = @current_user.general_skills.pluck(:name, :id).unshift(["All", nil])
     @order_options = [["↑総スコア", "score_asc"], ["↓総スコア", "score_desc"], ["↑Card数", "num_asc"], ["↓Card数", "num_desc"]]
   end
 
