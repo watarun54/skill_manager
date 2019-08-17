@@ -95,6 +95,7 @@ class CardsController < ApplicationController
       Card.of_current_user(@current_user)
         .of_general_skill(GeneralSkill.find_by(id: @general_skill_param))
         .of_skill(@skill_param)
+        .order(id: "DESC")
         .page(params[:page]).per(PER)
     end
   end
