@@ -1,0 +1,9 @@
+<%= form_with url: cards_search_path, id: "cards-search-form", method: :get do |f| %>
+<div class="form-inline">
+  <div class="input-group ml-auto">
+    <%= f.select :general_skill, options_for_select(general_skill_options.unshift(["All", nil]), general_skill_param), {}, { class: "form-control mr-1", onChange: "javascript: this.form.cards_search_submit.click();" } %>
+    <%= f.select :skill, options_for_select(general_skill_param.blank? ? [["G.S.を選択してください", nil]] : skill_options_hash[general_skill_param], skill_param), {}, { class: "form-control mr-1", onChange: "javascript: this.form.cards_search_submit.click();" } %>
+    <%= f.submit name: "cards_search_submit", class: "d-none" %>
+  </div>
+</div>
+<% end %>

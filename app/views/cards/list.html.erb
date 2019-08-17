@@ -13,30 +13,17 @@
         <% end %>
       </div>
 
-      <div id="card-list" class="row">
-        <% @cards.each do |card| %>
-          <%= link_to edit_card_path(card), remote: true, style: "text-decoration: none;" do %>
-          <div id="card-<%= card.id %>" class="col-lg-4 col-md-6 mb-4">
-            <div class="card card-body bg-light p-3">
-              <p>
-                <span class="badge badge-dark"><%= card.skill.general_skill.name %></span>
-                <span class="badge badge-success"><%= card.skill.name %></span>
-                <span class="badge badge-info"><%= card.score %></span>
-              </p>
-              <p class="card-text text-muted px-3"><%= card.fact %></p>
-            </div>
-            <div class="card-footer text-right py-1 px-3">
-              <small class="text-muted">Cre. at <%= card.created_at.strftime("%Y/%m/%d") %></small>
-              <%= link_to 'Delete', card, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, class: "btn btn-sm btn-outline-secondary ml-2" %>
-            </div>
-          </div>
-          <% end %>
-        <% end %>
+      <div class="row">
+        <div class="col-md-6 offset-md-6 mb-4">
+
+          <%= render("cards_search", general_skill_options: @general_skill_options, skill_options_hash: @skill_options_hash, general_skill_param: @general_skill_param, skill_param: @skill_param) %>
+
+        </div>
       </div>
-      <%= paginate @cards, theme: 'twitter-bootstrap-4',
-                            pagination_class: "pagination-sm justify-content-center",
-                            nav_class: "d-inline-b",
-                            window: 1 %>
+
+      <%= render("card_list", cards: @cards) %>
+
+      <%= render("pagination", cards: @cards, general_skill_param: @general_skill_param) %>
 
 		</main>
 	</div>

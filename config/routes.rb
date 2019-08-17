@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :cards, except: [:index, :show]
   get '/cards/list', to: 'cards#list'
+  get '/cards/search', to: 'cards#search'
 
   resources :general_skills
   get "general_skills/show_skill_charts/:id/:skill_id", to: "general_skills#show_skill_charts", as: :show_skill_charts
