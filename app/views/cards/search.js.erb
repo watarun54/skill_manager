@@ -1,0 +1,3 @@
+$("#cards-search-form").replaceWith("<%= j(render("cards_search", cards: @cards, general_skill_options: @general_skill_options, skill_options_hash: @skill_options_hash, general_skill_param: @general_skill_param, skill_param: @skill_param)) %>");
+$("#card-list").replaceWith("<%= j(render("card_list", cards: @cards)) %>");
+$("#pagination-cards").replaceWith("<%= j(render("pagination", cards: @cards)) %>");
