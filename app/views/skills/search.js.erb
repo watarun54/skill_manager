@@ -1,0 +1,2 @@
+$("#skill-list").replaceWith("<%= j(render("skill_list", skills: @skills)) %>");
+$("#pagination-skills").replaceWith("<%= j(render("pagination_skills", skills: @skills, general_skill_param: @general_skill_param, order_param: @order_param)) %>");
