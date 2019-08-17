@@ -13,13 +13,7 @@
         <% end %>
       </div>
 
-      <div class="row">
-        <div class="col-md-6 offset-md-6 mb-4">
-
-          <%= render("cards_search", general_skill_options: @general_skill_options, skill_options_hash: @skill_options_hash, general_skill_param: @general_skill_param, skill_param: @skill_param) %>
-
-        </div>
-      </div>
+      <%= render("cards_search", cards: @cards, general_skill_options: @general_skill_options, skill_options_hash: @skill_options_hash, general_skill_param: @general_skill_param, skill_param: @skill_param) %>
 
       <%= render("card_list", cards: @cards) %>
 
