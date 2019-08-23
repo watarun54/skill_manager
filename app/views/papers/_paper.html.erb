@@ -1,8 +1,10 @@
 <tr id="paper-<%= paper.id %>">
   <th scope="row" class="align-middle"><%= paper.title.nil? ? ".... タイトル取得中 ...." : link_to(paper.title, paper.url, style: "color:#343a40;", target: "_blank") %></th>
+  <td class="text-center align-middle" data-toggle="collapse" data-target="#accordion<%= paper.id %>">
+    <%= paper.content.blank? ? "-" : "▼" %>
+  </td>
   <td class="text-center align-middle"><%= paper.status_text %></td>
   <td class="text-center align-middle"><%= paper.general_skill.try(:name).try(:truncate, 8) %></td>
-  <td class="text-center align-middle"><%= paper.content %></td>
   <td class="text-center align-middle"><%= paper.created_at.strftime("%Y/%m/%d") %></td>
   <td class="text-center align-middle">
     <div class="btn-group">

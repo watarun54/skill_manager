@@ -21,13 +21,12 @@
       <div class="error-message-area"></div>
 
       <div id="paper-table" class="table-responsive">
-      <table class="table table-bordered table-striped table-sm">
+      <table class="table table-bordered table-sm">
         <thead class="thead-dark">
           <tr>
-            <th scope="col" class="pl-3 font-weight-normal">Title</th>
+            <th scope="col" colspan="2" class="pl-3 font-weight-normal">Title</th>
             <th scope="col" class="text-center font-weight-normal">Status</th>
             <th scope="col" class="text-center font-weight-normal">G.S.</th>
-            <th scope="col" class="text-center font-weight-normal">Memo</th>
             <th scope="col" class="text-center font-weight-normal">作成日</th>
             <th scope="col"></th>
           </tr>
@@ -36,15 +35,26 @@
         <% @papers.each do |paper| %>
           <tr id="paper-<%= paper.id %>">
             <th scope="row" class="align-middle"><%= paper.title.nil? ? ".... タイトル取得中 ...." : link_to(paper.title, paper.url, style: "color:#343a40;", target: "_blank") %></th>
+            <td class="text-center align-middle" data-toggle="collapse" data-target="#accordion<%= paper.id %>" style="padding:13px;">
+              <%= paper.content.blank? ? "-" : "▼" %>
+            </td>
             <td class="text-center align-middle"><%= paper.status_text %></td>
             <td class="text-center align-middle"><%= paper.general_skill.try(:name).try(:truncate, 8) %></td>
-            <td class="text-center align-middle"><%= paper.content %></td>
             <td class="text-center align-middle"><%= paper.created_at.strftime("%Y/%m/%d") %></td>
             <td class="text-center align-middle">
               <div class="btn-group">
                 <%= link_to 'Edit', edit_paper_path(paper), remote: true, class: "btn btn-sm btn-outline-secondary" %>
                 <%= link_to 'Delete', paper, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, class: "btn btn-sm btn-outline-secondary" %>
               </div>
+            </td>
+          </tr>
+          <tr id="paper-<%= paper.id %>-memo">
+            <td colspan="6" class="bg-light" style="padding:0px;border:none;">
+            <% unless paper.content.blank? %>
+              <div id="accordion<%= paper.id %>" class="collapse p-1">
+                <%= paper.content %>
+              </div>
+            <% end %>
             </td>
           </tr>
         <% end %>
