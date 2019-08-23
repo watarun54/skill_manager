@@ -34,7 +34,6 @@
         <tbody id="paper-list">
         <% @papers.each do |paper| %>
           <tr id="paper-<%= paper.id %>">
-            <th scope="row" class="align-middle"><%= paper.title.blank? ? ".... タイトル取得中 ...." : link_to(paper.title, paper.url, style: "color:#343a40;", target: "_blank") %></th>
             <td class="text-center align-middle">
             <% if paper.content.blank? %>
               -
@@ -44,8 +43,9 @@
               </a>
             <% end %>
             </td>
-            <td class="text-center align-middle"><%= paper.status_text %></td>
+            <th scope="row" class="align-middle"><%= paper.title.blank? ? ".... タイトル取得中 ...." : link_to(paper.title, paper.url, style: "color:#343a40;", target: "_blank") %></th>
             <td class="text-center align-middle"><%= paper.general_skill.blank? ? "-" : paper.general_skill.name.truncate(8) %></td>
+            <td class="text-center align-middle"><%= paper.status_text %></td>
             <td class="text-center align-middle"><%= paper.created_at.strftime("%Y/%m/%d") %></td>
             <td class="text-center align-middle">
               <div class="btn-group">
@@ -55,7 +55,7 @@
             </td>
           </tr>
           <tr id="paper-<%= paper.id %>-memo">
-            <td colspan="6" class="bg-light" style="padding:0px;border:none;">
+            <td colspan="2" class="bg-light" style="padding:0px;border:none;">
             <% unless paper.content.blank? %>
               <div id="accordion<%= paper.id %>" class="collapse px-3 py-2">
                 <%= paper.content %>

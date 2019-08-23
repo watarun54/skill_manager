@@ -1,5 +1,4 @@
 <tr id="paper-<%= paper.id %>">
-  <th scope="row" class="align-middle"><%= paper.title.blank? ? ".... タイトル取得中 ...." : link_to(paper.title, paper.url, style: "color:#343a40;", target: "_blank") %></th>
   <td class="text-center align-middle">
   <% if paper.content.blank? %>
     -
@@ -9,8 +8,9 @@
     </a>
   <% end %>
   </td>
-  <td class="text-center align-middle"><%= paper.status_text %></td>
+  <th scope="row" class="align-middle"><%= paper.title.blank? ? ".... タイトル取得中 ...." : link_to(paper.title, paper.url, style: "color:#343a40;", target: "_blank") %></th>
   <td class="text-center align-middle"><%= paper.general_skill.blank? ? "-" : paper.general_skill.name.truncate(8) %></td>
+  <td class="text-center align-middle"><%= paper.status_text %></td>
   <td class="text-center align-middle"><%= paper.created_at.strftime("%Y/%m/%d") %></td>
   <td class="text-center align-middle">
     <div class="btn-group">
