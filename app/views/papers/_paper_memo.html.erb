@@ -1,7 +1,7 @@
 <tr id="paper-<%= paper.id %>-memo">
   <td colspan="6" class="bg-light" style="padding:0px;border:none;">
   <% unless paper.content.blank? %>
-    <div id="accordion<%= paper.id %>" class="collapse p-1">
+    <div id="accordion<%= paper.id %>" class="collapse px-3 py-2">
       <%= paper.content %>
     </div>
   <% end %>
