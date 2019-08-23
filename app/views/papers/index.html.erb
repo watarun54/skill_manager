@@ -34,12 +34,18 @@
         <tbody id="paper-list">
         <% @papers.each do |paper| %>
           <tr id="paper-<%= paper.id %>">
-            <th scope="row" class="align-middle"><%= paper.title.nil? ? ".... タイトル取得中 ...." : link_to(paper.title, paper.url, style: "color:#343a40;", target: "_blank") %></th>
-            <td class="text-center align-middle" data-toggle="collapse" data-target="#accordion<%= paper.id %>" style="padding:13px;">
-              <%= paper.content.blank? ? "-" : "▼" %>
+            <th scope="row" class="align-middle"><%= paper.title.blank? ? ".... タイトル取得中 ...." : link_to(paper.title, paper.url, style: "color:#343a40;", target: "_blank") %></th>
+            <td class="text-center align-middle">
+            <% if paper.content.blank? %>
+              -
+            <% else %>
+              <a class="btn btn-outline-dark btn-sm" data-toggle="collapse" href="#accordion<%= paper.id %>" role="button" aria-expanded="false" aria-controls="#accordion<%= paper.id %>">
+                ▼
+              </a>
+            <% end %>
             </td>
             <td class="text-center align-middle"><%= paper.status_text %></td>
-            <td class="text-center align-middle"><%= paper.general_skill.try(:name).try(:truncate, 8) %></td>
+            <td class="text-center align-middle"><%= paper.general_skill.blank? ? "-" : paper.general_skill.name.truncate(8) %></td>
             <td class="text-center align-middle"><%= paper.created_at.strftime("%Y/%m/%d") %></td>
             <td class="text-center align-middle">
               <div class="btn-group">
