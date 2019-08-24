@@ -27,6 +27,18 @@
   }
 }
 
+// nav and sidebar
+.dashboard {
+  &:after {
+    font-family: "Font Awesome 5 Free";
+    content: '\f107';
+    font-weight: 900;
+    margin-left: 10px;
+  }
+  &.open:after {
+    content: '\f106';
+  }
+}
 #collapseDashboard {
   overflow-x: hidden;
   overflow-y: hidden;
