@@ -7,6 +7,8 @@
 
       <div class="modal fade" id="general-skill-modal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"></div>
 
+      <div class="error-message-area"></div>
+
       <%= form_for(@general_skill, remote: true) do |f| %>
       <div class="form-row">
         <div class="col-md-5 input-group mb-4">
@@ -19,8 +21,6 @@
         </div>
       </div>
       <% end %>
-
-      <div class="error-message-area"></div>
 
       <div class="table-responsive">
       <table class="table table-hover text-nowrap">

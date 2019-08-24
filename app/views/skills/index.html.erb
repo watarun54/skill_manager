@@ -7,6 +7,8 @@
 
       <div class="modal fade" id="skill-modal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"></div>
 
+      <div class="error-message-area"></div>
+
       <div class="row">
         <div class="col-md-6 mb-4">
           <%= form_with model: @skill do |f| %>
@@ -35,8 +37,6 @@
           <% end %>
         </div>
       </div>
-
-      <div class="error-message-area"></div>
 
       <div class="table-responsive">
       <table class="table table-hover text-nowrap">
