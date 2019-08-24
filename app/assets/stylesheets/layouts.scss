@@ -22,4 +22,24 @@
 }
 .sidebar-content {
   position: fixed;
+  ul {
+    font-size: 15px;
+  }
+}
+
+#collapseDashboard {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  max-width: 174px;
+  > div {
+    max-height: 164px;
+    width: calc(100% + 17px);
+    padding-right: 17px;
+    overflow-y: scroll;
+  }
+  a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
