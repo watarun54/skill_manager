@@ -29,7 +29,11 @@
           <%= f.submit '登録', class: "btn btn-secondary" %>
         <% end %>
 
-        <%= link_to '>> ユーザー削除', user_path(@current_user.id), method: :delete, class: "nav-link text-muted mt-2", data: { confirm: 'Are you sure?'} %>
+        <div class="pl-0 mt-3">
+          <%= link_to user_path(@current_user.id), method: :delete, class: "text-danger", style: "text-decoration:none;", data: { confirm: 'Are you sure?'} do %>
+            <%= icon("fas", "trash") %> アカウント削除
+          <% end %>
+        </div>
 
       </div>
 
