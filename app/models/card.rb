@@ -1,5 +1,6 @@
 class Card < ApplicationRecord
   belongs_to :skill
+  belongs_to :list
 
   validates :score, presence: true, numericality: { only_integer: true }
   validates :fact, presence: true, length: { maximum: 500 }
