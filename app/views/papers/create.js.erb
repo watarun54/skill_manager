@@ -9,6 +9,7 @@ $('#alert-message').html('\
       </button>\
     </div>\
   ');
+$("#paper-list").prepend("<%= j(render("paper_memo", paper: @paper)) %>");
 $("#paper-list").prepend("<%= j(render("paper", paper: @paper)) %>");
 $("#paper_url").val("");
 <% elsif @status == 'fail' %>

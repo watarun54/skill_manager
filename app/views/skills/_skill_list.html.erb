@@ -1,17 +1,5 @@
 <tbody id="skill-list">
 <% skills.each do |skill| %>
-  <tr id="skill-<%= skill.id %>">
-    <th scope="row"><%= skill.name %></th>
-    <td><%= link_to(skill.general_skill.name, general_skill_path(skill.general_skill), style: "color:#343a40;") %></td>
-    <td><%= skill.cards.count %></td>
-    <td><%= total_scores_of(skill) %></td>
-    <td><%= skill.created_at.strftime("%Y/%m/%d") %></td>
-    <td>
-      <div class="btn-group ml-3">
-        <%= link_to 'Edit', edit_skill_path(skill), remote: true, class: "btn btn-sm btn-outline-secondary" %>
-        <%= link_to 'Delete', skill, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, class: "btn btn-sm btn-outline-secondary" %>
-      </div>
-    </td>
-  </tr>
+  <%= render("skill", skill: skill) %>
 <% end %>
 </tbody>

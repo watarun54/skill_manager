@@ -7,6 +7,8 @@
 
       <div class="modal fade" id="skill-modal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"></div>
 
+      <div class="error-message-area"></div>
+
       <div class="row">
         <div class="col-md-6 mb-4">
           <%= form_with model: @skill do |f| %>
@@ -15,7 +17,9 @@
               <%= f.text_field :name, class: "form-control", placeholder: "New Skill", maxlength: 50 %>
               <%= f.select :general_skill_id, @general_skill_options, {}, { class: "form-control" } %>
               <div class="input-group-append">
-                <%= f.submit "Add", class: "btn btn-secondary" %>
+                <%= button_tag type: 'submit', class: "btn btn-secondary", id: "register-button" do %>
+                  <%= icon("fas", "plus") %>
+                <% end %>
               </div>
             </div>
           </div>
@@ -33,8 +37,6 @@
           <% end %>
         </div>
       </div>
-
-      <div class="error-message-area"></div>
 
       <div class="table-responsive">
       <table class="table table-hover text-nowrap">

@@ -9,6 +9,7 @@ $('#alert-message').html('\
       </button>\
     </div>\
   ');
+$("#paper-<%= @paper.id %>-memo").replaceWith("<%= j(render("paper_memo", paper: @paper)) %>");
 $("#paper-<%= @paper.id %>").replaceWith("<%= j(render("paper", paper: @paper)) %>");
 $("#paper-modal").modal("hide");
 <% elsif @status == 'fail' %>

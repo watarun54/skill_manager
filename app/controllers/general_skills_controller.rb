@@ -92,7 +92,7 @@ class GeneralSkillsController < ApplicationController
 
   def dashboard
     @data_scores = {
-      labels: @current_user.general_skills.pluck(:name),
+      labels: @current_user.general_skills.pluck(:name).map{|name| name.truncate(10) },
       datasets: [
         {
           label: "All card scores of General Skill",
@@ -115,7 +115,7 @@ class GeneralSkillsController < ApplicationController
     }
 
     @data_count = {
-      labels: @current_user.general_skills.pluck(:name),
+      labels: @current_user.general_skills.pluck(:name).map{|name| name.truncate(10) },
       datasets: [
         {
           label: "All card count of General Skill",
@@ -148,15 +148,15 @@ class GeneralSkillsController < ApplicationController
     @growth_rate_per_year = growth_rate_per_year(@selected_skill)
 
     # All Skills
-    @skill_score_chart_per_week = @general_skill.skills.map { |skill| [skill.name, skill.cards.in_a_week.sum(:score)] }
-    @skill_score_chart_per_month = @general_skill.skills.map { |skill| [skill.name, skill.cards.in_a_month.sum(:score)] }
-    @skill_score_chart_per_year = @general_skill.skills.map { |skill| [skill.name, skill.cards.in_a_year.sum(:score)] }
-    @skill_score_chart = @general_skill.skills.map { |skill| [skill.name, skill.cards.sum(:score)] }
+    @skill_score_chart_per_week = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.in_a_week.sum(:score)] }
+    @skill_score_chart_per_month = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.in_a_month.sum(:score)] }
+    @skill_score_chart_per_year = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.in_a_year.sum(:score)] }
+    @skill_score_chart = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.sum(:score)] }
 
-    @skill_card_chart_per_week = @general_skill.skills.map { |skill| [skill.name, skill.cards.in_a_week.count] }
-    @skill_card_chart_per_month = @general_skill.skills.map { |skill| [skill.name, skill.cards.in_a_month.count] }
-    @skill_card_chart_per_year = @general_skill.skills.map { |skill| [skill.name, skill.cards.in_a_year.count] }
-    @skill_card_chart = @general_skill.skills.map { |skill| [skill.name, skill.cards.count] }
+    @skill_card_chart_per_week = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.in_a_week.count] }
+    @skill_card_chart_per_month = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.in_a_month.count] }
+    @skill_card_chart_per_year = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.in_a_year.count] }
+    @skill_card_chart = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.count] }
 
     # 各スキル
     @charts_by_skill_data = {}
@@ -292,7 +292,7 @@ class GeneralSkillsController < ApplicationController
         present_period = (i+1).days.ago..i.days.ago
         present_score = skill.cards.of_current_user(@current_user).where(created_at: present_period).sum(:score)
       end
-      result << { "name": skill.name, "data": data }
+      result << { "name": skill.name.truncate(10), "data": data }
     end
     result
   end
@@ -308,7 +308,7 @@ class GeneralSkillsController < ApplicationController
         present_period = (i+1).months.ago..i.months.ago
         present_score = skill.cards.of_current_user(@current_user).where(created_at: present_period).sum(:score)
       end
-      result << { "name": skill.name, "data": data }
+      result << { "name": skill.name.truncate(10), "data": data }
     end
     result
   end
@@ -324,7 +324,7 @@ class GeneralSkillsController < ApplicationController
         present_period = (i+1).years.ago..i.years.ago
         present_score = skill.cards.of_current_user(@current_user).where(created_at: present_period).sum(:score)
       end
-      result << { "name": skill.name, "data": data }
+      result << { "name": skill.name.truncate(10), "data": data }
     end
     result
   end

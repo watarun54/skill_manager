@@ -7,18 +7,20 @@
 
       <div class="modal fade" id="general-skill-modal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"></div>
 
+      <div class="error-message-area"></div>
+
       <%= form_for(@general_skill, remote: true) do |f| %>
       <div class="form-row">
         <div class="col-md-5 input-group mb-4">
           <%= f.text_field :name, class: "form-control", placeholder: "New General Skill", maxlength: 50 %>
           <div class="input-group-append">
-            <%= f.submit "Add", class: "btn btn-secondary" %>
+            <%= button_tag type: 'submit', class: "btn btn-secondary", id: "register-button" do %>
+              <%= icon("fas", "plus") %>
+            <% end %>
           </div>
         </div>
       </div>
       <% end %>
-
-      <div class="error-message-area"></div>
 
       <div class="table-responsive">
       <table class="table table-hover text-nowrap">
@@ -34,19 +36,7 @@
         </thead>
         <tbody id="general-skill-list">
         <% @general_skills.each do |general_skill| %>
-          <tr id="general-skill-<%= general_skill.id %>">
-            <th scope="row"><%= link_to(general_skill.name, general_skill_path(general_skill), style: "color:#343a40;") %></th>
-            <td><%= general_skill.skills.count %></td>
-            <td><%= total_num_of_all_cards_in(general_skill) %></td>
-            <td><%= total_score_of_all_cards_in(general_skill) %></td>
-            <td><%= general_skill.created_at.strftime("%Y/%m/%d") %></td>
-            <td>
-              <div class="btn-group ml-3">
-                <%= link_to 'Edit', edit_general_skill_path(general_skill), remote: true, class: "btn btn-sm btn-outline-secondary" %>
-                <%= link_to 'Delete', general_skill, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, class: "btn btn-sm btn-outline-secondary" %>
-              </div>
-            </td>
-          </tr>
+          <%= render("general_skill", general_skill: general_skill) %>
         <% end %>
         </tbody>
       </table>

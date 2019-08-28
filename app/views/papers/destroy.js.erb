@@ -9,6 +9,7 @@ $('#alert-message').html('\
       </button>\
     </div>\
   ');
+$("#paper-<%= @paper.id %>-memo").remove();
 $("#paper-<%= @paper.id %>").remove();
 <% elsif @status == 'fail' %>
 $('#alert-message').html('\

@@ -22,4 +22,36 @@
 }
 .sidebar-content {
   position: fixed;
+  ul {
+    font-size: 15px;
+  }
+}
+
+// nav and sidebar
+.dashboard {
+  &:after {
+    font-family: "Font Awesome 5 Free";
+    content: '\f107';
+    font-weight: 900;
+    margin-left: 10px;
+  }
+  &.open:after {
+    content: '\f106';
+  }
+}
+#collapseDashboard {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  max-width: 174px;
+  > div {
+    max-height: 164px;
+    width: calc(100% + 17px);
+    padding-right: 17px;
+    overflow-y: scroll;
+  }
+  a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }

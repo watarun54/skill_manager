@@ -4,13 +4,17 @@
 		<ul class="nav flex-column">
 		<% if @current_user.present? %>
 			<li class="nav-item">
-				<a class="nav-link text-muted" data-toggle="collapse" href="#collapseDashboard" role="button" aria-expanded="false" aria-controls="collapseDashboard">
-					Dashboard
+				<a class="nav-link text-muted collapse-dashboard" data-toggle="collapse" href="#collapseDashboard" role="button" aria-expanded="false" aria-controls="collapseDashboard">
+					<span class="dashboard">Dashboard</span>
 				</a>
 				<div class="collapse" id="collapseDashboard">
-				<% @current_user.general_skills.each do |gs| %>
-					<%= link_to "> #{gs.name}", general_skill_path(gs), class: "nav-link text-muted" %>
-				<% end %>
+					<div>
+					<% @current_user.general_skills.each do |gs| %>
+						<%= link_to general_skill_path(gs), class: "nav-link text-muted" do %>
+							<%= icon("fas", "caret-square-right") %> <%= gs.name %>
+						<% end %>
+					<% end %>
+					</div>
 				</div>
 			</li>
 			<li class="nav-item">
