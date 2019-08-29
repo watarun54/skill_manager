@@ -1,0 +1,15 @@
+<tr id="list-<%= list.id %>">
+  <th scope="row"><%= link_to(list.name, list_path(list), style: "color:#343a40;") %></th>
+  <td><%= list.cards.count %></td>
+  <td><%= list.created_at.strftime("%Y/%m/%d") %></td>
+  <td>
+    <div class="btn-group">
+      <%= link_to(edit_list_path(list), remote: true, class: "btn btn-sm btn-outline-secondary") do %>
+        <%= icon("fas", "edit") %>
+      <% end %>
+      <%= link_to list, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, class: "btn btn-sm btn-outline-secondary" do %>
+        <%= icon("fas", "trash") %>
+      <% end %>
+    </div>
+  </td>
+</tr>

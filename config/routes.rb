@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/cards/list', to: 'cards#list'
   get '/cards/search', to: 'cards#search'
 
+  resources :lists
+
   resources :general_skills
   get "general_skills/show_skill_charts/:id/:skill_id", to: "general_skills#show_skill_charts", as: :show_skill_charts
 
