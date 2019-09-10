@@ -1,8 +1,8 @@
 class Card < ApplicationRecord
-  belongs_to :skill
-  belongs_to :list
+  belongs_to :skill, optional: true
+  belongs_to :list, optional: true
 
-  validates :score, presence: true, numericality: { only_integer: true }
+  # validates :score, presence: true, numericality: { only_integer: true }
   validates :fact, presence: true, length: { maximum: 500 }
 
   scope :of_current_user, ->(current_user) { eager_load(:skill).where(skills: { user_id: current_user.id }) }

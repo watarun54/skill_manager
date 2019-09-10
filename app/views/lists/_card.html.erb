@@ -1,0 +1,25 @@
+<div id="card-<%= card.id %>" class="card mb-2">
+  <%= form_for(card, remote: true) do |f| %>
+  <div class="card-body bg-light p-3">
+    <p>
+      <span class="badge badge-dark"><%= card.skill.nil? ? "None" : card.skill.general_skill.name.truncate(10) %></span>
+      <span class="badge badge-success"><%= card.skill.nil? ? "None" : card.skill.name.truncate(10) %></span>
+      <span class="badge badge-info"><%= card.try(:score) %></span>
+    </p>
+    <p class="card-text text-muted px-2" style="white-space:normal;"><%= card.try(:fact) %></p>
+  </div>
+  <div class="card-footer text-right py-1 px-3">
+    <div class="btn-group">
+      <%= link_to "#", remote: true, class: "btn btn-sm btn-outline-secondary" do %>
+        <%= icon("fas", "caret-left") %>
+      <% end %>
+      <%= link_to "#", remote: true, class: "btn btn-sm btn-outline-secondary" do %>
+        <%= icon("fas", "caret-right") %>
+      <% end %>
+    </div>
+    <%= link_to card, method: :delete, remote: true, class: "btn btn-sm btn-outline-secondary ml-2" do %>
+      <%= icon("fas", "trash") %>
+    <% end %>
+  </div>
+  <% end %>
+</div>

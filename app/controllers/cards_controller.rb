@@ -15,7 +15,7 @@ class CardsController < ApplicationController
     @card = Card.new()
 	end
 
-	def create
+  def create
 		@card = Card.new(card_params)
 
 		respond_to do |format|
