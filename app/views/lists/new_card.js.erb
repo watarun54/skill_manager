@@ -1,8 +1,8 @@
 $(".add-card-btn").css("display","none");
 $(".add-card-text").css("display","");
 $("#ready-list").prepend("<%= j(render("new_card", card: @card)) %>");
-$("#card_fact").focus().blur(function(){
-  if($("#card_fact").val().trim() != ""){
+$("#card-new textarea").focus().blur(function(){
+  if($("#card-new textarea").val().trim() != ""){
     $("#card-new-submit").click();
   } else {
     $("#card-new").remove();
@@ -10,9 +10,9 @@ $("#card_fact").focus().blur(function(){
   $(".add-card-btn").css("display","");
   $(".add-card-text").css("display","none");
 });
-$("#card_fact").keypress(function(e){
+$("#card-new textarea").keypress(function(e){
   if(e.which == 13){
-    if($("#card_fact").val().trim() != ""){
+    if($("#card-new textarea").val().trim() != ""){
       $("#card-new-submit").click();
     } else {
       $("#card-new").remove();

@@ -8,7 +8,11 @@ $('#alert-message').html('\
       </button>\
     </div>\
   ');
-$("#card-<%= @card.id %>").replaceWith("<%= j(render("card", card: @card)) %>");
+<% if params["card"]["from_list"] == "yes" %>
+  $("#card-<%= @card.id %>").replaceWith("<%= j(render("lists/card", card: @card)) %>");
+<% else %>
+  $("#card-<%= @card.id %>").replaceWith("<%= j(render("card", card: @card)) %>");
+<% end %>
 $("#card-modal").modal("hide");
 <% elsif @status == 'fail' %>
 $('#error-message-area').html('<%= j render("shared/error_messages", model: @card) %>');

@@ -27,6 +27,8 @@
         </div>
       </div>
 
+      <%= f.hidden_field :from_list, :value => "yes" if params["from_list"] %>
+
       <div class="modal-footer">
         <%= f.submit "Save", class: "btn btn-secondary"%>
       </div>

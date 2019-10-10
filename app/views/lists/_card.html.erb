@@ -1,3 +1,4 @@
+<%= link_to edit_card_path(card, from_list: "yes"), remote: true, style: "text-decoration: none;" do %>
 <div id="card-<%= card.id %>" class="card mb-2">
   <%= form_for(card, remote: true) do |f| %>
   <div class="card-body bg-light p-3">
@@ -23,3 +24,4 @@
   </div>
   <% end %>
 </div>
+<% end %>
