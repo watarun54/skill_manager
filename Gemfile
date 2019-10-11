@@ -63,7 +63,9 @@ gem 'sidekiq'
 
 gem 'font-awesome-sass'
 
-gem 'ranked-model'
+gem 'ranked-model' # for management of order
+
+gem 'jquery-ui-rails' # for drag & drop
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

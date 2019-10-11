@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: 'general_skills#index'
 
-  resources :cards, except: [:index, :show]
+  resources :cards, except: [:index, :show] do
+    put :sort
+  end
   get '/cards/list', to: 'cards#list'
   get '/cards/search', to: 'cards#search'
 

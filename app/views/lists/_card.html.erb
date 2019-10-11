@@ -1,5 +1,5 @@
 <%= link_to edit_card_path(card, from_list: "yes"), remote: true, style: "text-decoration: none;" do %>
-<div id="card-<%= card.id %>" class="card mb-2">
+<%= content_tag "div", id: "card-#{card.id}", class: "card mb-2", data: { model_name: card.class.name.underscore, update_url: card_sort_path(card)} do %>
   <%= form_for(card, remote: true) do |f| %>
   <div class="card-body bg-light p-3">
     <p>
@@ -23,5 +23,5 @@
     <% end %>
   </div>
   <% end %>
-</div>
+<% end %>
 <% end %>
