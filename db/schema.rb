@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_29_102438) do
+ActiveRecord::Schema.define(version: 2019_10_11_091239) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "skill_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_08_29_102438) do
     t.datetime "updated_at", null: false
     t.bigint "list_id"
     t.string "status"
+    t.integer "row_order"
     t.index ["list_id"], name: "index_cards_on_list_id"
     t.index ["skill_id"], name: "index_cards_on_skill_id"
   end

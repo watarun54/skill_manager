@@ -1,4 +1,7 @@
 class Card < ApplicationRecord
+  include RankedModel 
+  ranks :row_order , with_same: :list_id 
+
   belongs_to :skill, optional: true
   belongs_to :list, optional: true
 
