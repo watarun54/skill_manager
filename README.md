@@ -1,20 +1,32 @@
 # README
 
-* dependencies
+* Dependencies/Technologies
 
 ```
 ruby 2.5.0
 Rails 5.2.3
+jQuery
 Bootstrap4
 mysql 
+redis
+さくらVPS
 ```
 
-* gem
+* Gem
 
 ```
 dotenv-rails # .envにある環境変数を使用するため
 chartkick, chartable # グラフを簡単に描画するため
 chartjs-ror # レーダーチャートを描画するため（chartkickはレーダーチャートをサポートしていない）
+line-bot-api
+sidekiq
+kaminari
+```
+
+* Application/Web server
+
+```
+puma/nginx
 ```
 
 * Start in local env
