@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card_info, only: [:edit, :update, :destroy, :sort]
+  before_action :set_card_info, only: [:edit, :update, :destroy]
   before_action :set_options, only: [:list, :new, :edit, :search]
   before_action :set_skill_options_hash, only: [:list, :new, :edit, :search]
 
@@ -48,7 +48,7 @@ class CardsController < ApplicationController
     end
   end
 
-	def destroy		
+	def destroy
 		respond_to do |format|
 			if @card.destroy
         format.html { render :list }
@@ -67,7 +67,8 @@ class CardsController < ApplicationController
   end
 
   def sort
-    @card = Card.find(card_params)
+    card = Card.find(params[:card_id])
+    card.update(card_params)
     render body: nil
   end
 

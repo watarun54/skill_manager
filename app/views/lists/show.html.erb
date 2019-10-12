@@ -15,7 +15,7 @@
             <%= link_to("カード追加", new_list_card_path(@list.id), remote: true, class: "add-card-btn text-muted") %>
             <p class='add-card-text' style="display:none;">カード追加中</p>
           </h2>
-          <div id="ready-list">
+          <div id="ready-list" class="card-sortable">
           <% @cards.where(status: "ready").each do |card| %>
             <%= render("card", card: card) %>
           <% end %>
@@ -24,23 +24,29 @@
 
         <div class="col-3">
           <h2 class="my-3">Doing</h2>
+          <div class="card-sortable">
           <% @cards.where(status: "Doing").each do |card| %>
             <%= render("card", card: card) %>
           <% end %>
+          </div>
         </div>
 
         <div class="col-3">
           <h2 class="my-3">Done</h2>
+          <div class="card-sortable">
           <% @cards.where(status: "done").each do |card| %>
             <%= render("card", card: card) %>
           <% end %>
+          </div>
         </div>
 
         <div class="col-3">
           <h2 class="my-3">Trash</h2>
+          <div class="card-sortable">
           <% @cards.where(status: "trash").each do |card| %>
             <%= render("card", card: card) %>
           <% end %>
+          </div>
         </div>
 
       </div>
