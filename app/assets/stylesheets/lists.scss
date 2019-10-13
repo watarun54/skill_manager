@@ -1,0 +1,27 @@
+#list-container {
+  overflow-x: scroll;
+
+  > div.row {
+    min-width: 1200px;
+    white-space: nowrap;
+  }
+
+  .add-card-btn {
+    position: absolute;
+    font-size: 16px;
+    right: 19px;
+    top: 35px;
+  }
+
+  .add-card-text {
+    position: absolute;
+    font-size: 16px;
+    right: 19px;
+    top: 35px;
+  }
+}
+
+#ready-list {
+  overflow-y: scroll;
+  height: 1000px;
+}

@@ -35,6 +35,12 @@ ja:
             fact:
               blank: を入力してください
               too_long: は500文字以内です
+        list:
+          attributes:
+            name:
+              blank: を入力してください
+              too_long: は50文字以内です
+              taken: はすでに登録されています
         paper:
           attributes:
             url:

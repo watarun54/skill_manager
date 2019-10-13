@@ -15,7 +15,7 @@ class CardsController < ApplicationController
     @card = Card.new()
 	end
 
-	def create
+  def create
 		@card = Card.new(card_params)
 
 		respond_to do |format|
@@ -48,7 +48,7 @@ class CardsController < ApplicationController
     end
   end
 
-	def destroy		
+	def destroy
 		respond_to do |format|
 			if @card.destroy
         format.html { render :list }
@@ -66,9 +66,15 @@ class CardsController < ApplicationController
     @cards = order_cards
   end
 
+  def sort
+    card = Card.find(params[:card_id])
+    card.update(card_params)
+    render body: nil
+  end
+
   private
   def card_params
-    params.require(:card).permit(:skill_id, :score, :fact)
+    params.require(:card).permit(:skill_id, :score, :fact, :status, :row_order_position)
   end
 
   def set_card_info

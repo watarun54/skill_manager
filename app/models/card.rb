@@ -1,7 +1,11 @@
 class Card < ApplicationRecord
-  belongs_to :skill
+  include RankedModel 
 
-  validates :score, presence: true, numericality: { only_integer: true }
+  belongs_to :skill, optional: true
+  belongs_to :list, optional: true
+  ranks :row_order, with_same: :list_id
+
+  # validates :score, presence: true, numericality: { only_integer: true }
   validates :fact, presence: true, length: { maximum: 500 }
 
   scope :of_current_user, ->(current_user) { eager_load(:skill).where(skills: { user_id: current_user.id }) }

@@ -1,4 +1,5 @@
 $('#alert-message').empty();
+$('.error-message-area').empty();
 <% if @status == 'success' %>
 $('#alert-message').html('\
     <div class="alert alert-success alert-dismissible fade show" role="alert" role="alert">\
@@ -8,12 +9,8 @@ $('#alert-message').html('\
       </button>\
     </div>\
   ');
-<% if params["card"]["from_list"] == "yes" %>
-  $("#card-<%= @card.id %>").replaceWith("<%= j(render("lists/card", card: @card)) %>");
-<% else %>
-  $("#card-<%= @card.id %>").replaceWith("<%= j(render("card", card: @card)) %>");
-<% end %>
-$("#card-modal").modal("hide");
+$("#list-<%= @list.id %>").replaceWith("<%= j(render("list", list: @list)) %>");
+$("#list-modal").modal("hide");
 <% elsif @status == 'fail' %>
-$('#error-message-area').html('<%= j render("shared/error_messages", model: @card) %>');
+$('.error-message-area').html('<%= j render("shared/error_messages", model: @list) %>');
 <% end %>

@@ -1,0 +1,16 @@
+$('#alert-message').empty();
+$('.error-message-area').empty();
+<% if @status == 'success' %>
+$('#alert-message').html('\
+    <div class="alert alert-success alert-dismissible fade show" role="alert" role="alert">\
+      <strong>create <%= @status %></strong>\
+      <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">\
+        <span aria-hidden="true">&times;</span>\
+      </button>\
+    </div>\
+  ');
+$("#list-list").prepend("<%= j(render("list", list: @list)) %>");
+$("#list_name").val("");
+<% elsif @status == 'fail' %>
+$('.error-message-area').html('<%= j render("shared/error_messages", model: @list) %>');
+<% end %>
