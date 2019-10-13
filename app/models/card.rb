@@ -1,9 +1,9 @@
 class Card < ApplicationRecord
   include RankedModel 
-  ranks :row_order , with_same: :list_id 
 
   belongs_to :skill, optional: true
   belongs_to :list, optional: true
+  ranks :row_order, with_same: :list_id
 
   # validates :score, presence: true, numericality: { only_integer: true }
   validates :fact, presence: true, length: { maximum: 500 }

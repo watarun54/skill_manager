@@ -9,8 +9,7 @@ class ListsController < ApplicationController
   end
 
   def show
-    # @cards = Card.of_current_user(@current_user).where(list_id: params[:id]).rank(:row_order)
-    @cards = Card.where(list_id: params[:id]).rank(:row_order)
+    @cards = @list.cards.rank(:row_order)
   end
 
   def new
