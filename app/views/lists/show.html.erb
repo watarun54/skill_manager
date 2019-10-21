@@ -7,49 +7,17 @@
       <div class="modal" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"></div>
 
       <div id="list-container">
-      <div class="row">
-
-        <div class="col-3">
-          <h2 class="my-3">
-            Ready
-            <%= link_to("カード追加", new_list_card_path(@list.id), remote: true, class: "add-card-btn text-muted") %>
-            <p class='add-card-text' style="display:none;">カード追加中</p>
+        <% @list.list_elements.each do |le| %>
+          <%= render("list_element", le: le) %>
+        <% end %>
+        <div class="le-container le-add">
+          <%= link_to(new_list_element_path(list_id: @list.id), remote: true, class: "text-muted") do %>
+          <h2 class="mt-3">
+            <%= icon("fas", "plus") %>
           </h2>
-          <div id="ready-list" class="card-sortable">
-          <% @cards.where(status: "ready").each do |card| %>
-            <%= render("card", card: card) %>
           <% end %>
-          </div>
+          <div class="le-add-bottom-border"></div>
         </div>
-
-        <div class="col-3">
-          <h2 class="my-3">Doing</h2>
-          <div class="card-sortable">
-          <% @cards.where(status: "Doing").each do |card| %>
-            <%= render("card", card: card) %>
-          <% end %>
-          </div>
-        </div>
-
-        <div class="col-3">
-          <h2 class="my-3">Done</h2>
-          <div class="card-sortable">
-          <% @cards.where(status: "done").each do |card| %>
-            <%= render("card", card: card) %>
-          <% end %>
-          </div>
-        </div>
-
-        <div class="col-3">
-          <h2 class="my-3">Trash</h2>
-          <div class="card-sortable">
-          <% @cards.where(status: "trash").each do |card| %>
-            <%= render("card", card: card) %>
-          <% end %>
-          </div>
-        </div>
-
-      </div>
       </div>
 
 		</main>

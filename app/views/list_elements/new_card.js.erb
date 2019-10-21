@@ -1,6 +1,5 @@
 $(".add-card-btn").css("display","none");
-$(".add-card-text").css("display","");
-$("#ready-list").prepend("<%= j(render("new_card", card: @card)) %>");
+$("#list-element-<%= @le.id %>").append("<%= j(render("new_card", card: @card)) %>");
 $("#card-new textarea").focus().blur(function(){
   if($("#card-new textarea").val().trim() != ""){
     $("#card-new-submit").click();
@@ -8,7 +7,6 @@ $("#card-new textarea").focus().blur(function(){
     $("#card-new").remove();
   }
   $(".add-card-btn").css("display","");
-  $(".add-card-text").css("display","none");
 });
 $("#card-new textarea").keypress(function(e){
   if(e.which == 13){
@@ -18,6 +16,5 @@ $("#card-new textarea").keypress(function(e){
       $("#card-new").remove();
     }
     $(".add-card-btn").css("display","");
-    $(".add-card-text").css("display","none");
   }
 });

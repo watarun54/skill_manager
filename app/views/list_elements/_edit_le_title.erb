@@ -1,0 +1,6 @@
+<%= form_with(model: le, url: list_element_path) do |f| %>
+  <h2 class="my-3 le-title edit-le-title">
+    <%= f.text_field :name, class: "form-control" %>
+  </h2>
+  <%= f.submit id: "le-edit-submit", style: "display:none;" %>
+<% end %>

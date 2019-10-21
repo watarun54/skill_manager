@@ -1,27 +1,30 @@
 #list-container {
   overflow-x: scroll;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
 
-  > div.row {
-    min-width: 1200px;
-    white-space: nowrap;
+  // > div.row {
+  //   min-width: 1200px;
+  //   white-space: nowrap;
+  // }
+
+  .le-add {
+    h2 {
+      border: 1px solid gray;
+      margin-bottom: 6px;
+      border-radius: 6px;
+    }
+    i {
+      position: relative;
+      left: 128px;
+      bottom: 5px;
+      font-size: 18px;
+    }
+    .le-add-bottom-border {
+      border-bottom: solid 3px #343a40;
+    }
   }
-
-  .add-card-btn {
-    position: absolute;
-    font-size: 16px;
-    right: 19px;
-    top: 35px;
-  }
-
-  .add-card-text {
-    position: absolute;
-    font-size: 16px;
-    right: 19px;
-    top: 35px;
-  }
-}
-
-#ready-list {
-  overflow-y: scroll;
-  height: 1000px;
 }
