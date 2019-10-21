@@ -1,5 +1,9 @@
 $(".le-add").css("display","none");
-$("#list-container > div:nth-last-child(2)").after("<%= j(render("edit_list_element", le: @le, list: @list)) %>");
+if($("#list-container > div").length === 1) {
+  $("#list-container").prepend("<%= j(render("edit_list_element", le: @le, list: @list)) %>");
+} else {
+  $("#list-container > div:nth-last-child(2)").after("<%= j(render("edit_list_element", le: @le, list: @list)) %>");
+}
 $(".le-title input").focus().blur(function(){
   if($(".le-title input").val().trim() != ""){
     $("#le-new-submit").click();
