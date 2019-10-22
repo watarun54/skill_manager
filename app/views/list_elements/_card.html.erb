@@ -1,7 +1,7 @@
 <%= content_tag "div", id: "card-#{card.id}", class: "card mb-2", data: { model_name: card.class.name.underscore, update_url: card_sort_path(card)} do %>
 <%= link_to edit_card_path(card, from_list: "yes"), remote: true, style: "text-decoration: none;" do %>
   <%= form_for(card, remote: true) do |f| %>
-  <div class="card-body bg-light p-3">
+  <div class="card-body bg-light px-3 pt-2 pb-3">
     <p>
       <span class="badge badge-dark"><%= card.skill.nil? ? "None" : card.skill.general_skill.name.truncate(10) %></span>
       <span class="badge badge-success"><%= card.skill.nil? ? "None" : card.skill.name.truncate(10) %></span>
