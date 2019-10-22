@@ -1,4 +1,4 @@
-<div id="le-<%= le.id %>" class="le-container">
+<%= content_tag "div", id: "le-#{le.id}", class: "le-container", data: { model_name: le.class.name.underscore, update_url: list_element_sort_path(le)} do %>
   <%= link_to(edit_list_element_path(le.id), remote: true, class: "le-title-link") do %>
     <h2 class="my-3 le-title">
       <%= le.name.truncate(6) %>
@@ -15,4 +15,4 @@
     <%= render("card", card: card) %>
   <% end %>
   </div>
-</div>
+<% end %>

@@ -6,8 +6,8 @@
 
       <div class="modal" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"></div>
 
-      <div id="list-container">
-        <% @list.list_elements.each do |le| %>
+      <div id="list-container" class="le-sortable">
+        <% @list.list_elements.rank(:row_order).each do |le| %>
           <%= render("list_element", le: le) %>
         <% end %>
         <div class="le-container le-add">

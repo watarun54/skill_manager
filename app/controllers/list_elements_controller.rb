@@ -47,10 +47,16 @@ class ListElementsController < ApplicationController
     @card.update!(row_order: new_row_order, list_element_id: le.id)
   end
 
+  def sort
+    le = ListElement.find(params[:list_element_id])
+    le.update(le_params)
+    render body: nil
+  end
+
   private
 
   def le_params
-    params.require(:list_element).permit(:name, :list_id)
+    params.require(:list_element).permit(:name, :list_id, :row_order_position)
   end
 
   def card_params
