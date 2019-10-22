@@ -1,0 +1,2 @@
+$("#card-<%= @card.id %>").remove();
+$("#list-element-<%= @card.list_element_id %>").prepend("<%= j(render("card", card: @card)) %>");

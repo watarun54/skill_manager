@@ -10,15 +10,8 @@
     <p class="card-text text-muted px-2" style="white-space:normal;"><%= card.try(:fact) %></p>
   </div>
   <div class="card-footer text-right py-1 px-3">
-    <div class="btn-group">
-      <%= link_to "#", remote: true, class: "btn btn-sm btn-outline-secondary" do %>
-        <%= icon("fas", "caret-left") %>
-      <% end %>
-      <%= link_to "#", remote: true, class: "btn btn-sm btn-outline-secondary" do %>
-        <%= icon("fas", "caret-right") %>
-      <% end %>
-    </div>
-    <%= link_to card, method: :delete, remote: true, class: "btn btn-sm btn-outline-secondary ml-2" do %>
+    <%= render("le_select", card: card) %>
+    <%= link_to card, method: :delete, remote: true, class: "btn btn-sm btn-outline-secondary" do %>
       <%= icon("fas", "trash") %>
     <% end %>
   </div>

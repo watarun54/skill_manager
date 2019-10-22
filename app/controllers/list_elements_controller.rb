@@ -64,6 +64,13 @@ class ListElementsController < ApplicationController
     @card.save!
   end
 
+  def change_le
+    @card = Card.find(params["card_id"])
+    le = ListElement.find(params["to_le_id"])
+    new_row_order = le.cards.minimum(:row_order) - 100
+    @card.update!(row_order: new_row_order, list_element_id: le.id)
+  end
+
   private
 
   def le_params

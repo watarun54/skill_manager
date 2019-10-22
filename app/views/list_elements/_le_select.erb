@@ -1,0 +1,8 @@
+<a class="btn btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <%= card.list_element.name %>
+</a>
+<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+<% card.list_element.list.list_elements.each do |list_e| %>
+  <%= link_to list_e.name, change_le_path(to_le_id: list_e.id, card_id: card.id), method: :post, remote: true, class: "dropdown-item text-muted" unless list_e.name == card.list_element.name %>
+<% end %>
+</div>
