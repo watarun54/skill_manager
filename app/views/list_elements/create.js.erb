@@ -1,5 +1,0 @@
-<% if @status == 'success' %>
-$(".le-edit").replaceWith("<%= j(render("lists/list_element", le: @le)) %>");
-<% else %>
-$(".le-edit").remove();
-<% end %>

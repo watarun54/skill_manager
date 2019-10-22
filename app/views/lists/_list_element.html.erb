@@ -1,8 +1,8 @@
 <div id="le-<%= le.id %>" class="le-container">
   <%= link_to(edit_list_element_path(le.id), remote: true, class: "le-title-link") do %>
     <h2 class="my-3 le-title">
-      <%= le.name %>
-      <%= link_to le, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, class: "btn btn-sm btn-outline-secondary add-card-btn ml-1" do %>
+      <%= le.name.truncate(6) %>
+      <%= link_to le, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-sm btn-outline-secondary add-card-btn ml-1" do %>
         <%= icon("fas", "trash") %>
       <% end %>
       <%= link_to(new_le_card_path(le.id), remote: true, class: "btn btn-sm btn-outline-secondary add-card-btn") do %>

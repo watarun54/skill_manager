@@ -8,18 +8,8 @@ class ListElementsController < ApplicationController
 
   def create
     @le = ListElement.new(le_params)
-
-    respond_to do |format|
-			if @le.save
-        format.html { render :index }
-        format.json { render :index, status: :created, location: @le }
-        format.js { @status = "success"}
-      else
-        format.html { render :index }
-        format.json { render json: @le.errors, status: :unprocessable_entity }
-        format.js { @status = "fail" }
-      end
-    end
+    @le.save!
+    redirect_to controller: "lists", action: "show", id: @le.list.id
   end
 
   def edit
@@ -27,29 +17,14 @@ class ListElementsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-			if @le.update(le_params)
-        format.html { render :index }
-        format.json { render :index, status: :created, location: @le }
-        format.js { @status = "success"}
-      else
-        format.html { render :index }
-        format.json { render json: @le.errors, status: :unprocessable_entity }
-        format.js { @status = "fail" }
-      end
-    end
+    @le.update!(le_params)
+    redirect_to controller: "lists", action: "show", id: @le.list.id
   end
 
   def destroy
-    respond_to do |format|
-			if @le.destroy
-        format.html { render :index }
-        format.js { @status = "success"}
-      else
-        format.html { render :index }
-        format.js { @status = "fail" }
-      end
-    end
+    list_id = @le.list.id
+    @le.destroy
+    redirect_to controller: "lists", action: "show", id: list_id
   end
 
   def new_card
@@ -67,7 +42,8 @@ class ListElementsController < ApplicationController
   def change_le
     @card = Card.find(params["card_id"])
     le = ListElement.find(params["to_le_id"])
-    new_row_order = le.cards.minimum(:row_order) - 100
+    min_row_order = le.cards.minimum(:row_order)
+    new_row_order = min_row_order.nil? ? 100 : min_row_order - 100
     @card.update!(row_order: new_row_order, list_element_id: le.id)
   end
 

@@ -1,5 +1,0 @@
-<% if @status == 'success' %>
-$("#le-<%= @le.id %> .le-title").remove();
-$("#le-<%= @le.id %>").prepend("<%= j(render("le_title", le: @le)) %>");
-<% else %>
-<% end %>

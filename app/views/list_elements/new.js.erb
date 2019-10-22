@@ -14,9 +14,7 @@ $(".le-title input").focus().blur(function(){
 });
 $(".le-title input").keypress(function(e){
   if(e.which == 13){
-    if($(".le-title input").val().trim() != ""){
-      $("#le-new-submit").click();
-    } else {
+    if($(".le-title input").val().trim() == ""){
       $(".le-edit").remove();
     }
     $(".le-add").css("display","");

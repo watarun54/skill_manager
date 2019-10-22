@@ -6,18 +6,16 @@ $(".le-title input").focus()
 $(".le-title input").val(title).blur(function(){
   if($(".le-title input").val().trim() == "" || $(".le-title input").val().trim() === "<%= @le.name %>"){
     $("#le-<%= @le.id %> .le-title").css("display","");
+    $("#le-<%= @le.id %> > form").remove();
   } else {
     $("#le-edit-submit").click();
   }
-  $("#le-<%= @le.id %> > form").remove();
 });
 $(".le-title input").keypress(function(e){
   if(e.which == 13){
     if($(".le-title input").val().trim() == "" || $(".le-title input").val().trim() === "<%= @le.name %>"){
       $("#le-<%= @le.id %> .le-title").css("display","");
-    } else {
-      $("#le-edit-submit").click();
+      $("#le-<%= @le.id %> > form").remove();
     }
-    $("#le-<%= @le.id %> > form").remove();
   }
 });
