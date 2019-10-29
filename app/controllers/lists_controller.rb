@@ -9,24 +9,11 @@ class ListsController < ApplicationController
   end
 
   def show
-    @cards = @list.cards.rank(:row_order)
+
   end
 
   def new
 
-  end
-
-  def new_card
-    @card = Card.new
-  end
-
-  def create_card
-    @card = Card.new(card_params)
-    @card.status = "ready"
-    @card.skill_id = @current_user.skills.first.try(:id)
-    @card.list_id = params[:id]
-
-    @card.save!
   end
 
   def create
@@ -80,10 +67,6 @@ class ListsController < ApplicationController
 
   def list_params
     params.require(:list).permit(:name)
-  end
-
-  def card_params
-    params.require(:card).permit(:list_id, :skill_id, :score, :fact)
   end
 
   def set_list

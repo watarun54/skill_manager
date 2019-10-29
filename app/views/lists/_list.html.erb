@@ -1,6 +1,6 @@
 <tr id="list-<%= list.id %>">
-  <th scope="row"><%= link_to(list.name, list_path(list), style: "color:#343a40;") %></th>
-  <td><%= list.cards.count %></td>
+  <th scope="row"><%= link_to(list.name, list_path(list), style: "color:#343a40;", data: {"turbolinks" => false}) %></th>
+  <td><%= list.list_elements.count %></td>
   <td><%= list.created_at.strftime("%Y/%m/%d") %></td>
   <td>
     <div class="btn-group">

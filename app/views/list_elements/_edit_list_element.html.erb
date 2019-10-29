@@ -1,0 +1,9 @@
+<div class="le-container le-edit">
+  <%= form_with(model: le, url: list_elements_path, local: true) do |f| %>
+  <h2 class="my-3 le-title">
+    <%= f.text_field :name, class: "form-control" %>
+  </h2>
+  <%= f.hidden_field :list_id, value: list.id %>
+  <%= f.submit id: "le-new-submit", style: "display:none;" %>
+  <% end %>
+</div>

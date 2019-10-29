@@ -1,0 +1,25 @@
+.le-container {
+  min-width: 300px;
+  padding: 0px 16px;
+
+  .add-card-btn {
+    float: right;
+    margin-top: 4px;
+  }
+
+  .le-title-link {
+    color: #000000;
+    font-family: initial;
+    text-decoration: none;
+  }
+
+  .le-cards-container {
+    overflow-y: scroll;
+    height: 1000px;
+  }
+}
+
+.le-title {
+  border-bottom: solid 3px #343a40;
+  padding-bottom: 9px;
+}
