@@ -1,0 +1,26 @@
+db:
+  image: mysql:5.7
+  environment:
+    MYSQL_ROOT_PASSWORD: ${RAILS_DATABASE_PASSWORD}
+web:
+  build: .
+  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  volumes:
+    - .:/myapp
+  ports:
+    - "3000:3000"
+  links:
+    - db
+    - redis
+sidekiq:
+  build: .
+  command: bundle exec sidekiq
+  volumes:
+    - .:/myapp
+  links:
+    - db
+    - redis
+redis:
+  image: redis
+  ports:
+    - 6379:6379
