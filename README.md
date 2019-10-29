@@ -1,4 +1,4 @@
-# README
+# Skill Manager
 
 * Dependencies/Technologies
 
@@ -28,6 +28,8 @@ kaminari
 ```
 puma/nginx
 ```
+
+## さくらVPS
 
 * Start in local env
 
@@ -69,3 +71,13 @@ ps ax | grep sidekiq
 [[Rails] RedisとSidekiqとActiveJobで苦しむ](https://t-kojima.github.io/2018/05/10/0001-redis-sidekiq-activejob/)
 
 [非同期実行 Sidekiqの導入 Mac Ubuntu](https://qiita.com/ayies128/items/add88acef58280ef4b13)
+
+## 環境構築 with Docker
+
+```
+$ cp .env.sample .env
+$ docker-compose build
+$ docker-compose up -d
+$ docker-compose run web rails db:create
+$ docker-compose run web rails db:migrate
+```
