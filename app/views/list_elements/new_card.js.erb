@@ -1,20 +1,2 @@
-$(".add-card-btn").css("display","none");
-$("#list-element-<%= @le.id %>").append("<%= j(render("new_card", card: @card)) %>");
-$("#card-new textarea").focus().blur(function(){
-  if($("#card-new textarea").val().trim() != ""){
-    $("#card-new-submit").click();
-  } else {
-    $("#card-new").remove();
-  }
-  $(".add-card-btn").css("display","");
-});
-$("#card-new textarea").keypress(function(e){
-  if(e.which == 13){
-    if($("#card-new textarea").val().trim() != ""){
-      $("#card-new-submit").click();
-    } else {
-      $("#card-new").remove();
-    }
-    $(".add-card-btn").css("display","");
-  }
-});
+$("#card-modal").html("<%= j(render "card_modal") %>");
+$("#card-modal").modal("show");

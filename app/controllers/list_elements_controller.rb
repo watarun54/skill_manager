@@ -29,6 +29,8 @@ class ListElementsController < ApplicationController
 
   def new_card
     @card = Card.new
+    @skill_options = @current_user.skills.pluck(:name, :id)
+    @score_options = CardConstants::SCORE_OPTIONS
   end
 
   def create_card
