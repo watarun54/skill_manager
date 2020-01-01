@@ -98,7 +98,7 @@ class GeneralSkillsController < ApplicationController
           label: "All card scores of General Skill",
           background_color: "rgba(220,220,220,0.2)",
           border_color: "rgba(220,220,220,1)",
-          data: @current_user.general_skills.map { |gs| gs.skills.map{ |skill| skill.cards.sum(:score) }.sum }
+          data: @current_user.general_skills.includes(skills: :cards).map { |gs| gs.skills.map{ |skill| skill.cards.sum(:score) }.sum }
         },
       ]
     }
@@ -121,7 +121,7 @@ class GeneralSkillsController < ApplicationController
           label: "All card count of General Skill",
           backgroundColor: "rgba(151,187,205,0.2)",
           borderColor: "rgba(151,187,205,1)",
-          data: @current_user.general_skills.map { |gs| gs.skills.map{ |skill| skill.cards.count }.sum }
+          data: @current_user.general_skills.includes(skills: :cards).map { |gs| gs.skills.map{ |skill| skill.cards.size }.sum }
         },
       ]
     }
@@ -153,10 +153,10 @@ class GeneralSkillsController < ApplicationController
     @skill_score_chart_per_year = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.in_a_year.sum(:score)] }
     @skill_score_chart = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.sum(:score)] }
 
-    @skill_card_chart_per_week = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.in_a_week.count] }
-    @skill_card_chart_per_month = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.in_a_month.count] }
-    @skill_card_chart_per_year = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.in_a_year.count] }
-    @skill_card_chart = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.count] }
+    @skill_card_chart_per_week = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.in_a_week.size] }
+    @skill_card_chart_per_month = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.in_a_month.size] }
+    @skill_card_chart_per_year = @general_skill.skills.map { |skill| [skill.name.truncate(10), skill.cards.in_a_year.size] }
+    @skill_card_chart = @general_skill.skills.includes(:cards).map { |skill| [skill.name.truncate(10), skill.cards.size] }
 
     # 各スキル
     @charts_by_skill_data = {}
