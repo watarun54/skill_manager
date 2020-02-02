@@ -1,0 +1,2 @@
+module FaceImagesHelper
+end

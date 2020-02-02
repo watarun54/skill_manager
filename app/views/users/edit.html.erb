@@ -30,6 +30,9 @@
         <% end %>
 
         <div class="pl-0 mt-3">
+          <%= link_to new_face_image_path, class: "text-muted", style: "text-decoration:none;" do %>
+            <%= icon("fas", "angle-double-right") %> Face image を登録<%= "（登録済み）" if @current_user.face_image.present? %>
+          <% end %><br />
           <%= link_to user_path(@current_user.id), method: :delete, class: "text-danger", style: "text-decoration:none;", data: { confirm: 'Are you sure?'} do %>
             <%= icon("fas", "trash") %> アカウント削除
           <% end %>

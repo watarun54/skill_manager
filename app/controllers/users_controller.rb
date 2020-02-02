@@ -33,6 +33,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    delete_face_img(@current_user, "face-images", ENV['S3_SEARCHBUCKET']) if @current_user.face_image.present?
     if @user.destroy
       flash[:notice] = "Account deleted successfully!"
       redirect_to login_path
@@ -49,5 +50,17 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :line_user_id)
+  end
+
+  def delete_face_img(user, c_id, bucket)
+    face_image = user.face_image
+    # collectionから削除
+    rekog = Aws::RekognitionAdapter.new
+    rekog.delete_face_from_collection(c_id, face_image.face_id)
+    # s3から削除
+    s3 = Aws::S3Adapter.new
+    s3.delete(bucket, face_image.filename)
+    # FaceImageを削除
+    face_image.destroy!
   end
 end

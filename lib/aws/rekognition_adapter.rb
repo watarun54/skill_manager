@@ -23,12 +23,12 @@ class Aws::RekognitionAdapter
   end
 
   # コレクションに顔画像を追加
-  def add_face_to_collection(user_id, c_id, ex_img_id, s3_bucket, filename)
+  def add_face_to_collection(user_id, c_id, s3_bucket, filename)
     res = @client.index_faces({
       collection_id: c_id, 
       detection_attributes: [
       ], 
-      external_image_id: ex_img_id, 
+      external_image_id: user_id.to_s, 
       image: {
         s3_object: {
           bucket: s3_bucket, 
@@ -42,8 +42,7 @@ class Aws::RekognitionAdapter
   end
 
   # コレクションから顔画像を削除
-  def delete_face_from_collection(user_id, c_id, face_id)
-    face_id = User.find(user_id).face_image.face_id
+  def delete_face_from_collection(c_id, face_id)
     @client.delete_faces({
       collection_id: c_id,
       face_ids: [face_id],

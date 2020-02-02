@@ -9,7 +9,7 @@ class FaceLoginController < ApplicationController
   end
 
   def check
-    filename = upload_img_to_s3(params)
+    filename = upload_img_to_s3(ENV['S3_PUTBUCKET'], params)
     @result = search_image_from_collection("face-images", filename)
     unless @result.empty? || @result.face_matches.empty?
       user_id = @result.face_matches[0].face.external_image_id
@@ -32,9 +32,8 @@ class FaceLoginController < ApplicationController
     @current_user = user
   end
 
-  def upload_img_to_s3(params)
+  def upload_img_to_s3(bucket, params)
     s3 = Aws::S3Adapter.new
-    target_bucket = ENV['S3_PUTBUCKET']
     filename = SecureRandom.uuid + ".jpg"
     img_src = params[:img_src]
     content_type, b64img = img_src.match(/data:(.*?);(?:.*?),(.*)$/).captures
@@ -44,7 +43,7 @@ class FaceLoginController < ApplicationController
       f.write(img.read)
     end
     path = "tmp/storage/#{filename}"
-    s3.upload(target_bucket, filename, path) # s3にアップロード
+    s3.upload(bucket, filename, path) # s3にアップロード
     FileUtils.rm(path) # tmpファイル削除
     filename
   end

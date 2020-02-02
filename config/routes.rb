@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
+  resources :face_images, only: [:new, :create]
+
   resources :face_login, only: [:index]
   post 'face_login/check', to: 'face_login#check'
 
