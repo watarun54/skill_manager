@@ -58,7 +58,9 @@ showMedia();
 var showMatchedImages = (result) => {
   $('#results').hide();
   $("#search-result-list").empty();
-  if ( result.face_records.length != 0 ) {
+  if (result.face_exist) {
+    $('#search-result-list').append('<div>すでに登録されている顔です。</div>');
+  } else if ( result.face_records && result.face_records.length != 0 ) {
     $('#search-result-list').append('<div>登録が成功しました。</div>');
     window.location.href = '<%= edit_user_path(@current_user) %>'
   } else {

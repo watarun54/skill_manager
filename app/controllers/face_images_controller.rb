@@ -13,8 +13,7 @@ class FaceImagesController < ApplicationController
     # s3に画像をアップロード
     filename = upload_img_to_s3(bucket, params)
     # collectionに画像を登録
-    rekog = Aws::RekognitionAdapter.new
-    @result = rekog.add_face_to_collection(@current_user.id, collection_id, bucket, filename)
+    @result = add_img_to_collection(@current_user.id, collection_id, bucket, filename)
   end
 
   private
@@ -54,5 +53,25 @@ class FaceImagesController < ApplicationController
     s3.upload(bucket, filename, path) # s3にアップロード
     FileUtils.rm(path) # tmpファイル削除
     filename
+  end
+
+  def search_image_from_collection(collection_id, filename)
+    rekog = Aws::RekognitionAdapter.new
+    rekog.search_faces_by_image(collection_id, ENV['S3_SEARCHBUCKET'], filename)
+  rescue => e
+    {}
+  end
+
+  def add_img_to_collection(user_id, c_id, bucket, filename)
+    rekog = Aws::RekognitionAdapter.new
+    search_result = search_image_from_collection(c_id, filename)
+    # すでに登録されている顔かどうかチェック
+    if search_result.face_matches.try(:present?)
+      s3 = Aws::S3Adapter.new
+      s3.delete(bucket, filename)
+      {face_exist: true}
+    else
+      rekog.add_face_to_collection(user_id, c_id, bucket, filename)
+    end
   end
 end

@@ -53,7 +53,7 @@ showMedia();
 var showMatchedImages = (result) => {
   $('#results').hide();
   $("#search-result-list").empty();
-  if ( result.face_matches.length != 0 ) {
+  if ( result.face_matches && result.face_matches.length != 0 ) {
     $('#search-result-list').append('<div>認証が成功しました。</div>');
   } else {
     $('#search-result-list').append('<div>認証が失敗しました。再度試してください。</div>');

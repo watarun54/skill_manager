@@ -36,7 +36,7 @@ class Aws::RekognitionAdapter
         },
       },
     })
-    face_id = res.face_records[0].face.face_id
+    face_id = res.face_records[0].face.face_id unless res.face_records[0].face.nil?
     User.find(user_id).create_face_image(filename: filename, face_id: face_id)
     res
   end
