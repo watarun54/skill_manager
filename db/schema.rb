@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_22_094150) do
+ActiveRecord::Schema.define(version: 2020_02_01_132027) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "skill_id"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2019_10_22_094150) do
     t.bigint "list_element_id"
     t.index ["list_element_id"], name: "index_cards_on_list_element_id"
     t.index ["skill_id"], name: "index_cards_on_skill_id"
+  end
+
+  create_table "face_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "filename"
+    t.string "face_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_face_images_on_user_id"
   end
 
   create_table "general_skills", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -83,6 +92,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_094150) do
     t.string "line_user_id"
   end
 
+  add_foreign_key "face_images", "users"
   add_foreign_key "general_skills", "users"
   add_foreign_key "list_elements", "lists"
   add_foreign_key "lists", "users"
