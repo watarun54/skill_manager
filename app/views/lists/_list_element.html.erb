@@ -11,7 +11,7 @@
     </h2>
   <% end %>
   <div id="list-element-<%= le.id %>" class="card-sortable le-cards-container">
-  <% le.cards.rank(:row_order).each do |card| %>
+  <% le.cards.includes(skill: :general_skill).rank(:row_order).each do |card| %>
     <%= render("card", card: card) %>
   <% end %>
   </div>
