@@ -13,29 +13,18 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
-  host: localhost
+  username: <%= ENV['RAILS_DATABASE_USERNAME'] %>
+  password: <%= ENV['RAILS_DATABASE_PASSWORD'] %>
+  host: <%= ENV['RAILS_DATABASE_HOST'] %>
+  socket: /tmp/mysql.sock
 
 development:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+  <<: *default
   database: skill_manager_development
-  pool: 5
-  username: <%=ENV["RAILS_DATABASE_USERNAME"] %>
-  password: <%= ENV["RAILS_DATABASE_PASSWORD"] %>
-  host: <%= ENV["RAILS_DATABASE_HOST"] %>
 
 test:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+  <<: *default
   database: skill_manager_test
-  pool: 5
-  username: <%= ENV["RAILS_DATABASE_USERNAME"] %>
-  password: <%= ENV["RAILS_DATABASE_PASSWORD"] %>
-  host: <%= ENV["RAILS_DATABASE_HOST"] %>
 
 production:
   adapter: mysql2

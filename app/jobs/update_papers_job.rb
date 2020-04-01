@@ -8,6 +8,7 @@ class UpdatePapersJob < ApplicationJob
 
     if text.empty?
       result = request_analyze_paper_api(uri)
+      puts result
       text = result["title"].blank? ? "#ERROR# タイトルを取得できませんでした" : result["title"]
     end
 

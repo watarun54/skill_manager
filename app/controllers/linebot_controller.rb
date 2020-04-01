@@ -39,7 +39,7 @@ class LinebotController < ApplicationController
               },
               {
                 type: 'text',
-                text: "こちらのIDを「ユーザー編集」->「Line User Id」に登録してください\nhttp://#{HOST}/"
+                text: "こちらのIDを「ユーザー編集」->「Line User Id」に登録してください\n#{LINEBOT_URL}/"
               }
             ]
             client.reply_message(event['replyToken'], messages)
