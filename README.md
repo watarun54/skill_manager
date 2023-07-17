@@ -1,5 +1,13 @@
 # Skill Manager
 
+スキルの視覚化により、  
+・自分自身のスキルの客観的理解  
+・マネジメント担当者が個々のスキルを把握する手助け  
+を目的として開発中
+
+![image](https://github.com/watarun54/skill_manager/assets/37992018/d9aa83e0-f6b6-43ff-b631-f7419093cc72)
+
+
 * Dependencies/Technologies
 
 ```
